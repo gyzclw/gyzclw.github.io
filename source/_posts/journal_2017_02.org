@@ -1,0 +1,132 @@
+#+TITLE: journal_2017_02
+#+AUTHOR: gyzclw
+#+DATE: <2017-02-19 Sun>
+#+TAGS: android, journal
+#+LAYOUT: post
+#+CATEGORIES: android
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setCJKmainfont{Songti SC}
+
+* 15
+** Android RecyclerView
+*** Add Header for RecyclerView
+   继承RecyclerView.Adapter<RecyclerView.ViewHolder> 自定义一个
+ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private filed。
+ #+BEGIN_SRC java
+ @Override public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
+ int viewType) {
+  View v;
+
+    if (viewType == HEADER_VIEW) {
+      v = LayoutInflater.from(parent.getContext())
+	  .inflate(R.layout.header_provident, parent, false);
+      HeaderFooterViewHolder vh = new HeaderFooterViewHolder(v);
+      return vh;
+    }
+    if (viewType == FOOTER_VIEW) {
+
+    }
+
+    v = LayoutInflater.from(parent.getContext()).
+	   inflate(R.layout.normal_provident, parent, false);
+
+    NormalViewHolder vh = new NormalViewHolder(v);
+    return vh;
+    }
+    #+END_SRC
+   而创建Header View 需要创建它的ViewHoder ,我们需要一些状态来标识是Header View 还是
+Normal View;
+ #+Begin_src java
+  private static final int NORMAL_VIEW = 0;
+  private static final int HEADER_VIEW = 1;
+  private static final int FOOTER_VIEW = 2;
+  private List<View> headers = new ArrayList<>();
+  private List<String> items = new ArrayList<>();
+  private List<View> footers = new ArrayList<>();
+#+End_src
+通过判断position 和headers items 的size 大小判断 itemtype
+ #+begin_src java
+ @Override
+    public int getItemViewType(int position) {
+	//check what type our position is, based on the
+	//assumption that the order is headers > items > footers
+	if(position < headers.size()){
+	    return TYPE_HEADER;
+	  }else if(position >= headers.size() + items.size()){
+	    return TYPE_FOOTER;
+	}
+	return TYPE_ITEM;
+    }
+#+end_src
+判断来View Type 就可以在onBindViewHolder()中bind itemview
+ #+begin_src java
+ @Override public void onBindViewHolder(RecyclerView.ViewHolder vh,
+   int position) {
+    if (position < headers.size()) {
+      View v = headers.get(position);
+      //add our view to a header view and display it
+      prepareHeaderFooter((HeaderFooterViewHolder) vh, v);
+    } else if (position >= headers.size() + items.size()) {
+      View v = footers.get(position - items.size() - headers.size());
+      //add oru view to a footer view and display it
+      prepareHeaderFooter((HeaderFooterViewHolder) vh, v);
+    } else {
+      //it's one of our items, display as required
+      prepareGeneric((NormalViewHolder) vh, position - headers.size());
+    }
+  }
+#+end_src
+通过addHeader(View header)向集合headers 中添加item
+  #+begin_src java
+  public void addHeader(View header) {
+    if (!headers.contains(header)) {
+      headers.add(header);
+      //animate
+      notifyItemInserted(headers.size() - 1);
+      }
+    }
+#+end_src
+* 16
+** Android RecyclerView
+*** Add child view for RecyclerView
+ 首先是List<Interger> mitemType 存储item的类型: 0代表NORMAL VIEW, 1代表CHILD VIEW。
+ 和List<String> mitems 存储总的数据.
+ #+begin_src java
+    HashMap<String, List<String>> items = new HashMap<>();
+    List<String> item = new ArrayList<>();
+    item.add("hello");
+    item.add("hello");
+    item.add("hello");
+    items.put("2001", item);
+    items.put("2002", item);
+    items.put("2003", item);
+    List<String> mitems = new ArrayList<>();
+    List<Integer> mitemType = new ArrayList<>();
+   Iterator i = items.keySet().iterator();
+
+    if (i.hasNext()) {
+      String key = (String) i.next();
+      mitemType.add(0);
+      mitems.add(key);
+      List<String> datas = items.get(key);
+      for (String data : datas) {
+	mitems.add(data);
+	mitemType.add(1);
+      }
+    }
+ #+end_src
+ 然后就是和add header 一样, 在getItemType中判断item的类型
+ #+begin_src java
+   @Override public int getItemViewType(int position) {
+    if (position < headers.size()) {
+      return HEADER_VIEW;
+    }
+    if (position >= headers.size() + mitems.size()) {
+      return FOOTER_VIEW;
+    }
+    if (mitemType.get(position - headers.size() - footers.size()) == 0) {
+      return NORMAL_VIEW;
+    }
+    return CHILD_VIEW;
+  }
+ #+end_src

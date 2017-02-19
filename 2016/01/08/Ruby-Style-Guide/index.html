@@ -1,0 +1,1072 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ruby," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.0" />
+
+
+
+
+
+
+<meta name="description" content="Ruby Style GuideThis is Airbnb’s Ruby Style Guide.
+It was inspired by Github’s guide and Bozhidar Batsov’s guide.
+Airbnb also maintains a JavaScript Style Guide.
+)
+WhitespaceIndentation
+Use soft-tabs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ruby_Style_Guide">
+<meta property="og:url" content="http://platofield.com/2016/01/08/Ruby-Style-Guide/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="Ruby Style GuideThis is Airbnb’s Ruby Style Guide.
+It was inspired by Github’s guide and Bozhidar Batsov’s guide.
+Airbnb also maintains a JavaScript Style Guide.
+)
+WhitespaceIndentation
+Use soft-tabs">
+<meta property="og:updated_time" content="2016-01-12T07:58:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ruby_Style_Guide">
+<meta name="twitter:description" content="Ruby Style GuideThis is Airbnb’s Ruby Style Guide.
+It was inspired by Github’s guide and Bozhidar Batsov’s guide.
+Airbnb also maintains a JavaScript Style Guide.
+)
+WhitespaceIndentation
+Use soft-tabs">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: '[object Object]',
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Ruby_Style_Guide | 知识之野 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">知识之野</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+        <li class="menu-item menu-item-search">
+          <a href="#" class="st-search-show-outputs">
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'vaWoxfSsyB_TznGRzy83','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ruby_Style_Guide
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-08T14:40:20+08:00" content="2016-01-08">
+              2016-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">ruby</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/08/Ruby-Style-Guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/08/Ruby-Style-Guide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Ruby_Style_Guide"><a href="#Ruby_Style_Guide" class="headerlink" title="Ruby Style Guide"></a>Ruby Style Guide</h1><p>This is Airbnb’s Ruby Style Guide.</p>
+<p>It was inspired by <a href="https://github.com/styleguide/ruby" target="_blank" rel="external">Github’s guide</a> and <a href="https://github.com/bbatsov/ruby-style-guide" target="_blank" rel="external">Bozhidar Batsov’s guide</a>.</p>
+<p>Airbnb also maintains a <a href="https://github.com/airbnb/javascript" target="_blank" rel="external">JavaScript Style Guide</a>.</p>
+<p>)</p>
+<h2 id="Whitespace"><a href="#Whitespace" class="headerlink" title="Whitespace"></a>Whitespace</h2><h3 id="Indentation"><a href="#Indentation" class="headerlink" title="Indentation"></a>Indentation</h3><ul>
+<li><p>Use soft-tabs with a two space-indent.</p>
+</li>
+<li><p>Indent <code>when</code> as deep as <code>case</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span></span><br><span class="line"><span class="keyword">when</span> song.name == <span class="string">'Misty'</span></span><br><span class="line">  puts <span class="string">'Not again!'</span></span><br><span class="line"><span class="keyword">when</span> song.duration &gt; <span class="number">120</span></span><br><span class="line">  puts <span class="string">'Too long!'</span></span><br><span class="line"><span class="keyword">when</span> <span class="constant">Time</span>.now.hour &gt; <span class="number">21</span></span><br><span class="line">  puts <span class="string">"It's too late"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  song.play</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">kind = <span class="keyword">case</span> year</span><br><span class="line">       <span class="keyword">when</span> <span class="number">1850</span>..<span class="number">1889</span> <span class="keyword">then</span> <span class="string">'Blues'</span></span><br><span class="line">       <span class="keyword">when</span> <span class="number">1890</span>..<span class="number">1909</span> <span class="keyword">then</span> <span class="string">'Ragtime'</span></span><br><span class="line">       <span class="keyword">when</span> <span class="number">1910</span>..<span class="number">1929</span> <span class="keyword">then</span> <span class="string">'New Orleans Jazz'</span></span><br><span class="line">       <span class="keyword">when</span> <span class="number">1930</span>..<span class="number">1939</span> <span class="keyword">then</span> <span class="string">'Swing'</span></span><br><span class="line">       <span class="keyword">when</span> <span class="number">1940</span>..<span class="number">1950</span> <span class="keyword">then</span> <span class="string">'Bebop'</span></span><br><span class="line">       <span class="keyword">else</span> <span class="string">'Jazz'</span></span><br><span class="line">       <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Align function parameters either all on the same line or one per line.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">create_translation</span><span class="params">(phrase_id,</span><br><span class="line">                            phrase_key,</span><br><span class="line">                            target_locale,</span><br><span class="line">                            value,</span><br><span class="line">                            user_id,</span><br><span class="line">                            do_xss_check,</span><br><span class="line">                            allow_verification)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">create_translation</span><span class="params">(phrase_id, phrase_key, target_locale,</span><br><span class="line">                            value, user_id, do_xss_check, allow_verification)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Indent succeeding lines in multi-line boolean expressions.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_eligible?</span><span class="params">(user)</span></span></span><br><span class="line">  <span class="constant">Trebuchet</span>.current.launch?(<span class="constant">ProgramEligibilityHelper::PROGRAM_TREBUCHET_FLAG</span>) &amp;&amp;</span><br><span class="line">    is_in_program?(user) &amp;&amp;</span><br><span class="line">    program_not_expired</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_eligible?</span><span class="params">(user)</span></span></span><br><span class="line">  <span class="constant">Trebuchet</span>.current.launch?(<span class="constant">ProgramEligibilityHelper::PROGRAM_TREBUCHET_FLAG</span>) &amp;&amp;</span><br><span class="line">  is_in_program?(user) &amp;&amp;</span><br><span class="line">  program_not_expired</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Inline"><a href="#Inline" class="headerlink" title="Inline"></a>Inline</h3><ul>
+<li><p>Never leave trailing whitespace.</p>
+</li>
+<li><p>Use spaces around operators; after commas, colons, and semicolons; and around<br><code>{</code> and before <code>}</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">a, b = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="number">1</span> &gt; <span class="number">2</span> ? <span class="keyword">true</span> <span class="symbol">:</span> <span class="keyword">false</span>; puts <span class="string">'Hi'</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].each &#123; |e| puts e &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>No spaces after <code>(</code>, <code>[</code> or before <code>]</code>, <code>)</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">some(arg).other</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].length</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Newlines"><a href="#Newlines" class="headerlink" title="Newlines"></a>Newlines</h3><ul>
+<li><p>Add a new line after <code>if</code> conditions span multiple lines to help<br>differentiate between the conditions and the body.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="variable">@reservation_alteration</span>.checkin == <span class="variable">@reservation</span>.start_date &amp;&amp;</span><br><span class="line">   <span class="variable">@reservation_alteration</span>.checkout == (<span class="variable">@reservation</span>.start_date + <span class="variable">@reservation</span>.nights)</span><br><span class="line"></span><br><span class="line">  redirect_to_alteration <span class="variable">@reservation_alteration</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Add a new line after conditionals, blocks, case statements, etc.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> robot.is_awesome?</span><br><span class="line">  send_robot_present</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">robot.add_trait(<span class="symbol">:human_like_intelligence</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="Line_Length"><a href="#Line_Length" class="headerlink" title="Line Length"></a>Line Length</h2><p>Keep each line of code to a readable length. Unless you have a reason<br>to, keep lines to fewer than 100 characters. Keeping code visually<br>grouped together (as a 100-character line limit enforces) makes it<br>easier to understand. For example, you don’t have to scroll back and<br>forth on one line to see what’s going on – you can view it all<br>together.</p>
+<p>Here are examples from our codebase showing several techniques for<br>breaking complex statements into multiple lines that are all &lt; 100<br>characters. Notice techniques like:</p>
+<ul>
+<li>liberal use of linebreaks inside unclosed <code>(</code> <code>{</code> <code>[</code></li>
+<li>chaining methods, ending unfinished chains with a <code>.</code></li>
+<li>composing long strings by putting strings next to each other, separated<br>by a backslash-then-newline.</li>
+<li>breaking long logical statements with linebreaks after operators like<br><code>&amp;&amp;</code> and <code>||</code></li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scope = <span class="constant">Translation::Phrase</span>.includes(<span class="symbol">:phrase_translations</span>).</span><br><span class="line">  joins(<span class="symbol">:phrase_screenshots</span>).</span><br><span class="line">  where(<span class="symbol">:phrase_screenshots</span> =&gt; &#123;</span><br><span class="line">    <span class="symbol">:controller</span> =&gt; controller_name,</span><br><span class="line">    <span class="symbol">:action</span> =&gt; <span class="constant">JAROMIR_JAGR_SALUTE</span>,</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">translation = <span class="constant">FactoryGirl</span>.create(</span><br><span class="line">  <span class="symbol">:phrase_translation</span>,</span><br><span class="line">  <span class="symbol">:locale</span> =&gt; <span class="symbol">:is</span>,</span><br><span class="line">  <span class="symbol">:phrase</span> =&gt; phrase,</span><br><span class="line">  <span class="symbol">:key</span> =&gt; <span class="string">'phone_number_not_revealed_time_zone'</span>,</span><br><span class="line">  <span class="symbol">:value</span> =&gt; <span class="string">'Símanúmerið þitt verður ekki birt. Það er aðeins hægt að hringja á '</span>\</span><br><span class="line">            <span class="string">'milli 9:00 og 21:00 %&#123;time_zone&#125;.'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="variable">@reservation_alteration</span>.checkin == <span class="variable">@reservation</span>.start_date &amp;&amp;</span><br><span class="line">   <span class="variable">@reservation_alteration</span>.checkout == (<span class="variable">@reservation</span>.start_date + <span class="variable">@reservation</span>.nights)</span><br><span class="line"></span><br><span class="line">  redirect_to_alteration <span class="variable">@reservation_alteration</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> <span class="variable">@presenter</span>.guest_visa_russia? </span>%&gt;<span class="xml"></span><br><span class="line">  </span>&lt;%=<span class="ruby"> icon_tile_for(<span class="constant">I18n</span>.t(<span class="string">"email.reservation_confirmed_guest.visa.details_header"</span>,</span><br><span class="line">                           <span class="symbol">:default</span> =&gt; <span class="string">"Visa for foreign Travelers"</span>),</span><br><span class="line">                    <span class="symbol">:beveled_big_icon</span> =&gt; <span class="string">"stamp"</span>) <span class="keyword">do</span> </span>%&gt;<span class="xml"></span><br><span class="line">    </span>&lt;%=<span class="ruby"> <span class="constant">I18n</span>.t(<span class="string">"email.reservation_confirmed_guest.visa.russia.details_copy"</span>,</span><br><span class="line">               <span class="symbol">:default</span> =&gt; <span class="string">"Foreign guests travelling to Russia may need to obtain a visa..."</span>) </span>%&gt;<span class="xml"></span><br><span class="line">  </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span><br><span class="line"></span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
+<p>These code snippets are very much more readable than the alternative:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">scope = <span class="constant">Translation::Phrase</span>.includes(<span class="symbol">:phrase_translations</span>).joins(<span class="symbol">:phrase_screenshots</span>).where(<span class="symbol">:phrase_screenshots</span> =&gt; &#123; <span class="symbol">:controller</span> =&gt; controller_name, <span class="symbol">:action</span> =&gt; <span class="constant">JAROMIR_JAGR_SALUTE</span> &#125;)</span><br><span class="line"></span><br><span class="line">translation = <span class="constant">FactoryGirl</span>.create(<span class="symbol">:phrase_translation</span>, <span class="symbol">:locale</span> =&gt; <span class="symbol">:is</span>, <span class="symbol">:phrase</span> =&gt; phrase, <span class="symbol">:key</span> =&gt; <span class="string">'phone_number_not_revealed_time_zone'</span>, <span class="symbol">:value</span> =&gt; <span class="string">'Símanúmerið þitt verður ekki birt. Það er aðeins hægt að hringja á milli 9:00 og 21:00 %&#123;time_zone&#125;.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="variable">@reservation_alteration</span>.checkin == <span class="variable">@reservation</span>.start_date &amp;&amp; <span class="variable">@reservation_alteration</span>.checkout == (<span class="variable">@reservation</span>.start_date + <span class="variable">@reservation</span>.nights)</span><br><span class="line">  redirect_to_alteration <span class="variable">@reservation_alteration</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> <span class="variable">@presenter</span>.guest_visa_russia? </span>%&gt;<span class="xml"></span><br><span class="line">  </span>&lt;%=<span class="ruby"> icon_tile_for(<span class="constant">I18n</span>.t(<span class="string">"email.reservation_confirmed_guest.visa.details_header"</span>, <span class="symbol">:default</span> =&gt; <span class="string">"Visa for foreign Travelers"</span>), <span class="symbol">:beveled_big_icon</span> =&gt; <span class="string">"stamp"</span>) <span class="keyword">do</span> </span>%&gt;<span class="xml"></span><br><span class="line">    </span>&lt;%=<span class="ruby"> <span class="constant">I18n</span>.t(<span class="string">"email.reservation_confirmed_guest.visa.russia.details_copy"</span>, <span class="symbol">:default</span> =&gt; <span class="string">"Foreign guests travelling to Russia may need to obtain a visa prior to..."</span>) </span>%&gt;<span class="xml"></span><br><span class="line">  </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span><br><span class="line"></span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
+<h2 id="Commenting"><a href="#Commenting" class="headerlink" title="Commenting"></a>Commenting</h2><blockquote>
+<p>Though a pain to write, comments are absolutely vital to keeping our code<br>readable. The following rules describe what you should comment and where. But<br>remember: while comments are very important, the best code is<br>self-documenting. Giving sensible names to types and variables is much better<br>than using obscure names that you must then explain through comments.</p>
+<p>When writing your comments, write for your audience: the next contributor who<br>will need to understand your code. Be generous — the next one may be you!</p>
+</blockquote>
+<p>&mdash;<a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml" target="_blank" rel="external">Google C++ Style Guide</a></p>
+<p>Portions of this section borrow heavily from the Google<br><a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Comments" target="_blank" rel="external">C++</a> and <a href="http://google-styleguide.googlecode.com/svn/trunk/pyguide.html#Comments" target="_blank" rel="external">Python</a> style guides.</p>
+<h3 id="File/class-level_comments"><a href="#File/class-level_comments" class="headerlink" title="File/class-level comments"></a>File/class-level comments</h3><p>Every class definition should have an accompanying comment that describes what<br>it is for and how it should be used.</p>
+<p>A file that contains zero classes or more than one class should have a comment<br>at the top describing its contents.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Automatic conversion of one locale to another where it is possible, like</span></span><br><span class="line"><span class="comment"># American to British English.</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Translation</span></span></span><br><span class="line">  <span class="comment"># Class for converting between text between similar locales.</span></span><br><span class="line">  <span class="comment"># Right now only conversion between American English -&gt; British, Canadian,</span></span><br><span class="line">  <span class="comment"># Australian, New Zealand variations is provided.</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">PrimAndProper</span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></span><br><span class="line">      <span class="variable">@converters</span> = &#123; <span class="symbol">:en</span> =&gt; &#123; <span class="symbol">:<span class="string">"en-AU"</span></span> =&gt; <span class="constant">AmericanToAustralian</span>.new,</span><br><span class="line">                               <span class="symbol">:<span class="string">"en-CA"</span></span> =&gt; <span class="constant">AmericanToCanadian</span>.new,</span><br><span class="line">                               <span class="symbol">:<span class="string">"en-GB"</span></span> =&gt; <span class="constant">AmericanToBritish</span>.new,</span><br><span class="line">                               <span class="symbol">:<span class="string">"en-NZ"</span></span> =&gt; <span class="constant">AmericanToKiwi</span>.new,</span><br><span class="line">                             &#125; &#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Applies transforms to American English that are common to</span></span><br><span class="line">  <span class="comment"># variants of all other English colonies.</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AmericanToColonial</span></span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Converts American to British English.</span></span><br><span class="line">  <span class="comment"># In addition to general Colonial English variations, changes "apartment"</span></span><br><span class="line">  <span class="comment"># to "flat".</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AmericanToBritish</span> <span class="inheritance">&lt; <span class="parent">AmericanToColonial</span></span></span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>All files, including data and config files, should have file-level comments. From <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;```ruby&#10;# List of American-to-British spelling variants.&#10;#&#10;# This list is made with&#10;# lib/tasks/list_american_to_british_spelling_variants.rake.&#10;#&#10;# It contains words with general spelling variation patterns:&#10;#   [trave]led/lled, [real]ize/ise, [flav]or/our, [cent]er/re, plus&#10;# and these extras:&#10;#   learned/learnt, practices/practises, airplane/aeroplane, ...&#10;&#10;sectarianizes: sectarianises&#10;neutralization: neutralisation&#10;...</span><br></pre></td></tr></table></figure></p>
+<h3 id="Function_comments"><a href="#Function_comments" class="headerlink" title="Function comments"></a>Function comments</h3><p>Every function declaration should have comments immediately preceding it that<br>describe what the function does and how to use it. These comments should be<br>descriptive (“Opens the file”) rather than imperative (“Open the file”); the<br>comment describes the function, it does not tell the function what to do. In<br>general, these comments do not describe how the function performs its task.<br>Instead, that should be left to comments interspersed in the function’s code.</p>
+<p>Every function should mention what the inputs and outputs are, unless it meets<br>all of the following criteria:</p>
+<ul>
+<li>not externally visible</li>
+<li>very short</li>
+<li>obvious</li>
+</ul>
+<p>You may use whatever format you wish. In Ruby, two popular function<br>documentation schemes are <a href="http://tomdoc.org/" target="_blank" rel="external">TomDoc</a> and<br><a href="http://rubydoc.info/docs/yard/file/docs/GettingStarted.md" target="_blank" rel="external">YARD</a>. You can also<br>just write things out concisely:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Returns the fallback locales for the_locale.</span></span><br><span class="line"><span class="comment"># If opts[:exclude_default] is set, the default locale, which is otherwise</span></span><br><span class="line"><span class="comment"># always the last one in the returned list, will be excluded.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># For example:</span></span><br><span class="line"><span class="comment">#   fallbacks_for(:"pt-BR")</span></span><br><span class="line"><span class="comment">#     =&gt; [:"pt-BR", :pt, :en]</span></span><br><span class="line"><span class="comment">#   fallbacks_for(:"pt-BR", :exclude_default =&gt; true)</span></span><br><span class="line"><span class="comment">#     =&gt; [:"pt-BR", :pt]</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fallbacks_for</span><span class="params">(the_locale, opts = &#123;&#125;)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="Block_and_inline_comments"><a href="#Block_and_inline_comments" class="headerlink" title="Block and inline comments"></a>Block and inline comments</h3><p>The final place to have comments is in tricky parts of the code. If you’re<br>going to have to explain it at the next code review, you should comment it now.<br>Complicated operations get a few lines of comments before the operations<br>commence. Non-obvious ones get comments at the end of the line.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fallbacks_for</span><span class="params">(the_locale, opts = &#123;&#125;)</span></span></span><br><span class="line">  <span class="comment"># dup() to produce an array that we can mutate.</span></span><br><span class="line">  ret = <span class="variable">@fallbacks</span>[the_locale].dup</span><br><span class="line"></span><br><span class="line">  <span class="comment"># We make two assumptions here:</span></span><br><span class="line">  <span class="comment"># 1) There is only one default locale (that is, it has no less-specific</span></span><br><span class="line">  <span class="comment">#    children).</span></span><br><span class="line">  <span class="comment"># 1) The default locale is just a language. (Like :en, and not :"en-US".)</span></span><br><span class="line">  <span class="keyword">if</span> opts[<span class="symbol">:exclude_default</span>] &amp;&amp;</span><br><span class="line">      ret.last == default_locale &amp;&amp;</span><br><span class="line">      ret.last != language_from_locale(the_locale)</span><br><span class="line">    ret.pop</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  ret</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>On the other hand, never describe the code. Assume the person reading the code<br>knows the language (though not what you’re trying to do) better than you do.</p>
+<h3 id="Punctuation_2C_spelling_and_grammar"><a href="#Punctuation_2C_spelling_and_grammar" class="headerlink" title="Punctuation, spelling and grammar"></a>Punctuation, spelling and grammar</h3><p>Pay attention to punctuation, spelling, and grammar; it is easier to read<br>well-written comments than badly written ones.</p>
+<p>Comments should be as readable as narrative text, with proper capitalization<br>and punctuation. In many cases, complete sentences are more readable than<br>sentence fragments. Shorter comments, such as comments at the end of a line of<br>code, can sometimes be less formal, but you should be consistent with your<br>style.</p>
+<p>Although it can be frustrating to have a code reviewer point out that you are<br>using a comma when you should be using a semicolon, it is very important that<br>source code maintain a high level of clarity and readability. Proper<br>punctuation, spelling, and grammar help with that goal.</p>
+<h3 id="TODO_comments"><a href="#TODO_comments" class="headerlink" title="TODO comments"></a>TODO comments</h3><p>Use TODO comments for code that is temporary, a short-term solution, or<br>good-enough but not perfect.</p>
+<p>TODOs should include the string TODO in all caps, followed by the full name<br>of the person who can best provide context about the problem referenced by the<br>TODO, in parentheses. A colon is optional. A comment explaining what there is<br>to do is required. The main purpose is to have a consistent TODO format that<br>can be searched to find the person who can provide more details upon request.<br>A TODO is not a commitment that the person referenced will fix the problem.<br>Thus when you create a TODO, it is almost always your name that is given.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="comment"># TODO(RS): Use proper namespacing for this constant.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="comment"># TODO(drumm3rz4lyfe): Use proper namespacing for this constant.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="comment"># TODO(Ringo Starr): Use proper namespacing for this constant.</span></span><br></pre></td></tr></table></figure>
+<h3 id="Commented-out_code"><a href="#Commented-out_code" class="headerlink" title="Commented-out code"></a>Commented-out code</h3><p>Never leave commented-out code in our codebase.</p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Method_definitions"><a href="#Method_definitions" class="headerlink" title="Method definitions"></a>Method definitions</h3><ul>
+<li><p>Use <code>def</code> with parentheses when there are parameters. Omit the<br>parentheses when the method doesn’t accept any parameters.</p>
+   <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">some_method</span></span></span><br><span class="line">  <span class="comment"># body omitted</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">some_method_with_parameters</span><span class="params">(arg1, arg2)</span></span></span><br><span class="line">  <span class="comment"># body omitted</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Do not use default arguments. Use an options hash instead.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">obliterate</span><span class="params">(things, gently = <span class="keyword">true</span>, except = [], at = <span class="constant">Time</span>.now)</span></span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">obliterate</span><span class="params">(things, options = &#123;&#125;)</span></span></span><br><span class="line">  default_options = &#123;</span><br><span class="line">    <span class="symbol">:gently</span> =&gt; <span class="keyword">true</span>, <span class="comment"># obliterate with soft-delete</span></span><br><span class="line">    <span class="symbol">:except</span> =&gt; [], <span class="comment"># skip obliterating these things</span></span><br><span class="line">    <span class="symbol">:at</span> =&gt; <span class="constant">Time</span>.now, <span class="comment"># don't obliterate them until later</span></span><br><span class="line">  &#125;</span><br><span class="line">  options.reverse_merge!(default_options)</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Method_calls"><a href="#Method_calls" class="headerlink" title="Method calls"></a>Method calls</h3><p><strong>Use parentheses</strong> for a method call:</p>
+<ul>
+<li><p>If the method returns a value.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="variable">@current_user</span> = <span class="constant">User</span>.find_by_id <span class="number">1964192</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="variable">@current_user</span> = <span class="constant">User</span>.find_by_id(<span class="number">1964192</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>If the first argument to the method uses parentheses.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">put! (x + y) % len, value</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">put!((x + y) % len, value)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Never put a space between a method name and the opening parenthesis.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">f (<span class="number">3</span> + <span class="number">2</span>) + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">f(<span class="number">3</span> + <span class="number">2</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Omit parentheses</strong> for a method call if the method accepts no arguments.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">nil</span>?()</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">nil</span>?</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>If the method doesn’t return a value (or we don’t care about the return), parentheses are optional. (Especially if the arguments overflow to multiple lines, parentheses may add readability.)</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># okay</span></span><br><span class="line">render(<span class="symbol">:partial</span> =&gt; <span class="string">'foo'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># okay</span></span><br><span class="line">render <span class="symbol">:partial</span> =&gt; <span class="string">'foo'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>In either case:</p>
+<ul>
+<li><p>If a method accepts an options hash as the last argument, do not use <code>{</code> <code>}</code><br>during invocation.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">get <span class="string">'/v1/reservations'</span>, &#123; <span class="symbol">:id</span> =&gt; <span class="number">54875</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">get <span class="string">'/v1/reservations'</span>, <span class="symbol">:id</span> =&gt; <span class="number">54875</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Conditional_Expressions"><a href="#Conditional_Expressions" class="headerlink" title="Conditional Expressions"></a>Conditional Expressions</h2><h3 id="Conditional_keywords"><a href="#Conditional_keywords" class="headerlink" title="Conditional keywords"></a>Conditional keywords</h3><ul>
+<li><p>Never use <code>then</code> for multi-line <code>if/unless</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">if</span> some_condition <span class="keyword">then</span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> some_condition</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The <code>and</code>, <code>or</code>, and <code>not</code> keywords are banned. It’s just not worth it. Always use <code>&amp;&amp;</code>, <code>||</code>, and <code>!</code> instead.</p>
+</li>
+<li><p>Modifier <code>if/unless</code> usage is okay when the body is simple, the<br>condition is simple, and the whole thing fits on one line. Otherwise,<br>avoid modifier <code>if/unless</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad - this doesn't fit on one line</span></span><br><span class="line">add_trebuchet_experiments_on_page(request_opts[<span class="symbol">:trebuchet_experiments_on_page</span>]) <span class="keyword">if</span> request_opts[<span class="symbol">:trebuchet_experiments_on_page</span>] &amp;&amp; !request_opts[<span class="symbol">:trebuchet_experiments_on_page</span>].empty?</span><br><span class="line"></span><br><span class="line"><span class="comment"># okay</span></span><br><span class="line"><span class="keyword">if</span> request_opts[<span class="symbol">:trebuchet_experiments_on_page</span>] &amp;&amp;</span><br><span class="line">     !request_opts[<span class="symbol">:trebuchet_experiments_on_page</span>].empty?</span><br><span class="line"></span><br><span class="line">  add_trebuchet_experiments_on_page(request_opts[<span class="symbol">:trebuchet_experiments_on_page</span>])</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad - this is complex and deserves multiple lines and a comment</span></span><br><span class="line">parts[i] = part.to_i(<span class="constant">INTEGER_BASE</span>) <span class="keyword">if</span> !part.<span class="keyword">nil</span>? &amp;&amp; [<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>].<span class="keyword">include</span>?(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># okay</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">if</span> reconciled?</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Never use <code>unless</code> with <code>else</code>. Rewrite these with the positive case first.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">unless</span> success?</span><br><span class="line">  puts <span class="string">'failure'</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  puts <span class="string">'success'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> success?</span><br><span class="line">  puts <span class="string">'success'</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  puts <span class="string">'failure'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Avoid <code>unless</code> with multiple conditions.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">unless</span> foo? &amp;&amp; bar?</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># okay</span></span><br><span class="line"><span class="keyword">if</span> !(foo? &amp;&amp; bar?)</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Don’t use parentheses around the condition of an <code>if/unless/while</code>,<br>unless the condition contains an assignment (see <a href="#syntax">Using the return<br>value of <code>=</code></a> below).</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">10</span>)</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">10</span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ok</span></span><br><span class="line"><span class="keyword">if</span> (x = next_value)</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Ternary_operator"><a href="#Ternary_operator" class="headerlink" title="Ternary operator"></a>Ternary operator</h3><ul>
+<li><p>Avoid the ternary operator (<code>?:</code>) except in cases where all expressions are<br>extremely trivial. However, do use the ternary operator(<code>?:</code>) over<br><code>if/then/else/end</code> constructs for single line conditionals.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">result = <span class="keyword">if</span> some_condition <span class="keyword">then</span> something <span class="keyword">else</span> something_else <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">result = some_condition ? something <span class="symbol">:</span> something_else</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use one expression per branch in a ternary operator. This<br>also means that ternary operators must not be nested. Prefer<br><code>if/else</code> constructs in these cases.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">some_condition ? (nested_condition ? nested_something <span class="symbol">:</span> nested_something_else) <span class="symbol">:</span> something_else</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> some_condition</span><br><span class="line">  nested_condition ? nested_something <span class="symbol">:</span> nested_something_else</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  something_else</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Avoid multiple conditions in ternaries. Ternaries are best used with single conditions.</p>
+</li>
+<li><p>Avoid multi-line <code>?:</code> (the ternary operator), use <code>if/then/else/end</code> instead.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">some_really_long_condition_that_might_make_you_want_to_split_lines ?</span><br><span class="line">  something <span class="symbol">:</span> something_else</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> some_really_long_condition_that_might_make_you_want_to_split_lines</span><br><span class="line">  something</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  something_else</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><ul>
+<li><p>Never use <code>for</code>, unless you know exactly why. Most of the time iterators<br>should be used instead. <code>for</code> is implemented in terms of <code>each</code> (so<br>you’re adding a level of indirection), but with a twist - <code>for</code><br>doesn’t introduce a new scope (unlike <code>each</code>) and variables defined<br>in its block will be visible outside it.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">for</span> elem <span class="keyword">in</span> arr <span class="keyword">do</span></span><br><span class="line">  puts elem</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">arr.each &#123; |elem| puts elem &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Prefer <code>{...}</code> over <code>do...end</code> for single-line blocks.  Avoid using<br><code>{...}</code> for multi-line blocks (multiline chaining is always<br>ugly). Always use <code>do...end</code> for “control flow” and “method<br>definitions” (e.g. in Rakefiles and certain DSLs).  Avoid <code>do...end</code><br>when chaining.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">names = [<span class="string">"Bozhidar"</span>, <span class="string">"Steve"</span>, <span class="string">"Sarah"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">names.each &#123; |name| puts name &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line">names.each <span class="keyword">do</span> |name| puts name <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">names.select &#123; |name| name.start_with?(<span class="string">"S"</span>) &#125;.map &#123; |name| name.upcase &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line">names.select <span class="keyword">do</span> |name|</span><br><span class="line">  name.start_with?(<span class="string">"S"</span>)</span><br><span class="line"><span class="keyword">end</span>.map &#123; |name| name.upcase &#125;</span><br></pre></td></tr></table></figure>
+<p>  Some will argue that multiline chaining would look okay with the use of<br>  <code>{...}</code>, but they should ask themselves if this code is really readable and<br>  whether the block’s content can be extracted into nifty methods.</p>
+</li>
+<li><p>Avoid <code>return</code> where not required.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">some_method</span><span class="params">(some_arr)</span></span></span><br><span class="line">  <span class="keyword">return</span> some_arr.size</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">some_method</span><span class="params">(some_arr)</span></span></span><br><span class="line">  some_arr.size</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Using the return value of <code>=</code> (an assignment) is ok, but surround the<br>assignment with parenthesis.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># good - shows intended use of assignment</span></span><br><span class="line"><span class="keyword">if</span> (v = array.grep(<span class="regexp">/foo/</span>))</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">if</span> v = array.grep(<span class="regexp">/foo/</span>)</span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># also good - shows intended use of assignment and has correct precedence</span></span><br><span class="line"><span class="keyword">if</span> (v = next_value) == <span class="string">"hello"</span></span><br><span class="line">  ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>||=</code> freely to initialize variables.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set name to Bozhidar, only if it's nil or false</span></span><br><span class="line">name ||= <span class="string">'Bozhidar'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Don’t use <code>||=</code> to initialize boolean variables. (Consider what<br>would happen if the current value happened to be <code>false</code>.)</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad - would set enabled to true even if it was false</span></span><br><span class="line">enabled ||= <span class="keyword">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">enabled = <span class="keyword">true</span> <span class="keyword">if</span> enabled.<span class="keyword">nil</span>?</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Avoid using Perl-style special variables (like <code>$0-9</code>, <code>$</code>,<br>etc. ). They are quite cryptic and their use in anything but<br>one-liner scripts is discouraged. Prefer long form versions such as<br><code>$PROGRAM_NAME</code>.</p>
+</li>
+<li><p>Use <code>_</code> for unused block arguments.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">result = hash.map &#123; |k, v| v + <span class="number">1</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">result = hash.map &#123; |<span class="number">_</span>, v| v + <span class="number">1</span> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>When a method block takes only one argument, and the body consists solely of<br>reading an attribute or calling one method with no arguments, use the <code>&amp;:</code><br>shorthand.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">bluths.map &#123; |bluth| bluth.occupation &#125;</span><br><span class="line">bluths.select &#123; |bluth| bluth.blue_self? &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">bluths.map(&amp;<span class="symbol">:occupation</span>)</span><br><span class="line">bluths.select(&amp;<span class="symbol">:blue_self?</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Prefer <code>some_method</code> over <code>self.some_method</code> when calling a method on the<br>current instance.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end_date</span></span></span><br><span class="line">  <span class="keyword">self</span>.start_date + <span class="keyword">self</span>.nights</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">end_date</span></span></span><br><span class="line">  start_date + nights</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>In the following three common cases, <code>self.</code> is required by the language<br>and is good to use:</p>
+<ol>
+<li>When defining a class method: <code>def self.some_method</code>.</li>
+<li>The <em>left hand side</em> when calling an assignment method, including assigning<br>an attribute when <code>self</code> is an ActiveRecord model: <code>self.guest = user</code>.</li>
+<li>Referencing the current instance’s class: <code>self.class</code>.</li>
+</ol>
+</li>
+</ul>
+<h2 id="Naming"><a href="#Naming" class="headerlink" title="Naming"></a>Naming</h2><ul>
+<li><p>Use <code>snake_case</code> for methods and variables.</p>
+</li>
+<li><p>Use <code>CamelCase</code> for classes and modules.  (Keep acronyms like HTTP,<br>RFC, XML uppercase.)</p>
+</li>
+<li><p>Use <code>SCREAMING_SNAKE_CASE</code> for other constants.</p>
+</li>
+<li><p>The names of predicate methods (methods that return a boolean value)<br>should end in a question mark. (i.e. <code>Array#empty?</code>).</p>
+</li>
+<li><p>The names of potentially “dangerous” methods (i.e. methods that modify <code>self</code><br>or the arguments, <code>exit!</code>, etc.) should end with an exclamation mark. Bang<br>methods should only exist if a non-bang method exists.<br>(<a href="http://dablog.rubypal.com/2007/8/15/bang-methods-or-danger-will-rubyist" target="_blank" rel="external">More on this</a>.)</p>
+</li>
+<li><p>Name throwaway variables <code>_</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">payment, <span class="number">_</span> = <span class="constant">Payment</span>.complete_paypal_payment!(params[<span class="symbol">:token</span>],</span><br><span class="line">                                              native_currency,</span><br><span class="line">                                              created_at)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h2><ul>
+<li><p>Avoid the usage of class (<code>@@</code>) variables due to their “nasty” behavior<br>in inheritance.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span></span></span><br><span class="line">  <span class="variable">@@class_var</span> = <span class="string">'parent'</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">print_class_var</span></span></span><br><span class="line">    puts <span class="variable">@@class_var</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="inheritance">&lt; <span class="parent">Parent</span></span></span></span><br><span class="line">  <span class="variable">@@class_var</span> = <span class="string">'child'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Parent</span>.print_class_var <span class="comment"># =&gt; will print "child"</span></span><br></pre></td></tr></table></figure>
+<p>  As you can see all the classes in a class hierarchy actually share one<br>  class variable. Class instance variables should usually be preferred<br>  over class variables.</p>
+</li>
+<li><p>Use <code>def self.method</code> to define singleton methods. This makes the methods<br>more resistant to refactoring changes.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span></span></span><br><span class="line">  <span class="comment"># bad</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">TestClass</span>.<span class="title">some_method</span></span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># good</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">some_other_method</span></span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Avoid <code>class &lt;&lt; self</code> except when necessary, e.g. single accessors and aliased<br>attributes.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span></span></span><br><span class="line">  <span class="comment"># bad</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="inheritance">&lt;</span><span class="inheritance">&lt; <span class="parent">self</span></span></span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">first_method</span></span></span><br><span class="line">      ...</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">second_method_etc</span></span></span><br><span class="line">      ...</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># good</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="inheritance">&lt;</span><span class="inheritance">&lt; <span class="parent">self</span></span></span></span><br><span class="line">    <span class="keyword">attr_accessor</span> <span class="symbol">:per_page</span></span><br><span class="line">    alias_method <span class="symbol">:nwo</span>, <span class="symbol">:find_by_name_with_owner</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">first_method</span></span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">second_method_etc</span></span></span><br><span class="line">    ...</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Indent the <code>public</code>, <code>protected</code>, and <code>private</code> methods as much the<br>method definitions they apply to. Leave one blank line above and below them.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">public_method</span></span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">private_method</span></span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><ul>
+<li><p>Don’t use exceptions for flow of control.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  n / d</span><br><span class="line"><span class="keyword">rescue</span> <span class="constant">ZeroDivisionError</span></span><br><span class="line">  puts <span class="string">"Cannot divide by 0!"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> d.zero?</span><br><span class="line">  puts <span class="string">"Cannot divide by 0!"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  n / d</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Avoid rescuing the <code>Exception</code> class.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment"># an exception occurs here</span></span><br><span class="line"><span class="keyword">rescue</span> <span class="constant">Exception</span></span><br><span class="line">  <span class="comment"># exception handling</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment"># an exception occurs here</span></span><br><span class="line"><span class="keyword">rescue</span> <span class="constant">StandardError</span></span><br><span class="line">  <span class="comment"># exception handling</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># acceptable</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  <span class="comment"># an exception occurs here</span></span><br><span class="line"><span class="keyword">rescue</span></span><br><span class="line">  <span class="comment"># exception handling</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><ul>
+<li><p>Use <code>Set</code> instead of <code>Array</code> when dealing with unique elements. <code>Set</code><br>implements a collection of unordered values with no duplicates. This<br>is a hybrid of <code>Array</code>‘s intuitive inter-operation facilities and<br><code>Hash</code>‘s fast lookup.</p>
+</li>
+<li><p>Use symbols instead of strings as hash keys.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">hash = &#123; <span class="string">'one'</span> =&gt; <span class="number">1</span>, <span class="string">'two'</span> =&gt; <span class="number">2</span>, <span class="string">'three'</span> =&gt; <span class="number">3</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">hash = &#123; <span class="symbol">:one</span> =&gt; <span class="number">1</span>, <span class="symbol">:two</span> =&gt; <span class="number">2</span>, <span class="symbol">:three</span> =&gt; <span class="number">3</span> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use multi-line hashes when it makes the code more readable, and use<br>trailing commas to ensure that parameter changes don’t cause<br>extraneous diff lines when the logic has not otherwise changed.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hash = &#123;</span><br><span class="line">  <span class="symbol">:protocol</span> =&gt; <span class="string">'https'</span>,</span><br><span class="line">  <span class="symbol">:only_path</span> =&gt; <span class="keyword">false</span>,</span><br><span class="line">  <span class="symbol">:controller</span> =&gt; <span class="symbol">:users</span>,</span><br><span class="line">  <span class="symbol">:action</span> =&gt; <span class="symbol">:set_password</span>,</span><br><span class="line">  <span class="symbol">:redirect</span> =&gt; <span class="variable">@redirect_url</span>,</span><br><span class="line">  <span class="symbol">:secret</span> =&gt; <span class="variable">@secret</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use a trailing comma in an <code>Array</code> that spans more than 1 line</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># good</span></span><br><span class="line">array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">array = [</span><br><span class="line">  <span class="string">"car"</span>,</span><br><span class="line">  <span class="string">"bear"</span>,</span><br><span class="line">  <span class="string">"plane"</span>,</span><br><span class="line">  <span class="string">"zoo"</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h2><ul>
+<li><p>Prefer string interpolation instead of string concatenation:</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">email_with_name = user.name + <span class="string">' &lt;'</span> + user.email + <span class="string">'&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">email_with_name = <span class="string">"<span class="subst">#&#123;user.name&#125;</span> &lt;<span class="subst">#&#123;user.email&#125;</span>&gt;"</span></span><br></pre></td></tr></table></figure>
+<p>  Furthermore, keep in mind Ruby 1.9-style interpolation. Let’s say you are<br>  composing cache keys like this:</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">CACHE_KEY</span> = <span class="string">'_store'</span></span><br><span class="line"></span><br><span class="line">cache.write(<span class="variable">@user</span>.id + <span class="constant">CACHE_KEY</span>)</span><br></pre></td></tr></table></figure>
+<p>  Prefer string interpolation instead of string concatentation:</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">CACHE_KEY</span> = <span class="string">'%d_store'</span></span><br><span class="line"></span><br><span class="line">cache.write(<span class="constant">CACHE_KEY</span> % <span class="variable">@user</span>.id)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Avoid using <code>String#+</code> when you need to construct large data chunks.<br>Instead, use <code>String#&lt;&lt;</code>. Concatenation mutates the string instance in-place<br>and is always faster than <code>String#+</code>, which creates a bunch of new string objects.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># good and also fast</span></span><br><span class="line">html = <span class="string">''</span></span><br><span class="line">html &lt;&lt; <span class="string">'&lt;h1&gt;Page title&lt;/h1&gt;'</span></span><br><span class="line"></span><br><span class="line">paragraphs.each <span class="keyword">do</span> |paragraph|</span><br><span class="line">  html &lt;&lt; <span class="string">"&lt;p&gt;<span class="subst">#&#123;paragraph&#125;</span>&lt;/p&gt;"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Regular_Expressions"><a href="#Regular_Expressions" class="headerlink" title="Regular Expressions"></a>Regular Expressions</h2><ul>
+<li><p>Avoid using <code>$1-9</code> as it can be hard to track what they contain. Named groups<br>can be used instead.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">/(regexp)/ =~ string</span><br><span class="line">...</span><br><span class="line">process <span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">/(?&lt;meaningful_var&gt;regexp)/ =~ string</span><br><span class="line">...</span><br><span class="line">process meaningful_var</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Be careful with <code>^</code> and <code>$</code> as they match start/end of line, not string<br>endings.  If you want to match the whole string use: <code>\A</code> and <code>\z</code>.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string = <span class="string">"some injection\nusername"</span></span><br><span class="line">string[<span class="regexp">/^username$/</span>]   <span class="comment"># matches</span></span><br><span class="line">string[<span class="regexp">/\Ausername\z/</span>] <span class="comment"># don't match</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>x</code> modifier for complex regexps. This makes them more readable and you<br>can add some useful comments. Just be careful as spaces are ignored.</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">regexp = %r&#123;</span><br><span class="line">  start         # some text</span><br><span class="line">  \s            # white space char</span><br><span class="line">  (group)       # first group</span><br><span class="line">  (?:alt1|alt2) # some alternation</span><br><span class="line">  end</span><br><span class="line">&#125;x</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Percent_Literals"><a href="#Percent_Literals" class="headerlink" title="Percent Literals"></a>Percent Literals</h2><ul>
+<li><p>Use <code>%w</code> freely.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">STATES</span> = <span class="string">%w(draft open closed)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>%()</code> for single-line strings which require both interpolation<br>and embedded double-quotes. For multi-line strings, prefer heredocs.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad - no interpolation needed</span></span><br><span class="line"><span class="string">%(&lt;div class="text"&gt;Some text&lt;/div&gt;)</span></span><br><span class="line"><span class="comment"># should be '&lt;div class="text"&gt;Some text&lt;/div&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad - no double-quotes</span></span><br><span class="line"><span class="string">%(This is <span class="subst">#&#123;quality&#125;</span> style)</span></span><br><span class="line"><span class="comment"># should be "This is #&#123;quality&#125; style"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># bad - multiple lines</span></span><br><span class="line"><span class="string">%(&lt;div&gt;\n&lt;span class="big"&gt;<span class="subst">#&#123;exclamation&#125;</span>&lt;/span&gt;\n&lt;/div&gt;)</span></span><br><span class="line"><span class="comment"># should be a heredoc.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good - requires interpolation, has quotes, single line</span></span><br><span class="line"><span class="string">%(&lt;tr&gt;&lt;td class="name"&gt;<span class="subst">#&#123;name&#125;</span>&lt;/td&gt;)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>%r</code> only for regular expressions matching <em>more than</em> one ‘/‘ character.</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># bad</span><br><span class="line">%r(\s+)</span><br><span class="line"></span><br><span class="line"># still bad</span><br><span class="line">%r(^/(.*)$)</span><br><span class="line"># should be /^\/(.*)$/</span><br><span class="line"></span><br><span class="line"># good</span><br><span class="line">%r(^/blog/2011/(.*)$)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Rails"><a href="#Rails" class="headerlink" title="Rails"></a>Rails</h2><ul>
+<li><p>When immediately returning after calling <code>render</code> or <code>redirect_to</code>, put <code>return</code> on the next line,<br>not the same line.</p>
+  <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># bad</span></span><br><span class="line">render <span class="symbol">:text</span> =&gt; <span class="string">'Howdy'</span> <span class="keyword">and</span> <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line">render <span class="symbol">:text</span> =&gt; <span class="string">'Howdy'</span></span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># still bad</span></span><br><span class="line">render <span class="symbol">:text</span> =&gt; <span class="string">'Howdy'</span> <span class="keyword">and</span> <span class="keyword">return</span> <span class="keyword">if</span> foo.present?</span><br><span class="line"></span><br><span class="line"><span class="comment"># good</span></span><br><span class="line"><span class="keyword">if</span> foo.present?</span><br><span class="line">  render <span class="symbol">:text</span> =&gt; <span class="string">'Howdy'</span></span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Be_Consistent"><a href="#Be_Consistent" class="headerlink" title="Be Consistent"></a>Be Consistent</h2><blockquote>
+<p>If you’re editing code, take a few minutes to look at the code around you and<br>determine its style. If they use spaces around all their arithmetic<br>operators, you should too. If their comments have little boxes of hash marks<br>around them, make your comments have little boxes of hash marks around them<br>too.</p>
+<p>The point of having style guidelines is to have a common vocabulary of coding<br>so people can concentrate on what you’re saying rather than on how you’re<br>saying it. We present global style rules here so people know the vocabulary,<br>but local style is also important. If code you add to a file looks<br>drastically different from the existing code around it, it throws readers out<br>of their rhythm when they go to read it. Avoid this.</p>
+</blockquote>
+<p>&mdash;<a href="http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml" target="_blank" rel="external">Google C++ Style Guide</a></p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ruby/" rel="tag">#ruby</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/07/RubyNotes/" rel="next" title="RubyNotes">
+                <i class="fa fa-chevron-left"></i> RubyNotes
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/11/ES6/" rel="prev" title="ES6">
+                ES6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/08/Ruby-Style-Guide/"
+           data-title="Ruby_Style_Guide" data-url="http://platofield.com/2016/01/08/Ruby-Style-Guide/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="huang jingui" />
+          <p class="site-author-name" itemprop="name">huang jingui</p>
+          <p class="site-description motion-element" itemprop="description">知识之野</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/gyzclw" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/gyzclw" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ruby_Style_Guide"><span class="nav-number">1.</span> <span class="nav-text">Ruby Style Guide</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Whitespace"><span class="nav-number">1.1.</span> <span class="nav-text">Whitespace</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Indentation"><span class="nav-number">1.1.1.</span> <span class="nav-text">Indentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline"><span class="nav-number">1.1.2.</span> <span class="nav-text">Inline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Newlines"><span class="nav-number">1.1.3.</span> <span class="nav-text">Newlines</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Line_Length"><span class="nav-number">1.2.</span> <span class="nav-text">Line Length</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Commenting"><span class="nav-number">1.3.</span> <span class="nav-text">Commenting</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File/class-level_comments"><span class="nav-number">1.3.1.</span> <span class="nav-text">File/class-level comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function_comments"><span class="nav-number">1.3.2.</span> <span class="nav-text">Function comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block_and_inline_comments"><span class="nav-number">1.3.3.</span> <span class="nav-text">Block and inline comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Punctuation_2C_spelling_and_grammar"><span class="nav-number">1.3.4.</span> <span class="nav-text">Punctuation, spelling and grammar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TODO_comments"><span class="nav-number">1.3.5.</span> <span class="nav-text">TODO comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Commented-out_code"><span class="nav-number">1.3.6.</span> <span class="nav-text">Commented-out code</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">1.4.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Method_definitions"><span class="nav-number">1.4.1.</span> <span class="nav-text">Method definitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Method_calls"><span class="nav-number">1.4.2.</span> <span class="nav-text">Method calls</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conditional_Expressions"><span class="nav-number">1.5.</span> <span class="nav-text">Conditional Expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Conditional_keywords"><span class="nav-number">1.5.1.</span> <span class="nav-text">Conditional keywords</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ternary_operator"><span class="nav-number">1.5.2.</span> <span class="nav-text">Ternary operator</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax"><span class="nav-number">1.6.</span> <span class="nav-text">Syntax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Naming"><span class="nav-number">1.7.</span> <span class="nav-text">Naming</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes"><span class="nav-number">1.8.</span> <span class="nav-text">Classes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exceptions"><span class="nav-number">1.9.</span> <span class="nav-text">Exceptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections"><span class="nav-number">1.10.</span> <span class="nav-text">Collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strings"><span class="nav-number">1.11.</span> <span class="nav-text">Strings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular_Expressions"><span class="nav-number">1.12.</span> <span class="nav-text">Regular Expressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Percent_Literals"><span class="nav-number">1.13.</span> <span class="nav-text">Percent Literals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rails"><span class="nav-number">1.14.</span> <span class="nav-text">Rails</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Be_Consistent"><span class="nav-number">1.15.</span> <span class="nav-text">Be Consistent</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huang jingui</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"platofield"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+
+  
+  
+
+
+</body>
+</html>
