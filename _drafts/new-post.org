@@ -1,3 +1,0 @@
-#+TITLE: new-post
-#+DATE: 2017-02-19
-#+TAGS:

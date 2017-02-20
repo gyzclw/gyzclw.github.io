@@ -1,4 +1,4 @@
-#+TITLE: journal_2017_02
+#+TITLE: Android RecyclerView add header and child view
 #+AUTHOR: gyzclw
 #+DATE: <2017-02-19 Sun>
 #+TAGS: android, journal
@@ -7,9 +7,8 @@
 #+LATEX_HEADER: \usepackage{xeCJK}
 #+LATEX_HEADER: \setCJKmainfont{Songti SC}
 
-* 15
-** Android RecyclerView
-*** Add Header for RecyclerView
+* Android RecyclerView
+** Add Header for RecyclerView
    继承RecyclerView.Adapter<RecyclerView.ViewHolder> 自定义一个
 ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private filed。
  #+BEGIN_SRC java
@@ -86,9 +85,9 @@ Normal View;
       }
     }
 #+end_src
-* 16
-** Android RecyclerView
-*** Add child view for RecyclerView
+
+* Android RecyclerView
+** Add child view for RecyclerView
  首先是List<Interger> mitemType 存储item的类型: 0代表NORMAL VIEW, 1代表CHILD VIEW。
  和List<String> mitems 存储总的数据.
  #+begin_src java
