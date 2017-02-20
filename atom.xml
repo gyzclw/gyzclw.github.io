@@ -24,6 +24,26 @@
     
     <content type="html"><![CDATA[
 
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Android RecyclerView</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Add Header for RecyclerView</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Android RecyclerView</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Add child view for RecyclerView</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+null
+</p>
 
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> Android RecyclerView</h2>
@@ -97,17 +117,22 @@ Normal View;
 </div>
 </div>
 
-Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-02-19 Sun&gt;</span></span></p>
+<p class="author">Author: gyzclw</p>
+<p class="date">Created: 2017-02-20 Mon 14:58</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 ]]></content>
     
     <summary type="html">
     
       
 
-
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; Android RecyclerView&lt;/h2&gt;
-&lt;di
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;1. Android RecyclerVie
     
     </summary>
     
@@ -129,6 +154,27 @@ Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/Code
     
     <content type="html"><![CDATA[
 
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 资料</a>
+<ul>
+<li><a href="#sec-1-1">1.1. WhatsApp 通信协议</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. 思路</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 服务端</a></li>
+<li><a href="#sec-2-2">2.2. 客户端</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+null
+</p>
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> 资料</h2>
 <div class="outline-text-2" id="text-1">
@@ -170,16 +216,24 @@ WhatesApp服务器池使用了SSL Socket, 在客户端重新连接对消息进�
 </div>
 </div>
 
-Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-02-19 Sun&gt;</span></span></p>
+<p class="author">Author: gyzclw</p>
+<p class="date">Created: 2017-02-20 Mon 14:58</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 ]]></content>
     
     <summary type="html">
     
       
 
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; 资料&lt;/h2&gt;
-&lt;div class=&quot;outline-te
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;1. 资料&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a 
     
     </summary>
     
@@ -858,57 +912,6 @@ Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/Code
   </entry>
   
   <entry>
-    <title>angularjs中使用 requirejs 遇到的问题</title>
-    <link href="http://yoursite.com/2015/12/09/requirejs%20%E5%92%8C%20angularjs/"/>
-    <id>http://yoursite.com/2015/12/09/requirejs 和 angularjs/</id>
-    <published>2015-12-08T16:02:54.000Z</published>
-    <updated>2017-02-20T06:28:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="angularjs中使用-requirejs-遇到的问题"><a href="#angularjs中使用-requirejs-遇到的问题" class="headerlink" title="angularjs中使用 requirejs 遇到的问题"></a>angularjs中使用 requirejs 遇到的问题</h2><h3 id="load-angular-carousel-into-my-project"><a href="#load-angular-carousel-into-my-project" class="headerlink" title="load angular-carousel into my project"></a>load angular-carousel into my project</h3><ul>
-<li><p>在 main.js 中：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">    <span class="attr">paths</span>: &#123;</div><div class="line">        <span class="attr">ionic</span>: <span class="string">'../lib/ionic/js/ionic.bundle'</span>,</div><div class="line">        <span class="string">'ngAnimate'</span>: <span class="string">'../lib/angular-animate/angular-animate'</span>,</div><div class="line">        <span class="string">'ngAria'</span>: <span class="string">'../lib/angular-aria/angular-aria'</span>,</div><div class="line">        <span class="string">'ngMessage'</span>: <span class="string">'../lib/angular-messages/angular-messages'</span>,</div><div class="line">       <span class="string">'ngMaterial'</span>: <span class="string">'../lib/angular-material/angular-material'</span>,</div><div class="line">        <span class="string">'ngCarousel'</span>: <span class="string">'../lib/angular-carousel/dist/angular-carousel.min'</span>,</div><div class="line">        <span class="string">'ngTouch'</span>: <span class="string">'../lib/angular-touch/angular-touch.min'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">shim</span>: &#123;</div><div class="line">        <span class="string">'ngAnimate'</span>:[<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngAria'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMessage'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMaterial'</span>:&#123;</div><div class="line">            <span class="attr">deps</span>:[<span class="string">'ionic'</span>,<span class="string">'ngAnimate'</span>,<span class="string">'ngAria'</span>,<span class="string">'ngMessage'</span>],</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngTouch'</span>: &#123;</div><div class="line">            <span class="attr">deps</span>: [<span class="string">'ionic'</span>]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngCarousel'</span>:</div><div class="line">            [ <span class="string">'ngTouch'</span>]</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"><span class="built_in">require</span>([<span class="string">'app'</span>, <span class="string">'controllers/controllers'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    angular.bootstrap(<span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>], [<span class="string">'app'</span>]);<span class="comment">//依赖包加载往后手动更新</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>在app.js 中</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ADM格式</span></div><div class="line">define([<span class="string">'app'</span>, <span class="string">'ngCarousel'</span>, <span class="string">'ionic'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ionic'</span>, <span class="string">'controllers'</span>, <span class="string">'angular-carousel'</span>])</div><div class="line">    &#125;); <span class="comment">//'angular-carousel'必须和加载的lib中module名一致</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>requirejs 异步模块定义规范（AMD）</p>
-<p>##加载问题解决</p>
-</blockquote>
-<ul>
-<li>Do not use ng-app in your index.html<p></p></li>
-<li><p>Preload all required Angular and Angular Material libraries.</p>
-</li>
-<li><blockquote>
-<ol>
-<li>Create your own </li>
-<li>custom bootstrap code</li>
-<li>custom main app</li>
-</ol>
-</blockquote>
-<ul>
-<li>Do not let RequireJS try to load, require, or define Angular Material components; just set your app dependency on Angular Material  </li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'yourApp'</span>,[<span class="string">'ng'</span>, <span class="string">'ngMaterial'</span>, ... ])&gt;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;angularjs中使用-requirejs-遇到的问题&quot;&gt;&lt;a href=&quot;#angularjs中使用-requirejs-遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;angularjs中使用 requirejs 遇到的问题&quot;&gt;&lt;/a&gt;an
-    
-    </summary>
-    
-      <category term="Angularjs" scheme="http://yoursite.com/categories/Angularjs/"/>
-    
-    
-      <category term="Angularjs" scheme="http://yoursite.com/tags/Angularjs/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Android打包的那些事</title>
     <link href="http://yoursite.com/2015/12/09/Android%E6%89%93%E5%8C%85%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/"/>
     <id>http://yoursite.com/2015/12/09/Android打包的那些事/</id>
@@ -1004,6 +1007,57 @@ Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/Code
   </entry>
   
   <entry>
+    <title>angularjs中使用 requirejs 遇到的问题</title>
+    <link href="http://yoursite.com/2015/12/09/requirejs%20%E5%92%8C%20angularjs/"/>
+    <id>http://yoursite.com/2015/12/09/requirejs 和 angularjs/</id>
+    <published>2015-12-08T16:02:54.000Z</published>
+    <updated>2017-02-20T06:28:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="angularjs中使用-requirejs-遇到的问题"><a href="#angularjs中使用-requirejs-遇到的问题" class="headerlink" title="angularjs中使用 requirejs 遇到的问题"></a>angularjs中使用 requirejs 遇到的问题</h2><h3 id="load-angular-carousel-into-my-project"><a href="#load-angular-carousel-into-my-project" class="headerlink" title="load angular-carousel into my project"></a>load angular-carousel into my project</h3><ul>
+<li><p>在 main.js 中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">    <span class="attr">paths</span>: &#123;</div><div class="line">        <span class="attr">ionic</span>: <span class="string">'../lib/ionic/js/ionic.bundle'</span>,</div><div class="line">        <span class="string">'ngAnimate'</span>: <span class="string">'../lib/angular-animate/angular-animate'</span>,</div><div class="line">        <span class="string">'ngAria'</span>: <span class="string">'../lib/angular-aria/angular-aria'</span>,</div><div class="line">        <span class="string">'ngMessage'</span>: <span class="string">'../lib/angular-messages/angular-messages'</span>,</div><div class="line">       <span class="string">'ngMaterial'</span>: <span class="string">'../lib/angular-material/angular-material'</span>,</div><div class="line">        <span class="string">'ngCarousel'</span>: <span class="string">'../lib/angular-carousel/dist/angular-carousel.min'</span>,</div><div class="line">        <span class="string">'ngTouch'</span>: <span class="string">'../lib/angular-touch/angular-touch.min'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">shim</span>: &#123;</div><div class="line">        <span class="string">'ngAnimate'</span>:[<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngAria'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMessage'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMaterial'</span>:&#123;</div><div class="line">            <span class="attr">deps</span>:[<span class="string">'ionic'</span>,<span class="string">'ngAnimate'</span>,<span class="string">'ngAria'</span>,<span class="string">'ngMessage'</span>],</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngTouch'</span>: &#123;</div><div class="line">            <span class="attr">deps</span>: [<span class="string">'ionic'</span>]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngCarousel'</span>:</div><div class="line">            [ <span class="string">'ngTouch'</span>]</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"><span class="built_in">require</span>([<span class="string">'app'</span>, <span class="string">'controllers/controllers'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    angular.bootstrap(<span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>], [<span class="string">'app'</span>]);<span class="comment">//依赖包加载往后手动更新</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>在app.js 中</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ADM格式</span></div><div class="line">define([<span class="string">'app'</span>, <span class="string">'ngCarousel'</span>, <span class="string">'ionic'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ionic'</span>, <span class="string">'controllers'</span>, <span class="string">'angular-carousel'</span>])</div><div class="line">    &#125;); <span class="comment">//'angular-carousel'必须和加载的lib中module名一致</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>requirejs 异步模块定义规范（AMD）</p>
+<p>##加载问题解决</p>
+</blockquote>
+<ul>
+<li>Do not use ng-app in your index.html<p></p></li>
+<li><p>Preload all required Angular and Angular Material libraries.</p>
+</li>
+<li><blockquote>
+<ol>
+<li>Create your own </li>
+<li>custom bootstrap code</li>
+<li>custom main app</li>
+</ol>
+</blockquote>
+<ul>
+<li>Do not let RequireJS try to load, require, or define Angular Material components; just set your app dependency on Angular Material  </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'yourApp'</span>,[<span class="string">'ng'</span>, <span class="string">'ngMaterial'</span>, ... ])&gt;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;angularjs中使用-requirejs-遇到的问题&quot;&gt;&lt;a href=&quot;#angularjs中使用-requirejs-遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;angularjs中使用 requirejs 遇到的问题&quot;&gt;&lt;/a&gt;an
+    
+    </summary>
+    
+      <category term="Angularjs" scheme="http://yoursite.com/categories/Angularjs/"/>
+    
+    
+      <category term="Angularjs" scheme="http://yoursite.com/tags/Angularjs/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="http://yoursite.com/2015/12/08/hello-world/"/>
     <id>http://yoursite.com/2015/12/08/hello-world/</id>
@@ -1038,6 +1092,29 @@ Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/Code
     
     <content type="html"><![CDATA[
 
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Andorid 源码设计模式解析与实战</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 面向对象的六大原则</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. 单一职责原则</a></li>
+<li><a href="#sec-1-1-2">1.1.2. 让程序更稳定、更灵活——开闭原则(<i>OCP</i>)</a></li>
+<li><a href="#sec-1-1-3">1.1.3. 让项目拥有变化的能力&#x2013;依赖倒置原则(<i>DIP</i>)</a></li>
+<li><a href="#sec-1-1-4">1.1.4. 系统拥有更高的灵活性&#x2013;接口隔离原则(<i>ISP</i>)</a></li>
+<li><a href="#sec-1-1-5">1.1.5. 更好的可扩展性&#x2013;迪米特原则(<i>LOD</i>)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+null
+</p>
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> Andorid 源码设计模式解析与实战</h2>
 <div class="outline-text-2" id="text-1">
@@ -1098,16 +1175,22 @@ Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/Code
 </div>
 </div>
 
-Last Updated 2017-02-20 Mon 12:43.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2015-11-15 Sun 17:00&gt;</span></span></p>
+<p class="author">Author: 黄金贵</p>
+<p class="date">Created: 2017-02-20 Mon 14:58</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer" target="_blank" rel="external">Validate</a></p>
 ]]></content>
     
     <summary type="html">
     
       
 
-&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
-&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; Andorid 源码设计模式解析与实战&lt;/h2&gt;
-&lt;div 
+&lt;div id=&quot;table-of-contents&quot;&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id=&quot;text-table-of-contents&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#sec-1&quot;&gt;1. Andorid 源码设计模式解析与实战
     
     </summary>
     
