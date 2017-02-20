@@ -54,24 +54,7 @@ archive: 1
 category: 1
 tag: 1
  
-menu:
-  home: /
-  categories: /categories
-  about: /about
-  archives: /archives
-  tags: /tags
-menu_icons:
-  enable: true
-  # Icon Mapping.
-  home: home
-  about: user
-  categories: th
-  tags: tags
-  archives: archive
-  commonweal: heartbeat
 
-plugins:
-- hexo-generator-cname
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
@@ -126,8 +109,6 @@ duoshuo_shortname: platofield
 # Swiftype Search Key
 swiftype_key: vaWoxfSsyB_TznGRzy83
 
-plugins:
-  - hexo-qiniu-sync
 
 #七牛云存储设置
 ##offline       是否离线. 离线状态将使用本地地址渲染
