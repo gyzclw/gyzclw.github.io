@@ -1,8 +1,0 @@
-#+TITLE: My Journal Note
-#+AUTHOR: gyzclw
-#+DATE: <2017-02-19 Sun>
-#+TAGS:  android
-#+LAYOUT: post
-#+CATEGORIES: android
-* My Journal Note
-    [[file+emacs:./journal_2017_02.org][201702笔记（关于RecycleView 添加Header）]]
