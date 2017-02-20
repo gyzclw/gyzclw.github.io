@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-pages">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>angularjs中使用 requirejs 遇到的问题 | 知识之野</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Angularjs," />
+  
+
+  <meta name="description" content="angularjs中使用 requirejs 遇到的问题load angular-carousel into my project
+在 main.js 中：
+123456789101112131415161718192021222324252627282930require.config(&amp;#123;    paths: &amp;#123;        ionic: &apos;../lib/ionic/js/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angularjs中使用 requirejs 遇到的问题">
+<meta property="og:url" content="http://yoursite.com/2015/12/09/requirejs 和 angularjs/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="angularjs中使用 requirejs 遇到的问题load angular-carousel into my project
+在 main.js 中：
+123456789101112131415161718192021222324252627282930require.config(&amp;#123;    paths: &amp;#123;        ionic: &apos;../lib/ionic/js/">
+<meta property="og:updated_time" content="2017-02-20T06:28:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angularjs中使用 requirejs 遇到的问题">
+<meta name="twitter:description" content="angularjs中使用 requirejs 遇到的问题load angular-carousel into my project
+在 main.js 中：
+123456789101112131415161718192021222324252627282930require.config(&amp;#123;    paths: &amp;#123;        ionic: &apos;../lib/ionic/js/">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#angularjs中使用-requirejs-遇到的问题"><span class="toc-text">angularjs中使用 requirejs 遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#load-angular-carousel-into-my-project"><span class="toc-text">load angular-carousel into my project</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="pages-requirejs 和 angularjs" class="article article-type-pages" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">angularjs中使用 requirejs 遇到的问题</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.12.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>huang jingui</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Angularjs/">Angularjs</a>
+  </span>
+
+
+
+      
+
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="pages-requirejs 和 angularjs"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="angularjs中使用-requirejs-遇到的问题"><a href="#angularjs中使用-requirejs-遇到的问题" class="headerlink" title="angularjs中使用 requirejs 遇到的问题"></a>angularjs中使用 requirejs 遇到的问题</h2><h3 id="load-angular-carousel-into-my-project"><a href="#load-angular-carousel-into-my-project" class="headerlink" title="load angular-carousel into my project"></a>load angular-carousel into my project</h3><ul>
+<li><p>在 main.js 中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">    <span class="attr">paths</span>: &#123;</div><div class="line">        <span class="attr">ionic</span>: <span class="string">'../lib/ionic/js/ionic.bundle'</span>,</div><div class="line">        <span class="string">'ngAnimate'</span>: <span class="string">'../lib/angular-animate/angular-animate'</span>,</div><div class="line">        <span class="string">'ngAria'</span>: <span class="string">'../lib/angular-aria/angular-aria'</span>,</div><div class="line">        <span class="string">'ngMessage'</span>: <span class="string">'../lib/angular-messages/angular-messages'</span>,</div><div class="line">       <span class="string">'ngMaterial'</span>: <span class="string">'../lib/angular-material/angular-material'</span>,</div><div class="line">        <span class="string">'ngCarousel'</span>: <span class="string">'../lib/angular-carousel/dist/angular-carousel.min'</span>,</div><div class="line">        <span class="string">'ngTouch'</span>: <span class="string">'../lib/angular-touch/angular-touch.min'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">shim</span>: &#123;</div><div class="line">        <span class="string">'ngAnimate'</span>:[<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngAria'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMessage'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMaterial'</span>:&#123;</div><div class="line">            <span class="attr">deps</span>:[<span class="string">'ionic'</span>,<span class="string">'ngAnimate'</span>,<span class="string">'ngAria'</span>,<span class="string">'ngMessage'</span>],</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngTouch'</span>: &#123;</div><div class="line">            <span class="attr">deps</span>: [<span class="string">'ionic'</span>]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngCarousel'</span>:</div><div class="line">            [ <span class="string">'ngTouch'</span>]</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"><span class="built_in">require</span>([<span class="string">'app'</span>, <span class="string">'controllers/controllers'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    angular.bootstrap(<span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>], [<span class="string">'app'</span>]);<span class="comment">//依赖包加载往后手动更新</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>在app.js 中</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ADM格式</span></div><div class="line">define([<span class="string">'app'</span>, <span class="string">'ngCarousel'</span>, <span class="string">'ionic'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ionic'</span>, <span class="string">'controllers'</span>, <span class="string">'angular-carousel'</span>])</div><div class="line">    &#125;); <span class="comment">//'angular-carousel'必须和加载的lib中module名一致</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>requirejs 异步模块定义规范（AMD）</p>
+<p>##加载问题解决</p>
+</blockquote>
+<ul>
+<li>Do not use ng-app in your index.html<p></p></li>
+<li><p>Preload all required Angular and Angular Material libraries.</p>
+</li>
+<li><blockquote>
+<ol>
+<li>Create your own </li>
+<li>custom bootstrap code</li>
+<li>custom main app</li>
+</ol>
+</blockquote>
+<ul>
+<li>Do not let RequireJS try to load, require, or define Angular Material components; just set your app dependency on Angular Material  </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'yourApp'</span>,[<span class="string">'ng'</span>, <span class="string">'ngMaterial'</span>, ... ])&gt;</div></pre></td></tr></table></figure>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/12/09/Android打包的那些事/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2015/12/09/android开发者品质/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-pages">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="pages-requirejs 和 angularjs" 
+      data-title="angularjs中使用 requirejs 遇到的问题" data-url="http://yoursite.com/2015/12/09/requirejs 和 angularjs/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"platofield"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

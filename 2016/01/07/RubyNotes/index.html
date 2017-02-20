@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-pages">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>RubyNotes | 知识之野</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Ruby," />
+  
+
+  <meta name="description" content="Ruby 备忘录
+gem源切换：nrm use
+
+##:: 
+
+ActiveRecord::Base Base 是 ActiveRecord module 的一个内部类 
+
+Ruby Varable一般小写字母、下划线开头：变量（Variable）。
+
+$开头：全局变量（Global variable）。
+@开头：实例变量（Instance variable）。
+@@开头：类变量（Class va">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RubyNotes">
+<meta property="og:url" content="http://yoursite.com/2016/01/07/RubyNotes/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="Ruby 备忘录
+gem源切换：nrm use
+
+##:: 
+
+ActiveRecord::Base Base 是 ActiveRecord module 的一个内部类 
+
+Ruby Varable一般小写字母、下划线开头：变量（Variable）。
+
+$开头：全局变量（Global variable）。
+@开头：实例变量（Instance variable）。
+@@开头：类变量（Class va">
+<meta property="og:updated_time" content="2017-02-20T06:28:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RubyNotes">
+<meta name="twitter:description" content="Ruby 备忘录
+gem源切换：nrm use
+
+##:: 
+
+ActiveRecord::Base Base 是 ActiveRecord module 的一个内部类 
+
+Ruby Varable一般小写字母、下划线开头：变量（Variable）。
+
+$开头：全局变量（Global variable）。
+@开头：实例变量（Instance variable）。
+@@开头：类变量（Class va">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Ruby-备忘录"><span class="toc-text">Ruby 备忘录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ruby-Varable"><span class="toc-text">Ruby Varable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custome-Objects-in-Range"><span class="toc-text">Custome Objects in Range</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Manning-Rails"><span class="toc-text">Manning Rails</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Database-configuration"><span class="toc-text">Database configuration</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="pages-RubyNotes" class="article article-type-pages" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">RubyNotes</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.01.07</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>huang jingui</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="pages-RubyNotes"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Ruby-备忘录"><a href="#Ruby-备忘录" class="headerlink" title="Ruby 备忘录"></a>Ruby 备忘录</h1><blockquote>
+<p>gem源切换：nrm use</p>
+</blockquote>
+<p>##:: </p>
+<blockquote>
+<p>ActiveRecord::Base Base 是 ActiveRecord module 的一个内部类 </p>
+</blockquote>
+<h2 id="Ruby-Varable"><a href="#Ruby-Varable" class="headerlink" title="Ruby Varable"></a>Ruby Varable</h2><p>一般小写字母、下划线开头：变量（Variable）。</p>
+<ul>
+<li>$开头：全局变量（Global variable）。</li>
+<li>@开头：实例变量（Instance variable）。</li>
+<li>@@开头：类变量（Class variable）类变量被共享在整个继承链中</li>
+<li>大写字母开头：常数（Constant）。</li>
+</ul>
+<h2 id="Custome-Objects-in-Range"><a href="#Custome-Objects-in-Range" class="headerlink" title="Custome Objects in Range"></a>Custome Objects in Range</h2><blockquote>
+<p>要构造一个Range 对象需要 include Comparable 模块，异常处理：实现一个succ方法返回类的新的对象;还要实现一个&lt;=&gt;方法  </p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Xs</span>                <span class="comment"># represent a string of 'x's</span></span></div><div class="line">  <span class="keyword">include</span> Comparable</div><div class="line">  attr <span class="symbol">:length</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(n)</span></span></div><div class="line">    @length = n</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">succ</span></span></div><div class="line">    Xs.new(@length + <span class="number">1</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">&lt;=&gt;</span><span class="params">(other)</span></span></div><div class="line">    @length &lt;=&gt; other.length</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_s</span></span></div><div class="line">    sprinf <span class="string">"%2d <span class="subst">#&#123;inspect&#125;</span>"</span>,@length</div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">inspect</span></span></div><div class="line">    <span class="string">'x'</span> *@length</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h2 id="Manning-Rails"><a href="#Manning-Rails" class="headerlink" title="Manning Rails"></a>Manning Rails</h2><h3 id="Database-configuration"><a href="#Database-configuration" class="headerlink" title="Database configuration"></a>Database configuration</h3><p>rails 默认使用SQlite3 作为数据库，当然也支持MySQL 和PostgreSQL 数据库。<br>如果要更改数据库，可以在conifg/database.yml 中修改<br>例如：使用sqlite3<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">development:</div><div class="line">  adapter: sqlite3</div><div class="line">  database: db/development.sqlite3</div><div class="line">  pool: 5</div><div class="line">  timeout: 5000</div></pre></td></tr></table></figure></p>
+<p>使用PostgreSQL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">development:</div><div class="line">  adapter: postgresql</div><div class="line">  database: ticketee_development</div><div class="line">  username: root</div><div class="line">  password: t0ps3cr3t</div></pre></td></tr></table></figure></p>
+<p>PostgreSQL 数据库比SQlite更快</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">development:</div><div class="line">  adapter: mysql2</div><div class="line">  database: ticketee_development</div><div class="line">  username: root</div><div class="line">  password: t0ps3cr3t</div><div class="line">  encoding: utf-8</div></pre></td></tr></table></figure>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2015/12/14/Ruby元编程读书笔记1/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2016/01/08/Ruby-Style-Guide/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-pages">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="pages-RubyNotes" 
+      data-title="RubyNotes" data-url="http://yoursite.com/2016/01/07/RubyNotes/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"platofield"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

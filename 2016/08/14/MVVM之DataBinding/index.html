@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-pages">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>MVVM之DataBinding | 知识之野</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Platofield, android" />
+  
+
+  <meta name="description" content="android DataBinding 的使用，注意：1234567891011121314151617&amp;lt;data&amp;gt;   &amp;lt;variable       name=&quot;viewModel&quot;       type=&quot;com.mega.viewmodel.UserViewModel&quot;/&amp;gt; &amp;lt;/data&amp;gt;  &amp;lt;Button       android:id=&quot;@+">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVVM之DataBinding">
+<meta property="og:url" content="http://yoursite.com/2016/08/14/MVVM之DataBinding/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="android DataBinding 的使用，注意：1234567891011121314151617&amp;lt;data&amp;gt;   &amp;lt;variable       name=&quot;viewModel&quot;       type=&quot;com.mega.viewmodel.UserViewModel&quot;/&amp;gt; &amp;lt;/data&amp;gt;  &amp;lt;Button       android:id=&quot;@+">
+<meta property="og:updated_time" content="2017-02-20T06:28:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MVVM之DataBinding">
+<meta name="twitter:description" content="android DataBinding 的使用，注意：1234567891011121314151617&amp;lt;data&amp;gt;   &amp;lt;variable       name=&quot;viewModel&quot;       type=&quot;com.mega.viewmodel.UserViewModel&quot;/&amp;gt; &amp;lt;/data&amp;gt;  &amp;lt;Button       android:id=&quot;@+">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#viewModel-的作用"><span class="toc-text">viewModel 的作用</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="pages-MVVM之DataBinding" class="article article-type-pages" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">MVVM之DataBinding</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.08.14</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>huang jingui</span>
+        </span>
+      
+
+      
+
+
+      
+
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="pages-MVVM之DataBinding"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>android DataBinding 的使用，注意：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">   <span class="tag">&lt;<span class="name">variable</span></span></div><div class="line">       <span class="attr">name</span>=<span class="string">"viewModel"</span></div><div class="line">       <span class="attr">type</span>=<span class="string">"com.mega.viewmodel.UserViewModel"</span>/&gt;</div><div class="line"> <span class="tag">&lt;/<span class="name">data</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">Button</span></span></div><div class="line">       <span class="attr">android:id</span>=<span class="string">"@+id/login"</span></div><div class="line">       <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></div><div class="line">       <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></div><div class="line">       <span class="attr">android:layout_below</span>=<span class="string">"@+id/user_password"</span></div><div class="line">       <span class="attr">android:background</span>=<span class="string">"@color/colorPrimaryDark"</span></div><div class="line">       <span class="attr">android:onClick</span>=<span class="string">"@&#123;viewModel.setLogin&#125;"</span></div><div class="line">       <span class="attr">android:text</span>=<span class="string">"Login"</span></div><div class="line">       <span class="attr">android:textColor</span>=<span class="string">"@color/wild_sand"</span></div><div class="line">       /&gt;</div></pre></td></tr></table></figure></p>
+<p>要使用viewModel的 onclick生效必须在View中绑定ViewModel<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ActivityLoginBinding loginBinding;</div><div class="line">loginBinding = DataBindingUtil.setContentView(<span class="keyword">this</span>, R.layout.activity_login);</div><div class="line">loginBinding.setViewModel(<span class="keyword">new</span> UserViewModel());</div></pre></td></tr></table></figure></p>
+<h2 id="viewModel-的作用"><a href="#viewModel-的作用" class="headerlink" title="viewModel 的作用"></a>viewModel 的作用</h2><p>The presenter only interacts with the view interface，get data from Model,<br>It retrieves data from the model and returns it formatted to the view. But unlike the typical MVC, it also decides what happens when you interact with the view.</p>
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2016/08/13/自定义view之圆形头像/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/02/19/chatnote/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-pages">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="pages-MVVM之DataBinding" 
+      data-title="MVVM之DataBinding" data-url="http://yoursite.com/2016/08/14/MVVM之DataBinding/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"platofield"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
