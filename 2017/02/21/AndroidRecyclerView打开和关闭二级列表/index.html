@@ -7,48 +7,48 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android RecyclerView 打开和关闭二级列表 | 知识之野</title>
+  <title>Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线 | 知识之野</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="android," />
+    <meta name="keywords" content="android,recyclerview," />
   
 
   <meta name="description" content="1 Android Recyclerview 打开和关闭二级列表
 
 
-思路: 就是更新RecyclerView 的 数据集合 List&amp;lt;Object&amp;gt; mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
 
 
 
-List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp;amp;gt;();">
+List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// 父item 的点击事件更新mItemsvh.itemV">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android RecyclerView 打开和关闭二级列表">
+<meta property="og:title" content="Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线">
 <meta property="og:url" content="http://yoursite.com/2017/02/21/AndroidRecyclerView打开和关闭二级列表/index.html">
 <meta property="og:site_name" content="知识之野">
 <meta property="og:description" content="1 Android Recyclerview 打开和关闭二级列表
 
 
-思路: 就是更新RecyclerView 的 数据集合 List&amp;lt;Object&amp;gt; mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
 
 
 
-List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp;amp;gt;();">
-<meta property="og:updated_time" content="2017-02-21T07:51:54.000Z">
+List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// 父item 的点击事件更新mItemsvh.itemV">
+<meta property="og:updated_time" content="2017-02-22T01:31:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android RecyclerView 打开和关闭二级列表">
+<meta name="twitter:title" content="Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线">
 <meta name="twitter:description" content="1 Android Recyclerview 打开和关闭二级列表
 
 
-思路: 就是更新RecyclerView 的 数据集合 List&amp;lt;Object&amp;gt; mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
 
 
 
-List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp;amp;gt;();">
+List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// 父item 的点击事件更新mItemsvh.itemV">
 
   
 
@@ -168,8 +168,8 @@ List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">Posts List</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 Android Recyclerview 打开和关闭二级列表</span></a></li></ol>
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 Android Recyclerview 打开和关闭二级列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-2"><span class="toc-text">2 Android Recyclerview 添加分割线</span></a></li></ol>
   </div>
 
 
@@ -177,7 +177,7 @@ List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp
 <div class="content content-post CENTER">
    <article id="post-AndroidRecyclerView打开和关闭二级列表" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Android RecyclerView 打开和关闭二级列表</h1>
+    <h1 class="post-title">Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线</h1>
 
     <div class="article-meta">
       <span>
@@ -220,17 +220,32 @@ List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp
 <h2 id="sec-1"><span class="section-number-2">1</span> Android Recyclerview 打开和关闭二级列表</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-思路: 就是更新RecyclerView 的 数据集合 List&lt;Object&gt; mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List<object> mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
+</object></p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; fatherStatue = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 父item 的点击事件更新mItems</span></span><br><span class="line">vh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</span><br><span class="line">     <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{</span><br><span class="line"></span><br><span class="line">       List&lt;List&lt;String&gt;&gt; datas = items.get(mitems.get(position));</span><br><span class="line">       <span class="keyword">if</span> (fatherStatus.get(position) == FATHER_CLOSE) {</span><br><span class="line">	 fatherStatus.set(position, FATHER_OPEN);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; datas.size(); i++) {</span><br><span class="line">	   mitems.add(position + i + <span class="number">1</span>, datas.get(i));</span><br><span class="line">	   mitemType.add(position + i + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	   fatherStatus.add(position + i + <span class="number">1</span>, FATHER_OPEN);</span><br><span class="line">	 }</span><br><span class="line">       } <span class="keyword">else</span> {</span><br><span class="line">	 fatherStatus.set(position, FATHER_CLOSE);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = datas.size(); i &gt; <span class="number">0</span>; i--) {</span><br><span class="line">	   mitems.remove(position + i);</span><br><span class="line">	   mitemType.remove(position + i);</span><br><span class="line">	   fatherStatus.remove(position + i);</span><br><span class="line">	 }</span><br><span class="line">       }</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">     }</span><br><span class="line">   });</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Android Recyclerview 添加分割线</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+通过DividerItemDecoration 实现分割线
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&amp;lt;Integer&amp;gt; fatherStatue = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="comment">// 父item 的点击事件更新mItems</span></span><br><span class="line">vh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</span><br><span class="line">     <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{</span><br><span class="line"></span><br><span class="line">       List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; datas = items.get(mitems.get(position));</span><br><span class="line">       <span class="keyword">if</span> (fatherStatus.get(position) == FATHER_CLOSE) {</span><br><span class="line">	 fatherStatus.set(position, FATHER_OPEN);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &amp;lt; datas.size(); i++) {</span><br><span class="line">	   mitems.add(position + i + <span class="number">1</span>, datas.get(i));</span><br><span class="line">	   mitemType.add(position + i + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	   fatherStatus.add(position + i + <span class="number">1</span>, FATHER_OPEN);</span><br><span class="line">	 }</span><br><span class="line">       } <span class="keyword">else</span> {</span><br><span class="line">	 fatherStatus.set(position, FATHER_CLOSE);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = datas.size(); i &amp;gt; <span class="number">0</span>; i--) {</span><br><span class="line">	   mitems.remove(position + i);</span><br><span class="line">	   mitemType.remove(position + i);</span><br><span class="line">	   fatherStatus.remove(position + i);</span><br><span class="line">	 }</span><br><span class="line">       }</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">     }</span><br><span class="line">   });</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">DividerItemDecoration mDividerItemDecoration =</span><br><span class="line">    <span class="keyword">new</span> DividerItemDecoration(binding.providentRecycler.getContext(),</span><br><span class="line">	mLayoutManager.getOrientation());</span><br><span class="line">binding.providentRecycler.addItemDecoration(mDividerItemDecoration);</span><br></pre></td></tr></table></figure>
 </div>
+<p>
+<b>Divideritemdecoration 在android resposible library 25 才存在</b>
+</p>
 </div>
 </div>
 
-Last Updated 2017-02-21 Tue 15:51.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-02-22 Wed 09:31.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
 
     
   </div>
@@ -244,7 +259,7 @@ Last Updated 2017-02-21 Tue 15:51.<br>Render by <a href="https://github.com/Code
     <a class="show pull-left" href="/2017/02/19/Android RecyclerView添加header和child view/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="hide pull-right" href="/">
+    <a class="show pull-right" href="/2017/02/23/RecylcerView.ItemDecoration的用法/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -266,7 +281,7 @@ Last Updated 2017-02-21 Tue 15:51.<br>Render by <a href="https://github.com/Code
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">Close</span>
+      <span id="close" class="btn-close">关闭</span>
     </div>
     <hr>
     <div class="modal-body">
@@ -354,7 +369,7 @@ Last Updated 2017-02-21 Tue 15:51.<br>Render by <a href="https://github.com/Code
   <section class="duoshuo-comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread" data-thread-key="post-AndroidRecyclerView打开和关闭二级列表" 
-      data-title="Android RecyclerView 打开和关闭二级列表" data-url="http://yoursite.com/2017/02/21/AndroidRecyclerView打开和关闭二级列表/index.html"></div>
+      data-title="Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线" data-url="http://yoursite.com/2017/02/21/AndroidRecyclerView打开和关闭二级列表/index.html"></div>
     <!-- 多说评论框 end -->
   </section>
 

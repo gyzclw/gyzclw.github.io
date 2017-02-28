@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android Retrofit 使用 | 知识之野</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="android,http," />
+  
+
+  <meta name="description" content="1 Android Retrofit 使用
+
+
+1.1 Install&amp;#x2026;&amp;#x2026;..
+
+
+在build.gradle 中加入下面代码
+
+
+
+compile &apos;com.squareup.retrofit2:retrofit:2.2.0&apos;compile &apos;com.squareup.okhttp3:okhttp:3.5.0&apos;compile &apos;com.squareup.retr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Retrofit 使用">
+<meta property="og:url" content="http://yoursite.com/2017/02/24/Android Retrofit 使用/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="1 Android Retrofit 使用
+
+
+1.1 Install&amp;#x2026;&amp;#x2026;..
+
+
+在build.gradle 中加入下面代码
+
+
+
+compile &apos;com.squareup.retrofit2:retrofit:2.2.0&apos;compile &apos;com.squareup.okhttp3:okhttp:3.5.0&apos;compile &apos;com.squareup.retr">
+<meta property="og:updated_time" content="2017-02-24T06:13:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Retrofit 使用">
+<meta name="twitter:description" content="1 Android Retrofit 使用
+
+
+1.1 Install&amp;#x2026;&amp;#x2026;..
+
+
+在build.gradle 中加入下面代码
+
+
+
+compile &apos;com.squareup.retrofit2:retrofit:2.2.0&apos;compile &apos;com.squareup.okhttp3:okhttp:3.5.0&apos;compile &apos;com.squareup.retr">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 Android Retrofit 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-text">1.1 Install……..</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-text">1.2 How to use do a get request</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-1-2-1"><span class="toc-text">1.2.1 add interface MegaService</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-1-2-2"><span class="toc-text">1.2.2 add Gson support</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-1-2-3"><span class="toc-text">1.2.3 Retrofit 操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-3"><span class="toc-text">1.3 How to use to do a post request</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-1-3-1"><span class="toc-text">1.3.1 update interface MegaService</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sec-1-3-2"><span class="toc-text">1.3.2 Retrofit 操作</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Android Retrofit 使用" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Android Retrofit 使用</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.02.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>huang jingui</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/android/">android</a>
+  </span>
+
+
+
+      
+
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="post-Android Retrofit 使用"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Android Retrofit 使用</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Install&#x2026;&#x2026;..</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+在build.gradle 中加入下面代码
+</p>
+<div class="org-src-container">
+
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">'com.squareup.retrofit2:retrofit:2.2.0'</span></span><br><span class="line">compile <span class="string">'com.squareup.okhttp3:okhttp:3.5.0'</span></span><br><span class="line">compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.2'</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> How to use do a get request</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> add interface MegaService</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MegaService</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="annotation">@GET</span>(<span class="string">"servlet"</span>) Call&lt;Code&gt; listCodeRepo(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+<blockquote>
+<p>
+如果api类似于:<a href="http://192.168.1.106:8080/httpclient_gjj/servlet?parm=code" target="_blank" rel="external">http://192.168.1.106:8080/httpclient_gjj/servlet?parm=code</a> 需要
+使用@Query注解.
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> add Gson support</h4>
+<div class="outline-text-4" id="text-1-2-2">
+</div><ol class="org-ol"><li><a id="sec-1-2-2-1" name="sec-1-2-2-1"></a>install&#x2026;. Gson conventer<br><div class="outline-text-5" id="text-1-2-2-1">
+<p>
+在build.gradle 中
+</p>
+<div class="org-src-container">
+
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">compile <span class="string">'com.squareup.retrofit2:converter-gson:2.0.2'</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</li>
+
+<li><a id="sec-1-2-2-2" name="sec-1-2-2-2"></a>create gson model<br><div class="outline-text-5" id="text-1-2-2-2">
+<p>
+response数据如下:
+</p>
+<div class="org-src-container">
+
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">{"<span class="attribute">CheckCode</span>":<span class="value"><span class="string">"/9j/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAx\nNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy\nMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAAUCAAUADwEASIAAhEBAxEBBCIA/8QAHwAAAQUB\nAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEG\nE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVW\nV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLD\nxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAA\nAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKR\nobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hp\nanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU\n1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADgQBAAIRAxEEAAA/APcElDGLEjcsB16/d6/N0/8A\nrdc/Ng3Gq6xa+VeyrbJam7WEWpLGVkJVA28SEZJIYLt6cZyed5JQxixI3LAdev3evzdP/rdc/Nzc\nEl/c6vHdajpl9IIpytqiSQmGMAgCQ5m3Fip6443ADOTvzqN3SR2YRRu3K1l3td+Su/x3XTs/f6KK\nKlvL/WoNRsLW3vbKZ7mb/VG2dSsQ27mZvOPTKgcfMSOzcrZ63Leax9nXV9OjC3JiW0KlppFXAPPn\ncZw3O09O+eblrFO3iK4vJWYQGGGCD5gc4OX/AIiQCWX64HXPzZU1pfXwt7FtOit9mpLci8hZBGQH\nV94UuW8wjg5GCWJDEH5p1T/4f+vM6abpSXLK2y193rrt1torLXcKKKKs2ety3msfZ11fTowtyYlt\nCpaaRVwDz53GcNztPTvnneSUMYsSNywHXr93r83T/wCt1z83MTWl9fC3sW06K32aktyLyFkEZAdX\n3hS5bzCODkYJYkMQfm6dJQxixI3LAdev3evzdP8A63XPzVTvbU5sWoLlcLeit99137PVBRRRQkoY\nxYkblgOvX7vX5un/ANbrn5rFq4eIkEnkDk+w9z/n16mukoYxYkblgOvX7vX5un/1uufmsWrh4iQS\neQOT7D3P+fXqdDjCiiiqUdw7GLkjlc/M3OfL9/8Aa/zk5I7h2MXJHK5+Zuc+X7/7X+cnJRQAUUUU\nR3DsYuSOVz8zc58v3/2v85OSO4djFyRyufmbnPl+/wDtf5yclFABRRRRHcOxi5I5XPzNzny/f/a/\nzk5I7h2MXJHK5+Zuc+X7/wC1/nJyUUAFFFFEdw7GLkjlc/M3OfL9/wDa/wA5ObVjKZYSzf7Pcnqi\nnufeiigAooor/9k="</span></span>}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+则model为:
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Code</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">   * CheckCode : "fsadfs"</span><br><span class="line">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> String CheckCode;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getCheckCode</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> CheckCode;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCheckCode</span><span class="params">(String CheckCode)</span> </span>{</span><br><span class="line">    <span class="keyword">this</span>.CheckCode = CheckCode;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Retrofit 操作</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder().baseUrl(apiUri)</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.build();</span><br><span class="line">MegaService service = retrofit.create(MegaService.class);</span><br><span class="line"></span><br><span class="line">Call&lt;Code&gt; call = service.listCodeRepo(<span class="string">"code"</span>);</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> How to use to do a post request</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> update interface MegaService</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@FormUrlEncoded</span> <span class="annotation">@POST</span>(<span class="string">"servlet"</span>) Call&lt;ProvidentFund&gt; postData(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"UserType"</span>) String type, <span class="annotation">@Field</span>(<span class="string">"UserId"</span>) String id, <span class="annotation">@Field</span>(<span class="string">"UserPwd"</span>) String psd,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"CheckCode"</span>) String code);</span><br></pre></td></tr></table></figure>
+</div>
+<ol class="org-ol">
+<li>Illegal Argument Exception - @Field parameters can only be used with form encoding
+</li>
+</ol>
+<blockquote>
+<p>
+使用@Filed 注解需要添加@FormUrlEncoded注解在方法前面
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> Retrofit 操作</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Call&lt;ProvidentFund&gt; call = service.postData(<span class="string">"login"</span>, <span class="string">"10"</span>, mUserName.getText().toString(),</span><br><span class="line">	mUserPsd.getText().toString(), mProvidentCode.getText().toString());</span><br><span class="line">call.execute()</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+Last Updated 2017-02-24 Fri 14:13.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/02/23/Android单元测试框架Robolectric/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/02/28/Android Retrofit 和Rxjava 的使用/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Android Retrofit 使用" 
+      data-title="Android Retrofit 使用" data-url="http://yoursite.com/2017/02/24/Android Retrofit 使用/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"platofield"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
