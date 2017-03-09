@@ -18,12 +18,12 @@
   <meta name="description" content="1 Android Recyclerview 打开和关闭二级列表
 
 
-思路: 就是更新RecyclerView 的 数据集合 List mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List&amp;lt;Object&amp;gt; mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
 
 
 
-List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// 父item 的点击事件更新mItemsvh.itemV">
+List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp;amp;gt;();">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线">
 <meta property="og:url" content="http://yoursite.com/2017/02/21/AndroidRecyclerView打开和关闭二级列表/index.html">
@@ -31,24 +31,24 @@ List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// �
 <meta property="og:description" content="1 Android Recyclerview 打开和关闭二级列表
 
 
-思路: 就是更新RecyclerView 的 数据集合 List mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List&amp;lt;Object&amp;gt; mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
 
 
 
-List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// 父item 的点击事件更新mItemsvh.itemV">
+List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp;amp;gt;();">
 <meta property="og:updated_time" content="2017-02-22T01:31:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android RecyclerView (1)打开和关闭二级列表,(2) 添加分割线">
 <meta name="twitter:description" content="1 Android Recyclerview 打开和关闭二级列表
 
 
-思路: 就是更新RecyclerView 的 数据集合 List mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List&amp;lt;Object&amp;gt; mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
 
 
 
-List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// 父item 的点击事件更新mItemsvh.itemV">
+List&amp;amp;lt;Integer&amp;amp;gt; fatherStatue = new ArrayList&amp;amp;lt;&amp;amp;gt;();">
 
   
 
@@ -220,12 +220,12 @@ List&amp;lt;Integer&amp;gt; fatherStatue = new ArrayList&amp;lt;&amp;gt;();// �
 <h2 id="sec-1"><span class="section-number-2">1</span> Android Recyclerview 打开和关闭二级列表</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-思路: 就是更新RecyclerView 的 数据集合 List<object> mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List&lt;Object&gt; mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
-</object></p>
+</p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; fatherStatue = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 父item 的点击事件更新mItems</span></span><br><span class="line">vh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</span><br><span class="line">     <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{</span><br><span class="line"></span><br><span class="line">       List&lt;List&lt;String&gt;&gt; datas = items.get(mitems.get(position));</span><br><span class="line">       <span class="keyword">if</span> (fatherStatus.get(position) == FATHER_CLOSE) {</span><br><span class="line">	 fatherStatus.set(position, FATHER_OPEN);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; datas.size(); i++) {</span><br><span class="line">	   mitems.add(position + i + <span class="number">1</span>, datas.get(i));</span><br><span class="line">	   mitemType.add(position + i + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	   fatherStatus.add(position + i + <span class="number">1</span>, FATHER_OPEN);</span><br><span class="line">	 }</span><br><span class="line">       } <span class="keyword">else</span> {</span><br><span class="line">	 fatherStatus.set(position, FATHER_CLOSE);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = datas.size(); i &gt; <span class="number">0</span>; i--) {</span><br><span class="line">	   mitems.remove(position + i);</span><br><span class="line">	   mitemType.remove(position + i);</span><br><span class="line">	   fatherStatus.remove(position + i);</span><br><span class="line">	 }</span><br><span class="line">       }</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">     }</span><br><span class="line">   });</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&amp;lt;Integer&amp;gt; fatherStatue = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="comment">// 父item 的点击事件更新mItems</span></span><br><span class="line">vh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</span><br><span class="line">     <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{</span><br><span class="line"></span><br><span class="line">       List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; datas = items.get(mitems.get(position));</span><br><span class="line">       <span class="keyword">if</span> (fatherStatus.get(position) == FATHER_CLOSE) {</span><br><span class="line">	 fatherStatus.set(position, FATHER_OPEN);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &amp;lt; datas.size(); i++) {</span><br><span class="line">	   mitems.add(position + i + <span class="number">1</span>, datas.get(i));</span><br><span class="line">	   mitemType.add(position + i + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	   fatherStatus.add(position + i + <span class="number">1</span>, FATHER_OPEN);</span><br><span class="line">	 }</span><br><span class="line">       } <span class="keyword">else</span> {</span><br><span class="line">	 fatherStatus.set(position, FATHER_CLOSE);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = datas.size(); i &amp;gt; <span class="number">0</span>; i--) {</span><br><span class="line">	   mitems.remove(position + i);</span><br><span class="line">	   mitemType.remove(position + i);</span><br><span class="line">	   fatherStatus.remove(position + i);</span><br><span class="line">	 }</span><br><span class="line">       }</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">     }</span><br><span class="line">   });</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>java 多态重构if else | 知识之野</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="java,重构," />
+  
+
+  <meta name="description" content="1 java 多态重构if else
+
+
+过多的if else 会造成代码可读性下降,所以有时候可以使用java多态来重构代码，使得代码可读性提高。
+原始代码如下:
+
+
+
+Object obj = gvTaskHome.getAdapter().getItem(arg2);				HashMap&amp;lt;String, Object&amp;gt; map = (HashMap&amp;lt;String,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java 多态重构if else">
+<meta property="og:url" content="http://yoursite.com/2017/03/09/java多态重构if else/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="1 java 多态重构if else
+
+
+过多的if else 会造成代码可读性下降,所以有时候可以使用java多态来重构代码，使得代码可读性提高。
+原始代码如下:
+
+
+
+Object obj = gvTaskHome.getAdapter().getItem(arg2);				HashMap&amp;lt;String, Object&amp;gt; map = (HashMap&amp;lt;String,">
+<meta property="og:updated_time" content="2017-03-09T02:58:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java 多态重构if else">
+<meta name="twitter:description" content="1 java 多态重构if else
+
+
+过多的if else 会造成代码可读性下降,所以有时候可以使用java多态来重构代码，使得代码可读性提高。
+原始代码如下:
+
+
+
+Object obj = gvTaskHome.getAdapter().getItem(arg2);				HashMap&amp;lt;String, Object&amp;gt; map = (HashMap&amp;lt;String,">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 java 多态重构if else</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-2"><span class="toc-text">2 创建BaseIntent 接口</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-java多态重构if else" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">java 多态重构if else</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.03.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>huang jingui</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </span>
+
+
+
+      
+
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="post-java多态重构if else"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> java 多态重构if else</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+过多的if else 会造成代码可读性下降,所以有时候可以使用java多态来重构代码，使得代码可读性提高。
+原始代码如下:
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object obj = gvTaskHome.getAdapter().getItem(arg2);</span><br><span class="line">				HashMap&lt;String, Object&gt; map = (HashMap&lt;String, Object&gt;) obj;</span><br><span class="line">				String str = (String) map.get(<span class="string">"itemText"</span>);</span><br><span class="line">				Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"办卡申请"</span>))</span><br><span class="line">				{</span><br><span class="line">					<span class="keyword">if</span> (FileTools.isSDCardReady())</span><br><span class="line">					{</span><br><span class="line">						Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">						List&lt;Card&gt; list = <span class="keyword">new</span> ArrayList&lt;Card&gt;();</span><br><span class="line">						<span class="keyword">try</span></span><br><span class="line">						{</span><br><span class="line">							list = XmlTools.readCardTypeXmlOut(MyConstants.CONFIG_PATH+MyConstants.getConfigFileName());</span><br><span class="line">							bundle.putSerializable(<span class="string">"card"</span>, (Serializable)list);</span><br><span class="line">							intent.putExtras(bundle);</span><br><span class="line">							intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, CardChooseActivity.class);</span><br><span class="line">							startActivity(intent);</span><br><span class="line">						} <span class="keyword">catch</span> (IOException e)</span><br><span class="line">						{</span><br><span class="line">							<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">							System.out.println(e);</span><br><span class="line">							UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">						} <span class="keyword">catch</span> (DocumentException e)</span><br><span class="line">						{</span><br><span class="line">							<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">							System.out.println(e);</span><br><span class="line">							UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">						}</span><br><span class="line"><span class="comment">//                                              list.addAll(list);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					}</span><br><span class="line">					<span class="keyword">else</span> {</span><br><span class="line">						UITools.getTools().showToast(<span class="string">"未发现存储卡或内置存储"</span>, <span class="keyword">true</span>, UITools.SAD);</span><br><span class="line">					}</span><br><span class="line"></span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"资料预览"</span>))</span><br><span class="line">				{</span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, MsgPreViewActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"手动补件"</span>))</span><br><span class="line">				{</span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, RePhotoActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"补打回单"</span>))</span><br><span class="line">				{</span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, MsgPreViewActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"卡激活"</span>))</span><br><span class="line">				{</span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, KnowledgeActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"问卷调查"</span>))</span><br><span class="line">				{</span><br><span class="line"><span class="comment">//                                      String macAddress = null;</span></span><br><span class="line"><span class="comment">//                                      WifiManager wifiMgr = (WifiManager)getSystemService(Context.WIFI_SERVICE);</span></span><br><span class="line"><span class="comment">//                                      WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());</span></span><br><span class="line"><span class="comment">//                                      if (null != info) {</span></span><br><span class="line"><span class="comment">//                                          macAddress = info.getMacAddress();</span></span><br><span class="line"><span class="comment">//                                      }</span></span><br><span class="line"><span class="comment">//                                                String[] strArr = macAddress.split(":");</span></span><br><span class="line"><span class="comment">//                                                StringBuffer sBuffer = new StringBuffer();</span></span><br><span class="line"><span class="comment">//                                                for(int i = 0;i &lt; strArr.length; i++){</span></span><br><span class="line"><span class="comment">//                                                 sBuffer.append(strArr[i]);</span></span><br><span class="line"><span class="comment">//                                                }</span></span><br><span class="line"><span class="comment">//                                              System.out.println("mac:" + sBuffer);</span></span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("mac:" + sBuffer, true);</span></span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, SaleActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">			}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+因为过多的if else 使得代码阅读起来比较困难，接下来我门开始重构
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 创建BaseIntent 接口</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+接口只包括一个excuse函数
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">BaseIntent</span> </span>{</span><br><span class="line">	 Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line"></span><br><span class="line">	 <span class="function"><span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span></span>;</span><br><span class="line">	 }</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+接下来通过实现该接口创建不同的类
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">CardChoose</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">if</span> (FileTools.isSDCardReady())</span><br><span class="line">		{</span><br><span class="line">			Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">			List&lt;Card&gt; list;</span><br><span class="line">			<span class="keyword">try</span></span><br><span class="line">			{</span><br><span class="line">				list = XmlTools.readCardTypeXmlOut(MyConstants.CONFIG_PATH+MyConstants.getConfigFileName());</span><br><span class="line">				bundle.putSerializable(<span class="string">"card"</span>, (Serializable)list);</span><br><span class="line">				intent.putExtras(bundle);</span><br><span class="line">				intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, CardChooseActivity.class);</span><br><span class="line">				startActivity(intent);</span><br><span class="line">			} <span class="keyword">catch</span> (IOException e)</span><br><span class="line">			{</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				System.out.println(e);</span><br><span class="line">				UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">			} <span class="keyword">catch</span> (DocumentException e)</span><br><span class="line">			{</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				System.out.println(e);</span><br><span class="line">				UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">			}</span><br><span class="line">			<span class="comment">//                                              list.addAll(list);</span></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span> {</span><br><span class="line">			UITools.getTools().showToast(<span class="string">"未发现存储卡或内置存储"</span>, <span class="keyword">true</span>, UITools.SAD);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgPreView</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, MsgPreViewActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">RePhoto</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, RePhotoActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Knowledge</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="comment">//UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, KnowledgeActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Questionnaire</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="comment">//String macAddress = null;</span></span><br><span class="line">		<span class="comment">//                                      WifiManager wifiMgr = (WifiManager)getSystemService(Context.WIFI_SERVICE);</span></span><br><span class="line">		<span class="comment">//                                      WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());</span></span><br><span class="line">		<span class="comment">//                                      if (null != info) {</span></span><br><span class="line">		<span class="comment">//                                          macAddress = info.getMacAddress();</span></span><br><span class="line">		<span class="comment">//                                      }</span></span><br><span class="line">		<span class="comment">//                                                String[] strArr = macAddress.split(":");</span></span><br><span class="line">		<span class="comment">//                                                StringBuffer sBuffer = new StringBuffer();</span></span><br><span class="line">		<span class="comment">//                                                for(int i = 0;i &lt; strArr.length; i++){</span></span><br><span class="line">		<span class="comment">//                                                 sBuffer.append(strArr[i]);</span></span><br><span class="line">		<span class="comment">//                                                }</span></span><br><span class="line">		<span class="comment">//                                              System.out.println("mac:" + sBuffer);</span></span><br><span class="line">		<span class="comment">//                                      UITools.getTools().showToast("mac:" + sBuffer, true);</span></span><br><span class="line">		<span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, SaleActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">		}</span><br><span class="line">		}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后在创建一个private函数来判断
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> BaseIntent <span class="title">gvTaskHomeOnClick</span><span class="params">(String str)</span></span>{</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"办卡申请"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> CardChoose();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"资料预览"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> MsgPreView();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"手动补件"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> RePhoto();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"补打回单"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> MsgPreView();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"卡激活"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> Knowledge();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"问卷调查"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> Questionnaire();</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> BaseIntent() {</span><br><span class="line">			<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line"></span><br><span class="line">			}</span><br><span class="line">		};</span><br><span class="line">	}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后运行函数
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">gvTaskHomeOnClick(str).excuse();</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这样代码逻辑就清晰了，而且扩展起来也比较方便。
+</p>
+</div>
+</div>
+
+Last Updated 2017-03-09 Thu 10:58.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/03/04/android studio(emacs keyboad)快捷键/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-java多态重构if else" 
+      data-title="java 多态重构if else" data-url="http://yoursite.com/2017/03/09/java多态重构if else/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"platofield"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

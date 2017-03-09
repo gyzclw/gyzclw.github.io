@@ -57,7 +57,7 @@ compile &apos;com.squareup.retrofit2:adapter-rxjava:2.0.2&apos;
 
 
 在MegaServier中的返回值Call改为Obse">
-<meta property="og:updated_time" content="2017-02-28T05:10:44.000Z">
+<meta property="og:updated_time" content="2017-03-06T09:28:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Retrofit 和Rxjava的使用">
 <meta name="twitter:description" content="1 Android Retrofit 和Rxjava的使用
@@ -199,7 +199,7 @@ compile &apos;com.squareup.retrofit2:adapter-rxjava:2.0.2&apos;
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 Android Retrofit 和Rxjava的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-text">1.1 install adapter-rxjava</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-text">1.2 How to use adapter-rxjava</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 Android Retrofit 和Rxjava的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-text">1.1 install adapter-rxjava</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-text">1.2 How to use adapter-rxjava</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-3"><span class="toc-text">1.3 better to use rxjava with retrofit</span></a></li></ol></li></ol>
   </div>
 
 
@@ -287,9 +287,42 @@ compile &apos;com.squareup.retrofit2:adapter-rxjava:2.0.2&apos;
 </div>
 </div>
 </div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> better to use rxjava with retrofit</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+add a HttpMehtod
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpMethods</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> String BASE_URL;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_TIMEOUT = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Retrofit retrofit;</span><br><span class="line">  <span class="keyword">private</span> HebeiService movieService;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//构造方法私有</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">HttpMethods</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">//手动创建一个OkHttpClient并设置超时时间</span></span><br><span class="line">    OkHttpClient.Builder httpClientBuilder = <span class="keyword">new</span> OkHttpClient.Builder();</span><br><span class="line">    httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    retrofit = <span class="keyword">new</span> Retrofit.Builder().client(httpClientBuilder.build())</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">	.baseUrl(BASE_URL)</span><br><span class="line">	.build();</span><br><span class="line"></span><br><span class="line">    movieService = retrofit.create(HebeiService.class);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在访问HttpMethods时创建单例</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HttpMethods INSTANCE = <span class="keyword">new</span> HttpMethods();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取单例</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HttpMethods <span class="title">getInstance</span><span class="params">(String BASE_URL)</span> </span>{</span><br><span class="line">    HttpMethods.BASE_URL = BASE_URL;</span><br><span class="line">    <span class="keyword">return</span> SingletonHolder.INSTANCE;</span><br><span class="line">  }</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postDevice</span><span class="params">(Subscriber&lt;DeviceResponse&gt; subscriber, String code, DeviceRequestBody requestBody)</span> </span>{</span><br><span class="line">    movieService.postDevice(code,requestBody)</span><br><span class="line">	.subscribeOn(Schedulers.io())</span><br><span class="line">	.unsubscribeOn(Schedulers.io())</span><br><span class="line">	.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">	.subscribe(subscriber);</span><br><span class="line">  }</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+创建 DeviceRequestBody
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceRequestBody</span> </span>{</span><br><span class="line">  String DeviceNum ;</span><br><span class="line">  String Signature;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DeviceRequestBody</span><span class="params">(String deviceNum, String signature)</span> </span>{</span><br><span class="line">    DeviceNum = deviceNum;</span><br><span class="line">    Signature = signature;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+再创建一个 DeviceResponse
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Generated</span>(<span class="string">"com.robohorse.robopojogenerator"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceResponse</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@SerializedName</span>(<span class="string">"uniqueCode"</span>)</span><br><span class="line">	<span class="annotation">@Expose</span></span><br><span class="line">	<span class="keyword">private</span> String uniqueCode;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@SerializedName</span>(<span class="string">"signature"</span>)</span><br><span class="line">	<span class="annotation">@Expose</span></span><br><span class="line">	<span class="keyword">private</span> String signature;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@SerializedName</span>(<span class="string">"response"</span>)</span><br><span class="line">	<span class="annotation">@Expose</span></span><br><span class="line">	<span class="keyword">private</span> String response;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUniqueCode</span><span class="params">(String uniqueCode)</span></span>{</span><br><span class="line">		<span class="keyword">this</span>.uniqueCode = uniqueCode;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUniqueCode</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span> uniqueCode;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSignature</span><span class="params">(String signature)</span></span>{</span><br><span class="line">		<span class="keyword">this</span>.signature = signature;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getSignature</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span> signature;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResponse</span><span class="params">(String response)</span></span>{</span><br><span class="line">		<span class="keyword">this</span>.response = response;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getResponse</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">			<span class="string">"DeviceResponse{"</span> +</span><br><span class="line">			<span class="string">"uniqueCode = '"</span> + uniqueCode + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">",signature = '"</span> + signature + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">",response = '"</span> + response + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">"}"</span>;</span><br><span class="line">			}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后的调用
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> DeviceRequestBody requestBody = <span class="keyword">new</span> DeviceRequestBody();</span><br><span class="line">Subscriber&lt;DeviceResponse&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;DeviceResponse&gt;() {</span><br><span class="line">      <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>{</span><br><span class="line"></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>{</span><br><span class="line">	e.fillInStackTrace();</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(DeviceResponse deviceResponse)</span> </span>{</span><br><span class="line">	   }</span><br><span class="line">    };</span><br><span class="line">    HttpMethods.getInstance(HebeiService.ENDPOINT).postDevice(subscriber,<span class="string">""</span>,requestBody);</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
 </div>
 
-Last Updated 2017-02-28 Tue 13:10.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-03-06 Mon 17:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
 
     
   </div>
@@ -303,7 +336,7 @@ Last Updated 2017-02-28 Tue 13:10.<br>Render by <a href="https://github.com/Code
     <a class="show pull-left" href="/2017/02/24/Android Retrofit 使用/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="hide pull-right" href="/">
+    <a class="show pull-right" href="/2017/03/01/Android 开发遇到的问题/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>

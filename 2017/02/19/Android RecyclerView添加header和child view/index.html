@@ -21,8 +21,8 @@
 1.1 Add Header for RecyclerView
 
 
-   继承RecyclerView.Adapter 自定义一个
-ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private fi">
+   继承RecyclerView.Adapter&amp;lt;RecyclerView.ViewHolder&amp;gt; 自定义一个
+ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android RecyclerView add header and child view">
 <meta property="og:url" content="http://yoursite.com/2017/02/19/Android RecyclerView添加header和child view/index.html">
@@ -33,8 +33,8 @@ ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolde
 1.1 Add Header for RecyclerView
 
 
-   继承RecyclerView.Adapter 自定义一个
-ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private fi">
+   继承RecyclerView.Adapter&amp;lt;RecyclerView.ViewHolder&amp;gt; 自定义一个
+ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder">
 <meta property="og:updated_time" content="2017-02-22T01:17:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android RecyclerView add header and child view">
@@ -44,8 +44,8 @@ ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolde
 1.1 Add Header for RecyclerView
 
 
-   继承RecyclerView.Adapter 自定义一个
-ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private fi">
+   继承RecyclerView.Adapter&amp;lt;RecyclerView.ViewHolder&amp;gt; 自定义一个
+ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder">
 
   
 
@@ -221,9 +221,9 @@ ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolde
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> Add Header for RecyclerView</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-   继承RecyclerView.Adapter<recyclerview.viewholder> 自定义一个
+   继承RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt; 自定义一个
 ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private filed。
-</recyclerview.viewholder></p>
+</p>
 <div class="org-src-container">
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span> <span class="keyword">public</span> RecyclerView.<span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent,</span><br><span class="line"><span class="keyword">int</span> viewType)</span> </span>{</span><br><span class="line"> View v;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (viewType == HEADER_VIEW) {</span><br><span class="line">     v = LayoutInflater.from(parent.getContext())</span><br><span class="line">	 .inflate(R.layout.header_provident, parent, <span class="keyword">false</span>);</span><br><span class="line">     HeaderFooterViewHolder vh = <span class="keyword">new</span> HeaderFooterViewHolder(v);</span><br><span class="line">     <span class="keyword">return</span> vh;</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">if</span> (viewType == FOOTER_VIEW) {</span><br><span class="line"></span><br><span class="line">   }</span><br><span class="line"></span><br><span class="line">   v = LayoutInflater.from(parent.getContext()).</span><br><span class="line">	  inflate(R.layout.normal_provident, parent, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">   NormalViewHolder vh = <span class="keyword">new</span> NormalViewHolder(v);</span><br><span class="line">   <span class="keyword">return</span> vh;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
@@ -234,21 +234,21 @@ Normal View;
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NORMAL_VIEW = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEADER_VIEW = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FOOTER_VIEW = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> List&lt;View&gt; headers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> List&lt;String&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> List&lt;View&gt; footers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NORMAL_VIEW = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEADER_VIEW = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FOOTER_VIEW = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> List&amp;lt;View&amp;gt; headers = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="keyword">private</span> List&amp;lt;String&amp;gt; items = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="keyword">private</span> List&amp;lt;View&amp;gt; footers = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 通过判断position 和headers items 的size 大小判断 itemtype
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">       <span class="comment">//check what type our position is, based on the</span></span><br><span class="line">       <span class="comment">//assumption that the order is headers &gt; items &gt; footers</span></span><br><span class="line">       <span class="keyword">if</span>(position &lt; headers.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_HEADER;</span><br><span class="line">	 }<span class="keyword">else</span> <span class="keyword">if</span>(position &gt;= headers.size() + items.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_FOOTER;</span><br><span class="line">       }</span><br><span class="line">       <span class="keyword">return</span> TYPE_ITEM;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">       <span class="comment">//check what type our position is, based on the</span></span><br><span class="line">       <span class="comment">//assumption that the order is headers &amp;gt; items &amp;gt; footers</span></span><br><span class="line">       <span class="keyword">if</span>(position &amp;lt; headers.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_HEADER;</span><br><span class="line">	 }<span class="keyword">else</span> <span class="keyword">if</span>(position &amp;gt;= headers.size() + items.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_FOOTER;</span><br><span class="line">       }</span><br><span class="line">       <span class="keyword">return</span> TYPE_ITEM;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 判断来View Type 就可以在onBindViewHolder()中bind itemview
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder vh,</span><br><span class="line">  <span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">   <span class="keyword">if</span> (position &lt; headers.size()) {</span><br><span class="line">     View v = headers.get(position);</span><br><span class="line">     <span class="comment">//add our view to a header view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> <span class="keyword">if</span> (position &gt;= headers.size() + items.size()) {</span><br><span class="line">     View v = footers.get(position - items.size() - headers.size());</span><br><span class="line">     <span class="comment">//add oru view to a footer view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> {</span><br><span class="line">     <span class="comment">//it's one of our items, display as required</span></span><br><span class="line">     prepareGeneric((NormalViewHolder) vh, position - headers.size());</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder vh,</span><br><span class="line">  <span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">   <span class="keyword">if</span> (position &amp;lt; headers.size()) {</span><br><span class="line">     View v = headers.get(position);</span><br><span class="line">     <span class="comment">//add our view to a header view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> <span class="keyword">if</span> (position &amp;gt;= headers.size() + items.size()) {</span><br><span class="line">     View v = footers.get(position - items.size() - headers.size());</span><br><span class="line">     <span class="comment">//add oru view to a footer view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> {</span><br><span class="line">     <span class="comment">//it's one of our items, display as required</span></span><br><span class="line">     prepareGeneric((NormalViewHolder) vh, position - headers.size());</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 通过addHeader(View header)向集合headers 中添加item
@@ -268,19 +268,19 @@ Normal View;
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> Add child view for RecyclerView</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-首先是List<interger> mitemType 存储item的类型: 0代表NORMAL VIEW, 1代表CHILD VIEW。
-和List<string> mitems 存储总的数据.
-</string></interger></p>
+首先是List&lt;Interger&gt; mitemType 存储item的类型: 0代表NORMAL VIEW, 1代表CHILD VIEW。
+和List&lt;String&gt; mitems 存储总的数据.
+</p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> HashMap&lt;String, List&lt;String&gt;&gt; items = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"> List&lt;String&gt; item = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> items.put(<span class="string">"2001"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2002"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2003"</span>, item);</span><br><span class="line"> List&lt;String&gt; mitems = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"> List&lt;Integer&gt; mitemType = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">Iterator i = items.keySet().iterator();</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (i.hasNext()) {</span><br><span class="line">   String key = (String) i.next();</span><br><span class="line">   mitemType.add(<span class="number">0</span>);</span><br><span class="line">   mitems.add(key);</span><br><span class="line">   List&lt;String&gt; datas = items.get(key);</span><br><span class="line">   <span class="keyword">for</span> (String data : datas) {</span><br><span class="line">     mitems.add(data);</span><br><span class="line">     mitemType.add(<span class="number">1</span>);</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> HashMap&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; items = <span class="keyword">new</span> HashMap&amp;lt;&amp;gt;();</span><br><span class="line"> List&amp;lt;String&amp;gt; item = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> items.put(<span class="string">"2001"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2002"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2003"</span>, item);</span><br><span class="line"> List&amp;lt;String&amp;gt; mitems = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"> List&amp;lt;Integer&amp;gt; mitemType = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line">Iterator i = items.keySet().iterator();</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (i.hasNext()) {</span><br><span class="line">   String key = (String) i.next();</span><br><span class="line">   mitemType.add(<span class="number">0</span>);</span><br><span class="line">   mitems.add(key);</span><br><span class="line">   List&amp;lt;String&amp;gt; datas = items.get(key);</span><br><span class="line">   <span class="keyword">for</span> (String data : datas) {</span><br><span class="line">     mitems.add(data);</span><br><span class="line">     mitemType.add(<span class="number">1</span>);</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 然后就是和add header 一样, 在getItemType中判断item的类型
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (position &lt; headers.size()) {</span><br><span class="line">    <span class="keyword">return</span> HEADER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (position &gt;= headers.size() + mitems.size()) {</span><br><span class="line">    <span class="keyword">return</span> FOOTER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (mitemType.get(position - headers.size() - footers.size()) == <span class="number">0</span>) {</span><br><span class="line">    <span class="keyword">return</span> NORMAL_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> CHILD_VIEW;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (position &amp;lt; headers.size()) {</span><br><span class="line">    <span class="keyword">return</span> HEADER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (position &amp;gt;= headers.size() + mitems.size()) {</span><br><span class="line">    <span class="keyword">return</span> FOOTER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (mitemType.get(position - headers.size() - footers.size()) == <span class="number">0</span>) {</span><br><span class="line">    <span class="keyword">return</span> NORMAL_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> CHILD_VIEW;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>

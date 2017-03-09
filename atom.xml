@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-28T05:10:44.000Z</updated>
+  <updated>2017-03-09T02:58:04.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,225 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>java 多态重构if else</title>
+    <link href="http://yoursite.com/2017/03/09/java%E5%A4%9A%E6%80%81%E9%87%8D%E6%9E%84if%20else/"/>
+    <id>http://yoursite.com/2017/03/09/java多态重构if else/</id>
+    <published>2017-03-08T16:00:00.000Z</published>
+    <updated>2017-03-09T02:58:04.000Z</updated>
+    
+    <content type="html"><![CDATA[
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> java 多态重构if else</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+过多的if else 会造成代码可读性下降,所以有时候可以使用java多态来重构代码，使得代码可读性提高。
+原始代码如下:
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Object obj = gvTaskHome.getAdapter().getItem(arg2);</span><br><span class="line">				HashMap&lt;String, Object&gt; map = (HashMap&lt;String, Object&gt;) obj;</span><br><span class="line">				String str = (String) map.get(<span class="string">"itemText"</span>);</span><br><span class="line">				Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"办卡申请"</span>))</span><br><span class="line">				{</span><br><span class="line">					<span class="keyword">if</span> (FileTools.isSDCardReady())</span><br><span class="line">					{</span><br><span class="line">						Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">						List&lt;Card&gt; list = <span class="keyword">new</span> ArrayList&lt;Card&gt;();</span><br><span class="line">						<span class="keyword">try</span></span><br><span class="line">						{</span><br><span class="line">							list = XmlTools.readCardTypeXmlOut(MyConstants.CONFIG_PATH+MyConstants.getConfigFileName());</span><br><span class="line">							bundle.putSerializable(<span class="string">"card"</span>, (Serializable)list);</span><br><span class="line">							intent.putExtras(bundle);</span><br><span class="line">							intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, CardChooseActivity.class);</span><br><span class="line">							startActivity(intent);</span><br><span class="line">						} <span class="keyword">catch</span> (IOException e)</span><br><span class="line">						{</span><br><span class="line">							<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">							System.out.println(e);</span><br><span class="line">							UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">						} <span class="keyword">catch</span> (DocumentException e)</span><br><span class="line">						{</span><br><span class="line">							<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">							System.out.println(e);</span><br><span class="line">							UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">						}</span><br><span class="line"><span class="comment">//                                              list.addAll(list);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">					}</span><br><span class="line">					<span class="keyword">else</span> {</span><br><span class="line">						UITools.getTools().showToast(<span class="string">"未发现存储卡或内置存储"</span>, <span class="keyword">true</span>, UITools.SAD);</span><br><span class="line">					}</span><br><span class="line"></span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"资料预览"</span>))</span><br><span class="line">				{</span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, MsgPreViewActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"手动补件"</span>))</span><br><span class="line">				{</span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, RePhotoActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"补打回单"</span>))</span><br><span class="line">				{</span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, MsgPreViewActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"卡激活"</span>))</span><br><span class="line">				{</span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, KnowledgeActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">if</span> (str.equals(<span class="string">"问卷调查"</span>))</span><br><span class="line">				{</span><br><span class="line"><span class="comment">//                                      String macAddress = null;</span></span><br><span class="line"><span class="comment">//                                      WifiManager wifiMgr = (WifiManager)getSystemService(Context.WIFI_SERVICE);</span></span><br><span class="line"><span class="comment">//                                      WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());</span></span><br><span class="line"><span class="comment">//                                      if (null != info) {</span></span><br><span class="line"><span class="comment">//                                          macAddress = info.getMacAddress();</span></span><br><span class="line"><span class="comment">//                                      }</span></span><br><span class="line"><span class="comment">//                                                String[] strArr = macAddress.split(":");</span></span><br><span class="line"><span class="comment">//                                                StringBuffer sBuffer = new StringBuffer();</span></span><br><span class="line"><span class="comment">//                                                for(int i = 0;i &lt; strArr.length; i++){</span></span><br><span class="line"><span class="comment">//                                                 sBuffer.append(strArr[i]);</span></span><br><span class="line"><span class="comment">//                                                }</span></span><br><span class="line"><span class="comment">//                                              System.out.println("mac:" + sBuffer);</span></span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("mac:" + sBuffer, true);</span></span><br><span class="line"><span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">					intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, SaleActivity.class);</span><br><span class="line">					startActivity(intent);</span><br><span class="line">				}</span><br><span class="line">			}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+因为过多的if else 使得代码阅读起来比较困难，接下来我门开始重构
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 创建BaseIntent 接口</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+接口只包括一个excuse函数
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">BaseIntent</span> </span>{</span><br><span class="line">	 Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line"></span><br><span class="line">	 <span class="function"><span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span></span>;</span><br><span class="line">	 }</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+接下来通过实现该接口创建不同的类
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">CardChoose</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">if</span> (FileTools.isSDCardReady())</span><br><span class="line">		{</span><br><span class="line">			Bundle bundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">			List&lt;Card&gt; list;</span><br><span class="line">			<span class="keyword">try</span></span><br><span class="line">			{</span><br><span class="line">				list = XmlTools.readCardTypeXmlOut(MyConstants.CONFIG_PATH+MyConstants.getConfigFileName());</span><br><span class="line">				bundle.putSerializable(<span class="string">"card"</span>, (Serializable)list);</span><br><span class="line">				intent.putExtras(bundle);</span><br><span class="line">				intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, CardChooseActivity.class);</span><br><span class="line">				startActivity(intent);</span><br><span class="line">			} <span class="keyword">catch</span> (IOException e)</span><br><span class="line">			{</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				System.out.println(e);</span><br><span class="line">				UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">			} <span class="keyword">catch</span> (DocumentException e)</span><br><span class="line">			{</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				System.out.println(e);</span><br><span class="line">				UITools.getTools().showToast(<span class="string">"配置文件出错！"</span>, <span class="keyword">true</span>, UITools.BAD);</span><br><span class="line">			}</span><br><span class="line">			<span class="comment">//                                              list.addAll(list);</span></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span> {</span><br><span class="line">			UITools.getTools().showToast(<span class="string">"未发现存储卡或内置存储"</span>, <span class="keyword">true</span>, UITools.SAD);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MsgPreView</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, MsgPreViewActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">RePhoto</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, RePhotoActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Knowledge</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="comment">//UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, KnowledgeActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Questionnaire</span> <span class="keyword">implements</span> <span class="title">BaseIntent</span></span>{</span><br><span class="line">	<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="comment">//String macAddress = null;</span></span><br><span class="line">		<span class="comment">//                                      WifiManager wifiMgr = (WifiManager)getSystemService(Context.WIFI_SERVICE);</span></span><br><span class="line">		<span class="comment">//                                      WifiInfo info = (null == wifiMgr ? null : wifiMgr.getConnectionInfo());</span></span><br><span class="line">		<span class="comment">//                                      if (null != info) {</span></span><br><span class="line">		<span class="comment">//                                          macAddress = info.getMacAddress();</span></span><br><span class="line">		<span class="comment">//                                      }</span></span><br><span class="line">		<span class="comment">//                                                String[] strArr = macAddress.split(":");</span></span><br><span class="line">		<span class="comment">//                                                StringBuffer sBuffer = new StringBuffer();</span></span><br><span class="line">		<span class="comment">//                                                for(int i = 0;i &lt; strArr.length; i++){</span></span><br><span class="line">		<span class="comment">//                                                 sBuffer.append(strArr[i]);</span></span><br><span class="line">		<span class="comment">//                                                }</span></span><br><span class="line">		<span class="comment">//                                              System.out.println("mac:" + sBuffer);</span></span><br><span class="line">		<span class="comment">//                                      UITools.getTools().showToast("mac:" + sBuffer, true);</span></span><br><span class="line">		<span class="comment">//                                      UITools.getTools().showToast("此功能尚未开通", true);</span></span><br><span class="line">		intent.setClass(TaskHomeActivity.<span class="keyword">this</span>, SaleActivity.class);</span><br><span class="line">		startActivity(intent);</span><br><span class="line">		}</span><br><span class="line">		}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后在创建一个private函数来判断
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> BaseIntent <span class="title">gvTaskHomeOnClick</span><span class="params">(String str)</span></span>{</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"办卡申请"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> CardChoose();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"资料预览"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> MsgPreView();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"手动补件"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> RePhoto();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"补打回单"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> MsgPreView();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"卡激活"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> Knowledge();</span><br><span class="line">		<span class="keyword">if</span> (str.equals(<span class="string">"问卷调查"</span>)) <span class="keyword">return</span> <span class="keyword">new</span> Questionnaire();</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> BaseIntent() {</span><br><span class="line">			<span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuse</span><span class="params">()</span> </span>{</span><br><span class="line"></span><br><span class="line">			}</span><br><span class="line">		};</span><br><span class="line">	}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后运行函数
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">gvTaskHomeOnClick(str).excuse();</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+这样代码逻辑就清晰了，而且扩展起来也比较方便。
+</p>
+</div>
+</div>
+
+Last Updated 2017-03-09 Thu 10:58.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+]]></content>
+    
+    <summary type="html">
+    
+      
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; java 多态重构if else&lt;/h2&gt;
+&lt;div cla
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+      <category term="重构" scheme="http://yoursite.com/tags/%E9%87%8D%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>android studio 快捷键</title>
+    <link href="http://yoursite.com/2017/03/04/android%20studio(emacs%20keyboad)%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://yoursite.com/2017/03/04/android studio(emacs keyboad)快捷键/</id>
+    <published>2017-03-03T16:00:00.000Z</published>
+    <updated>2017-03-04T06:58:19.000Z</updated>
+    
+    <content type="html"><![CDATA[
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Android studio 快捷键</h2>
+<div class="outline-text-2" id="text-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col class="left">
+
+<col class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">快捷键</th>
+<th scope="col" class="left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Ctrl+alt+G</td>
+<td class="left">jump to class</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">alt + G</td>
+<td class="left">line jump</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">alt + .</td>
+<td class="left">show declaration</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+Last Updated 2017-03-04 Sat 14:58.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+]]></content>
+    
+    <summary type="html">
+    
+      
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; Android studio 快捷键&lt;/h2&gt;
+&lt;div c
+    
+    </summary>
+    
+      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+    
+    
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+    
+      <category term="快捷键" scheme="http://yoursite.com/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android 开发遇到的问题</title>
+    <link href="http://yoursite.com/2017/03/01/Android%20%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/03/01/Android 开发遇到的问题/</id>
+    <published>2017-02-28T16:00:00.000Z</published>
+    <updated>2017-03-01T06:42:04.000Z</updated>
+    
+    <content type="html"><![CDATA[
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Android 开发遇到的问题</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Fresco 的使用</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 图片不显示</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+使用base64的uri 时,在api<19是无法显示图片。 <="" p="">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">"data:mime/type;base64,"</span>+code.getCheckCode();</span><br><span class="line">       DraweeController controller = Fresco.newDraweeControllerBuilder()</span><br><span class="line">	   .setUri(s)</span><br><span class="line">	   .setTapToRetryEnabled(<span class="keyword">true</span>)</span><br><span class="line">	   .setOldController(mVerifiCationCode.getController())</span><br><span class="line">	   .build();</span><br><span class="line">	   mVerifiCationCode.setController(controller);</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+解决方法: 将服务器的图片格式改成png。
+</p>
+</19是无法显示图片。></p></div>
+</div>
+</div>
+</div>
+
+Last Updated 2017-03-01 Wed 14:42.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+]]></content>
+    
+    <summary type="html">
+    
+      
+
+&lt;div id=&quot;outline-container-sec-1&quot; class=&quot;outline-2&quot;&gt;
+&lt;h2 id=&quot;sec-1&quot;&gt;&lt;span class=&quot;section-number-2&quot;&gt;1&lt;/span&gt; Android 开发遇到的问题&lt;/h2&gt;
+&lt;div clas
+    
+    </summary>
+    
+      <category term="android" scheme="http://yoursite.com/categories/android/"/>
+    
+    
+      <category term="android" scheme="http://yoursite.com/tags/android/"/>
+    
+      <category term="problem" scheme="http://yoursite.com/tags/problem/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android Retrofit 和Rxjava的使用</title>
     <link href="http://yoursite.com/2017/02/28/Android%20Retrofit%20%E5%92%8CRxjava%20%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
     <id>http://yoursite.com/2017/02/28/Android Retrofit 和Rxjava 的使用/</id>
     <published>2017-02-27T16:00:00.000Z</published>
-    <updated>2017-02-28T05:10:44.000Z</updated>
+    <updated>2017-03-06T09:28:27.000Z</updated>
     
     <content type="html"><![CDATA[
 
@@ -65,9 +279,42 @@
 </div>
 </div>
 </div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> better to use rxjava with retrofit</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+add a HttpMehtod
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpMethods</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> String BASE_URL;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_TIMEOUT = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Retrofit retrofit;</span><br><span class="line">  <span class="keyword">private</span> HebeiService movieService;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//构造方法私有</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">HttpMethods</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="comment">//手动创建一个OkHttpClient并设置超时时间</span></span><br><span class="line">    OkHttpClient.Builder httpClientBuilder = <span class="keyword">new</span> OkHttpClient.Builder();</span><br><span class="line">    httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    retrofit = <span class="keyword">new</span> Retrofit.Builder().client(httpClientBuilder.build())</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">	.baseUrl(BASE_URL)</span><br><span class="line">	.build();</span><br><span class="line"></span><br><span class="line">    movieService = retrofit.create(HebeiService.class);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">//在访问HttpMethods时创建单例</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HttpMethods INSTANCE = <span class="keyword">new</span> HttpMethods();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取单例</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HttpMethods <span class="title">getInstance</span><span class="params">(String BASE_URL)</span> </span>{</span><br><span class="line">    HttpMethods.BASE_URL = BASE_URL;</span><br><span class="line">    <span class="keyword">return</span> SingletonHolder.INSTANCE;</span><br><span class="line">  }</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postDevice</span><span class="params">(Subscriber&lt;DeviceResponse&gt; subscriber, String code, DeviceRequestBody requestBody)</span> </span>{</span><br><span class="line">    movieService.postDevice(code,requestBody)</span><br><span class="line">	.subscribeOn(Schedulers.io())</span><br><span class="line">	.unsubscribeOn(Schedulers.io())</span><br><span class="line">	.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">	.subscribe(subscriber);</span><br><span class="line">  }</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+创建 DeviceRequestBody
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceRequestBody</span> </span>{</span><br><span class="line">  String DeviceNum ;</span><br><span class="line">  String Signature;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">DeviceRequestBody</span><span class="params">(String deviceNum, String signature)</span> </span>{</span><br><span class="line">    DeviceNum = deviceNum;</span><br><span class="line">    Signature = signature;</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+再创建一个 DeviceResponse
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Generated</span>(<span class="string">"com.robohorse.robopojogenerator"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceResponse</span></span>{</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@SerializedName</span>(<span class="string">"uniqueCode"</span>)</span><br><span class="line">	<span class="annotation">@Expose</span></span><br><span class="line">	<span class="keyword">private</span> String uniqueCode;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@SerializedName</span>(<span class="string">"signature"</span>)</span><br><span class="line">	<span class="annotation">@Expose</span></span><br><span class="line">	<span class="keyword">private</span> String signature;</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@SerializedName</span>(<span class="string">"response"</span>)</span><br><span class="line">	<span class="annotation">@Expose</span></span><br><span class="line">	<span class="keyword">private</span> String response;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUniqueCode</span><span class="params">(String uniqueCode)</span></span>{</span><br><span class="line">		<span class="keyword">this</span>.uniqueCode = uniqueCode;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUniqueCode</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span> uniqueCode;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSignature</span><span class="params">(String signature)</span></span>{</span><br><span class="line">		<span class="keyword">this</span>.signature = signature;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getSignature</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span> signature;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResponse</span><span class="params">(String response)</span></span>{</span><br><span class="line">		<span class="keyword">this</span>.response = response;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getResponse</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span> response;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="annotation">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>{</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">			<span class="string">"DeviceResponse{"</span> +</span><br><span class="line">			<span class="string">"uniqueCode = '"</span> + uniqueCode + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">",signature = '"</span> + signature + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">",response = '"</span> + response + <span class="string">'\''</span> +</span><br><span class="line">			<span class="string">"}"</span>;</span><br><span class="line">			}</span><br></pre></td></tr></table></figure>
+</div>
+<p>
+最后的调用
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> DeviceRequestBody requestBody = <span class="keyword">new</span> DeviceRequestBody();</span><br><span class="line">Subscriber&lt;DeviceResponse&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;DeviceResponse&gt;() {</span><br><span class="line">      <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>{</span><br><span class="line"></span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>{</span><br><span class="line">	e.fillInStackTrace();</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(DeviceResponse deviceResponse)</span> </span>{</span><br><span class="line">	   }</span><br><span class="line">    };</span><br><span class="line">    HttpMethods.getInstance(HebeiService.ENDPOINT).postDevice(subscriber,<span class="string">""</span>,requestBody);</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
 </div>
 
-Last Updated 2017-02-28 Tue 13:10.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-03-06 Mon 17:28.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
 ]]></content>
     
     <summary type="html">
@@ -122,7 +369,7 @@ Last Updated 2017-02-28 Tue 13:10.<br>Render by <a href="https://github.com/Code
 <div class="outline-text-4" id="text-1-2-1">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MegaService</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="annotation">@GET</span>(<span class="string">"servlet"</span>) Call&lt;Code&gt; listCodeRepo(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MegaService</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="annotation">@GET</span>(<span class="string">"servlet"</span>) Call&amp;lt;Code&amp;gt; listCodeRepo(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 <blockquote>
 <p>
@@ -170,7 +417,7 @@ response数据如下:
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder().baseUrl(apiUri)</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.build();</span><br><span class="line">MegaService service = retrofit.create(MegaService.class);</span><br><span class="line"></span><br><span class="line">Call&lt;Code&gt; call = service.listCodeRepo(<span class="string">"code"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder().baseUrl(apiUri)</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.build();</span><br><span class="line">MegaService service = retrofit.create(MegaService.class);</span><br><span class="line"></span><br><span class="line">Call&amp;lt;Code&amp;gt; call = service.listCodeRepo(<span class="string">"code"</span>);</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -184,7 +431,7 @@ response数据如下:
 <div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@FormUrlEncoded</span> <span class="annotation">@POST</span>(<span class="string">"servlet"</span>) Call&lt;ProvidentFund&gt; postData(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"UserType"</span>) String type, <span class="annotation">@Field</span>(<span class="string">"UserId"</span>) String id, <span class="annotation">@Field</span>(<span class="string">"UserPwd"</span>) String psd,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"CheckCode"</span>) String code);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@FormUrlEncoded</span> <span class="annotation">@POST</span>(<span class="string">"servlet"</span>) Call&amp;lt;ProvidentFund&amp;gt; postData(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"UserType"</span>) String type, <span class="annotation">@Field</span>(<span class="string">"UserId"</span>) String id, <span class="annotation">@Field</span>(<span class="string">"UserPwd"</span>) String psd,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"CheckCode"</span>) String code);</span><br></pre></td></tr></table></figure>
 </div>
 <ol class="org-ol">
 <li>Illegal Argument Exception - @Field parameters can only be used with form encoding
@@ -202,7 +449,7 @@ response数据如下:
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Call&lt;ProvidentFund&gt; call = service.postData(<span class="string">"login"</span>, <span class="string">"10"</span>, mUserName.getText().toString(),</span><br><span class="line">	mUserPsd.getText().toString(), mProvidentCode.getText().toString());</span><br><span class="line">call.execute()</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Call&amp;lt;ProvidentFund&amp;gt; call = service.postData(<span class="string">"login"</span>, <span class="string">"10"</span>, mUserName.getText().toString(),</span><br><span class="line">	mUserPsd.getText().toString(), mProvidentCode.getText().toString());</span><br><span class="line">call.execute()</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -387,12 +634,12 @@ Last Updated 2017-02-23 Thu 11:15.<br>Render by <a href="https://github.com/Code
 <h2 id="sec-1"><span class="section-number-2">1</span> Android Recyclerview 打开和关闭二级列表</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-思路: 就是更新RecyclerView 的 数据集合 List<object> mItems, 通过判断当前父item
+思路: 就是更新RecyclerView 的 数据集合 List&lt;Object&gt; mItems, 通过判断当前父item
 对应的开闭状态更新mItems.
-</object></p>
+</p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;Integer&gt; fatherStatue = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 父item 的点击事件更新mItems</span></span><br><span class="line">vh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</span><br><span class="line">     <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{</span><br><span class="line"></span><br><span class="line">       List&lt;List&lt;String&gt;&gt; datas = items.get(mitems.get(position));</span><br><span class="line">       <span class="keyword">if</span> (fatherStatus.get(position) == FATHER_CLOSE) {</span><br><span class="line">	 fatherStatus.set(position, FATHER_OPEN);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; datas.size(); i++) {</span><br><span class="line">	   mitems.add(position + i + <span class="number">1</span>, datas.get(i));</span><br><span class="line">	   mitemType.add(position + i + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	   fatherStatus.add(position + i + <span class="number">1</span>, FATHER_OPEN);</span><br><span class="line">	 }</span><br><span class="line">       } <span class="keyword">else</span> {</span><br><span class="line">	 fatherStatus.set(position, FATHER_CLOSE);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = datas.size(); i &gt; <span class="number">0</span>; i--) {</span><br><span class="line">	   mitems.remove(position + i);</span><br><span class="line">	   mitemType.remove(position + i);</span><br><span class="line">	   fatherStatus.remove(position + i);</span><br><span class="line">	 }</span><br><span class="line">       }</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">     }</span><br><span class="line">   });</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&amp;lt;Integer&amp;gt; fatherStatue = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="comment">// 父item 的点击事件更新mItems</span></span><br><span class="line">vh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</span><br><span class="line">     <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{</span><br><span class="line"></span><br><span class="line">       List&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; datas = items.get(mitems.get(position));</span><br><span class="line">       <span class="keyword">if</span> (fatherStatus.get(position) == FATHER_CLOSE) {</span><br><span class="line">	 fatherStatus.set(position, FATHER_OPEN);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &amp;lt; datas.size(); i++) {</span><br><span class="line">	   mitems.add(position + i + <span class="number">1</span>, datas.get(i));</span><br><span class="line">	   mitemType.add(position + i + <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	   fatherStatus.add(position + i + <span class="number">1</span>, FATHER_OPEN);</span><br><span class="line">	 }</span><br><span class="line">       } <span class="keyword">else</span> {</span><br><span class="line">	 fatherStatus.set(position, FATHER_CLOSE);</span><br><span class="line">	 <span class="keyword">for</span> (<span class="keyword">int</span> i = datas.size(); i &amp;gt; <span class="number">0</span>; i--) {</span><br><span class="line">	   mitems.remove(position + i);</span><br><span class="line">	   mitemType.remove(position + i);</span><br><span class="line">	   fatherStatus.remove(position + i);</span><br><span class="line">	 }</span><br><span class="line">       }</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">     }</span><br><span class="line">   });</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -450,9 +697,9 @@ Last Updated 2017-02-22 Wed 09:31.<br>Render by <a href="https://github.com/Code
 <h3 id="sec-1-1"><span class="section-number-3">1.1</span> Add Header for RecyclerView</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-   继承RecyclerView.Adapter<recyclerview.viewholder> 自定义一个
+   继承RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt; 自定义一个
 ProvidentFundDetailAdater.onCreateviewholder()创建新的RecyclerView.ViewHolder 和初始化一些RecyclerView使用的private filed。
-</recyclerview.viewholder></p>
+</p>
 <div class="org-src-container">
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span> <span class="keyword">public</span> RecyclerView.<span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent,</span><br><span class="line"><span class="keyword">int</span> viewType)</span> </span>{</span><br><span class="line"> View v;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (viewType == HEADER_VIEW) {</span><br><span class="line">     v = LayoutInflater.from(parent.getContext())</span><br><span class="line">	 .inflate(R.layout.header_provident, parent, <span class="keyword">false</span>);</span><br><span class="line">     HeaderFooterViewHolder vh = <span class="keyword">new</span> HeaderFooterViewHolder(v);</span><br><span class="line">     <span class="keyword">return</span> vh;</span><br><span class="line">   }</span><br><span class="line">   <span class="keyword">if</span> (viewType == FOOTER_VIEW) {</span><br><span class="line"></span><br><span class="line">   }</span><br><span class="line"></span><br><span class="line">   v = LayoutInflater.from(parent.getContext()).</span><br><span class="line">	  inflate(R.layout.normal_provident, parent, <span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">   NormalViewHolder vh = <span class="keyword">new</span> NormalViewHolder(v);</span><br><span class="line">   <span class="keyword">return</span> vh;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
@@ -463,21 +710,21 @@ Normal View;
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NORMAL_VIEW = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEADER_VIEW = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FOOTER_VIEW = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> List&lt;View&gt; headers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> List&lt;String&gt; items = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="keyword">private</span> List&lt;View&gt; footers = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NORMAL_VIEW = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEADER_VIEW = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FOOTER_VIEW = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">private</span> List&amp;lt;View&amp;gt; headers = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="keyword">private</span> List&amp;lt;String&amp;gt; items = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"><span class="keyword">private</span> List&amp;lt;View&amp;gt; footers = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 通过判断position 和headers items 的size 大小判断 itemtype
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">       <span class="comment">//check what type our position is, based on the</span></span><br><span class="line">       <span class="comment">//assumption that the order is headers &gt; items &gt; footers</span></span><br><span class="line">       <span class="keyword">if</span>(position &lt; headers.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_HEADER;</span><br><span class="line">	 }<span class="keyword">else</span> <span class="keyword">if</span>(position &gt;= headers.size() + items.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_FOOTER;</span><br><span class="line">       }</span><br><span class="line">       <span class="keyword">return</span> TYPE_ITEM;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">       <span class="comment">//check what type our position is, based on the</span></span><br><span class="line">       <span class="comment">//assumption that the order is headers &amp;gt; items &amp;gt; footers</span></span><br><span class="line">       <span class="keyword">if</span>(position &amp;lt; headers.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_HEADER;</span><br><span class="line">	 }<span class="keyword">else</span> <span class="keyword">if</span>(position &amp;gt;= headers.size() + items.size()){</span><br><span class="line">	   <span class="keyword">return</span> TYPE_FOOTER;</span><br><span class="line">       }</span><br><span class="line">       <span class="keyword">return</span> TYPE_ITEM;</span><br><span class="line">   }</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 判断来View Type 就可以在onBindViewHolder()中bind itemview
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder vh,</span><br><span class="line">  <span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">   <span class="keyword">if</span> (position &lt; headers.size()) {</span><br><span class="line">     View v = headers.get(position);</span><br><span class="line">     <span class="comment">//add our view to a header view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> <span class="keyword">if</span> (position &gt;= headers.size() + items.size()) {</span><br><span class="line">     View v = footers.get(position - items.size() - headers.size());</span><br><span class="line">     <span class="comment">//add oru view to a footer view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> {</span><br><span class="line">     <span class="comment">//it's one of our items, display as required</span></span><br><span class="line">     prepareGeneric((NormalViewHolder) vh, position - headers.size());</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder vh,</span><br><span class="line">  <span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">   <span class="keyword">if</span> (position &amp;lt; headers.size()) {</span><br><span class="line">     View v = headers.get(position);</span><br><span class="line">     <span class="comment">//add our view to a header view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> <span class="keyword">if</span> (position &amp;gt;= headers.size() + items.size()) {</span><br><span class="line">     View v = footers.get(position - items.size() - headers.size());</span><br><span class="line">     <span class="comment">//add oru view to a footer view and display it</span></span><br><span class="line">     prepareHeaderFooter((HeaderFooterViewHolder) vh, v);</span><br><span class="line">   } <span class="keyword">else</span> {</span><br><span class="line">     <span class="comment">//it's one of our items, display as required</span></span><br><span class="line">     prepareGeneric((NormalViewHolder) vh, position - headers.size());</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 通过addHeader(View header)向集合headers 中添加item
@@ -497,19 +744,19 @@ Normal View;
 <h3 id="sec-2-1"><span class="section-number-3">2.1</span> Add child view for RecyclerView</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-首先是List<interger> mitemType 存储item的类型: 0代表NORMAL VIEW, 1代表CHILD VIEW。
-和List<string> mitems 存储总的数据.
-</string></interger></p>
+首先是List&lt;Interger&gt; mitemType 存储item的类型: 0代表NORMAL VIEW, 1代表CHILD VIEW。
+和List&lt;String&gt; mitems 存储总的数据.
+</p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> HashMap&lt;String, List&lt;String&gt;&gt; items = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"> List&lt;String&gt; item = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> items.put(<span class="string">"2001"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2002"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2003"</span>, item);</span><br><span class="line"> List&lt;String&gt; mitems = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"> List&lt;Integer&gt; mitemType = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">Iterator i = items.keySet().iterator();</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (i.hasNext()) {</span><br><span class="line">   String key = (String) i.next();</span><br><span class="line">   mitemType.add(<span class="number">0</span>);</span><br><span class="line">   mitems.add(key);</span><br><span class="line">   List&lt;String&gt; datas = items.get(key);</span><br><span class="line">   <span class="keyword">for</span> (String data : datas) {</span><br><span class="line">     mitems.add(data);</span><br><span class="line">     mitemType.add(<span class="number">1</span>);</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> HashMap&amp;lt;String, List&amp;lt;String&amp;gt;&amp;gt; items = <span class="keyword">new</span> HashMap&amp;lt;&amp;gt;();</span><br><span class="line"> List&amp;lt;String&amp;gt; item = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> item.add(<span class="string">"hello"</span>);</span><br><span class="line"> items.put(<span class="string">"2001"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2002"</span>, item);</span><br><span class="line"> items.put(<span class="string">"2003"</span>, item);</span><br><span class="line"> List&amp;lt;String&amp;gt; mitems = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line"> List&amp;lt;Integer&amp;gt; mitemType = <span class="keyword">new</span> ArrayList&amp;lt;&amp;gt;();</span><br><span class="line">Iterator i = items.keySet().iterator();</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> (i.hasNext()) {</span><br><span class="line">   String key = (String) i.next();</span><br><span class="line">   mitemType.add(<span class="number">0</span>);</span><br><span class="line">   mitems.add(key);</span><br><span class="line">   List&amp;lt;String&amp;gt; datas = items.get(key);</span><br><span class="line">   <span class="keyword">for</span> (String data : datas) {</span><br><span class="line">     mitems.add(data);</span><br><span class="line">     mitemType.add(<span class="number">1</span>);</span><br><span class="line">   }</span><br><span class="line"> }</span><br></pre></td></tr></table></figure>
 </div>
 <p>
 然后就是和add header 一样, 在getItemType中判断item的类型
 </p>
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (position &lt; headers.size()) {</span><br><span class="line">    <span class="keyword">return</span> HEADER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (position &gt;= headers.size() + mitems.size()) {</span><br><span class="line">    <span class="keyword">return</span> FOOTER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (mitemType.get(position - headers.size() - footers.size()) == <span class="number">0</span>) {</span><br><span class="line">    <span class="keyword">return</span> NORMAL_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> CHILD_VIEW;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="annotation">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemViewType</span><span class="params">(<span class="keyword">int</span> position)</span> </span>{</span><br><span class="line">  <span class="keyword">if</span> (position &amp;lt; headers.size()) {</span><br><span class="line">    <span class="keyword">return</span> HEADER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (position &amp;gt;= headers.size() + mitems.size()) {</span><br><span class="line">    <span class="keyword">return</span> FOOTER_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">if</span> (mitemType.get(position - headers.size() - footers.size()) == <span class="number">0</span>) {</span><br><span class="line">    <span class="keyword">return</span> NORMAL_VIEW;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">return</span> CHILD_VIEW;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -1234,185 +1481,6 @@ Last Updated 2017-02-20 Mon 14:28.<br>Render by <a href="https://github.com/Code
 &lt;p&gt;1、Error:(23, 13) Failed to resolve: com.jakewharton:butterknife:7.0.1&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img src=&quot;http://7xp12c.com1.z0.g
-    
-    </summary>
-    
-      <category term="android" scheme="http://yoursite.com/categories/android/"/>
-    
-    
-      <category term="android" scheme="http://yoursite.com/tags/android/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>android开发者品质</title>
-    <link href="http://yoursite.com/2015/12/09/android%E5%BC%80%E5%8F%91%E8%80%85%E5%93%81%E8%B4%A8/"/>
-    <id>http://yoursite.com/2015/12/09/android开发者品质/</id>
-    <published>2015-12-09T05:53:00.000Z</published>
-    <updated>2017-02-20T06:28:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<ul>
-<li>深读SDK文档</li>
-<li>深读SDK的APIDemo和Samples</li>
-<li>掌握GIT开源代码，多了解Android开源项目，学习别人的手法写程序</li>
-</ul>
-<p><a href="http://7xp12c.com1.z0.glb.clouddn.com/static/images/avatar.jpg" target="_blank" rel="external">http://7xp12c.com1.z0.glb.clouddn.com/static/images/avatar.jpg</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;ul&gt;
-&lt;li&gt;深读SDK文档&lt;/li&gt;
-&lt;li&gt;深读SDK的APIDemo和Samples&lt;/li&gt;
-&lt;li&gt;掌握GIT开源代码，多了解Android开源项目，学习别人的手法写程序&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;http://7xp12c.com1.z0.gl
-    
-    </summary>
-    
-      <category term="android" scheme="http://yoursite.com/categories/android/"/>
-    
-    
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>angularjs中使用 requirejs 遇到的问题</title>
-    <link href="http://yoursite.com/2015/12/09/requirejs%20%E5%92%8C%20angularjs/"/>
-    <id>http://yoursite.com/2015/12/09/requirejs 和 angularjs/</id>
-    <published>2015-12-08T16:02:54.000Z</published>
-    <updated>2017-02-20T06:28:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="angularjs中使用-requirejs-遇到的问题"><a href="#angularjs中使用-requirejs-遇到的问题" class="headerlink" title="angularjs中使用 requirejs 遇到的问题"></a>angularjs中使用 requirejs 遇到的问题</h2><h3 id="load-angular-carousel-into-my-project"><a href="#load-angular-carousel-into-my-project" class="headerlink" title="load angular-carousel into my project"></a>load angular-carousel into my project</h3><ul>
-<li><p>在 main.js 中：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">    <span class="attr">paths</span>: &#123;</div><div class="line">        <span class="attr">ionic</span>: <span class="string">'../lib/ionic/js/ionic.bundle'</span>,</div><div class="line">        <span class="string">'ngAnimate'</span>: <span class="string">'../lib/angular-animate/angular-animate'</span>,</div><div class="line">        <span class="string">'ngAria'</span>: <span class="string">'../lib/angular-aria/angular-aria'</span>,</div><div class="line">        <span class="string">'ngMessage'</span>: <span class="string">'../lib/angular-messages/angular-messages'</span>,</div><div class="line">       <span class="string">'ngMaterial'</span>: <span class="string">'../lib/angular-material/angular-material'</span>,</div><div class="line">        <span class="string">'ngCarousel'</span>: <span class="string">'../lib/angular-carousel/dist/angular-carousel.min'</span>,</div><div class="line">        <span class="string">'ngTouch'</span>: <span class="string">'../lib/angular-touch/angular-touch.min'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">shim</span>: &#123;</div><div class="line">        <span class="string">'ngAnimate'</span>:[<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngAria'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMessage'</span>: [<span class="string">'ionic'</span>],</div><div class="line">        <span class="string">'ngMaterial'</span>:&#123;</div><div class="line">            <span class="attr">deps</span>:[<span class="string">'ionic'</span>,<span class="string">'ngAnimate'</span>,<span class="string">'ngAria'</span>,<span class="string">'ngMessage'</span>],</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngTouch'</span>: &#123;</div><div class="line">            <span class="attr">deps</span>: [<span class="string">'ionic'</span>]</div><div class="line">        &#125;,</div><div class="line">        <span class="string">'ngCarousel'</span>:</div><div class="line">            [ <span class="string">'ngTouch'</span>]</div><div class="line">        </div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"><span class="built_in">require</span>([<span class="string">'app'</span>, <span class="string">'controllers/controllers'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    angular.bootstrap(<span class="built_in">document</span>.getElementsByTagName(<span class="string">"body"</span>)[<span class="number">0</span>], [<span class="string">'app'</span>]);<span class="comment">//依赖包加载往后手动更新</span></div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-</li>
-<li><p>在app.js 中</p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ADM格式</span></div><div class="line">define([<span class="string">'app'</span>, <span class="string">'ngCarousel'</span>, <span class="string">'ionic'</span>], <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    "use strict"</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="keyword">var</span> app = angular.module(<span class="string">'app'</span>, [<span class="string">'ionic'</span>, <span class="string">'controllers'</span>, <span class="string">'angular-carousel'</span>])</div><div class="line">    &#125;); <span class="comment">//'angular-carousel'必须和加载的lib中module名一致</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>requirejs 异步模块定义规范（AMD）</p>
-<p>##加载问题解决</p>
-</blockquote>
-<ul>
-<li>Do not use ng-app in your index.html<p></p></li>
-<li><p>Preload all required Angular and Angular Material libraries.</p>
-</li>
-<li><blockquote>
-<ol>
-<li>Create your own </li>
-<li>custom bootstrap code</li>
-<li>custom main app</li>
-</ol>
-</blockquote>
-<ul>
-<li>Do not let RequireJS try to load, require, or define Angular Material components; just set your app dependency on Angular Material  </li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'yourApp'</span>,[<span class="string">'ng'</span>, <span class="string">'ngMaterial'</span>, ... ])&gt;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;angularjs中使用-requirejs-遇到的问题&quot;&gt;&lt;a href=&quot;#angularjs中使用-requirejs-遇到的问题&quot; class=&quot;headerlink&quot; title=&quot;angularjs中使用 requirejs 遇到的问题&quot;&gt;&lt;/a&gt;an
-    
-    </summary>
-    
-      <category term="Angularjs" scheme="http://yoursite.com/categories/Angularjs/"/>
-    
-    
-      <category term="Angularjs" scheme="http://yoursite.com/tags/Angularjs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android打包的那些事</title>
-    <link href="http://yoursite.com/2015/12/09/Android%E6%89%93%E5%8C%85%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/"/>
-    <id>http://yoursite.com/2015/12/09/Android打包的那些事/</id>
-    <published>2015-12-08T16:02:54.000Z</published>
-    <updated>2017-02-20T06:28:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>来自jayfeng的<a href="http://www.jayfeng.com/2015/11/07/Android打包的那些事" target="_blank" rel="external">Android打包的那些事</a></p>
-<blockquote>
-<p>使用gradle打包apk已经成为当前主流趋势，我也在这个过程中经历了各种需求，并不断结合gradle新的支持，一一改进。在此，把这些相关的东西记录，做一总结。</p>
-</blockquote>
-<h2 id="替换AndroidManifest中的占位符"><a href="#替换AndroidManifest中的占位符" class="headerlink" title="替换AndroidManifest中的占位符"></a>替换AndroidManifest中的占位符</h2><p>我想把其中的${app_label}替换为@string/app_name</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">android&#123;</div><div class="line">			defaultConfig&#123;</div><div class="line">			manifestPlaceholders = [app_label:<span class="string">"@string/app_name"</span>]</div><div class="line">			&#125;</div><div class="line">｝</div></pre></td></tr></table></figure>
-<p>如果只想替换debug版本：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">android&#123;</div><div class="line">productFlavors &#123;</div><div class="line"><span class="comment">// 把dev产品型号的apk的AndroidManifest中的channel替换dev</span></div><div class="line"><span class="string">"dev"</span>&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"dev"</span>]</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>更多的需求是替换渠道编号：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">android&#123;</div><div class="line"> productFlavors &#123;</div><div class="line"><span class="comment">// 把dev产品型号的apk的AndroidManifest中的channel替换dev</span></div><div class="line">		<span class="string">"dev"</span>&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"dev"</span>]</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="独立配置签名信息"><a href="#独立配置签名信息" class="headerlink" title="独立配置签名信息"></a>独立配置签名信息</h2><p>对于签名相关的信息,直接写在gradle当然不好,特别是一些开源项目，可以添加到gradle.properties:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RELEASE_KEY_PASSWORD=xxxx</div><div class="line">RELEASE_KEY_ALIAS=xxx</div><div class="line">RELEASE_STORE_PASSWORD=xxx</div><div class="line">RELEASE_STORE_FILE=..<span class="regexp">/.keystore/</span>xxx.jks</div></pre></td></tr></table></figure>
-<p>然后在build.gradle中引用即可：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">signingConfigs &#123;</div><div class="line">release &#123;</div><div class="line">storeFile <span class="keyword">file</span>(RELEASE_STORE_FILE)</div><div class="line">storePassword RELEASE_STORE_PASSWORD</div><div class="line">keyAlias RELEASE_KEY_ALIAS</div><div class="line">keyPassword RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如果不想提交到版本库，可以添加到local.properties中，然后在build.gradle中读取。</p>
-<h2 id="多渠道打包"><a href="#多渠道打包" class="headerlink" title="多渠道打包"></a>多渠道打包</h2><p>多渠道打包的关键之处在于，定义不同的product flavor, 并把AndroiManifest中的channel渠道编号替换为对应的flavor标识：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">productFlavors &#123;</div><div class="line">dev&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"dev"</span>]</div><div class="line">&#125;</div><div class="line">official&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"official"</span>]</div><div class="line">&#125;</div><div class="line">wandoujia&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"wandoujia"</span>]</div><div class="line">&#125;</div><div class="line">xiaomi&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"xiaomi"</span>]</div><div class="line">&#125;</div><div class="line"><span class="string">"360"</span>&#123;</div><div class="line">manifestPlaceholders = [channel:<span class="string">"360"</span>]</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>注意一点，这里的flavor名如果是数字开头，必须用引号引起来。<br>构建一下，就能生成一系列的Build Variant了:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">evDebug</div><div class="line">devRelease</div><div class="line">officialDebug</div><div class="line">officialRelease</div><div class="line">wandoujiaDebug</div><div class="line">wandoujiaRelease</div><div class="line">xiaomiDebug</div><div class="line">xiaomiRelease</div><div class="line"><span class="number">360</span>Debug</div><div class="line"><span class="number">360</span>Release</div></pre></td></tr></table></figure>
-<p>其中debug, release是gradle默认自带的两个build type, 下一节还会继续说明。<br>选择一个，就能编译出对应渠道的apk了。</p>
-<h2 id="自定义Build-Type"><a href="#自定义Build-Type" class="headerlink" title="自定义Build Type"></a>自定义Build Type</h2><p>前面说到默认的build type有两种debug和release，区别如下：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// release版本生成的BuildConfig特性信息</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> BuildConfig &#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> DEBUG = <span class="keyword">false</span>;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String BUILD_TYPE = <span class="string">"release"</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// debug版本生成的BuildConfig特性信息</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> BuildConfig &#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> DEBUG = <span class="keyword">true</span>;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String BUILD_TYPE = <span class="string">"debug"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>现在有一种需求，增加一种build type，介于debug和release之间，就是和release版本一样，但是要保留debug状态（如果做过rom开发的话，类似于user debug版本），我们称为preview版本吧。<br>其实很简单：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    signingConfigs &#123;</div><div class="line">        debug &#123;</div><div class="line">            storeFile <span class="keyword">file</span>(RELEASE_STORE_FILE)</div><div class="line">            storePassword RELEASE_STORE_PASSWORD</div><div class="line">            keyAlias RELEASE_KEY_ALIAS</div><div class="line">            keyPassword RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div><div class="line">        preview &#123;</div><div class="line">            storeFile <span class="keyword">file</span>(RELEASE_STORE_FILE)</div><div class="line">            storePassword RELEASE_STORE_PASSWORD</div><div class="line">            keyAlias RELEASE_KEY_ALIAS</div><div class="line">            keyPassword RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            storeFile <span class="keyword">file</span>(RELEASE_STORE_FILE)</div><div class="line">            storePassword RELEASE_STORE_PASSWORD</div><div class="line">            keyAlias RELEASE_KEY_ALIAS</div><div class="line">            keyPassword RELEASE_KEY_PASSWORD</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    buildTypes &#123;</div><div class="line">        debug &#123;</div><div class="line">            manifestPlaceholders = [app_label:<span class="string">"@string/app_name_debug"</span>]</div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            manifestPlaceholders = [app_label:<span class="string">"@string/app_name"</span>]</div><div class="line">        &#125;</div><div class="line">        preview&#123;</div><div class="line">            manifestPlaceholders = [app_label:<span class="string">"@string/app_name_preview"</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>另外，build type还有一个好处，如果想要一次性生成所有的preview版本，执行assemblePreview即可，debug和releae版本同理。</p>
-<h2 id="build-type中的定制参数"><a href="#build-type中的定制参数" class="headerlink" title="build type中的定制参数"></a>build type中的定制参数</h2><p>上面我们在不同的build type替换${app_label}为不同的字符串，这样安装到手机上就能明显的区分出不同build type的版本。<br>除此之外，可能还可以配置一些参数，我这里列几个我在工作中用到的：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">        debug &#123;</div><div class="line">            manifestPlaceholders = [app_label:<span class="string">"@string/app_name_debug"</span>]</div><div class="line">            applicationIdSuffix <span class="string">".debug"</span></div><div class="line">            minifyEnabled <span class="keyword">false</span></div><div class="line">            signingConfig signingConfigs.debug</div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">        &#125;</div><div class="line">        release &#123;</div><div class="line">            manifestPlaceholders = [app_label:<span class="string">"@string/app_name"</span>]</div><div class="line">            minifyEnabled <span class="keyword">true</span></div><div class="line">            shrinkResources <span class="keyword">true</span></div><div class="line">            signingConfig signingConfigs.release</div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">        &#125;</div><div class="line">        preview&#123;</div><div class="line">            manifestPlaceholders = [app_label:<span class="string">"@string/app_name_preview"</span>]</div><div class="line">            applicationIdSuffix <span class="string">".preview"</span></div><div class="line">            debuggable <span class="keyword">true</span> <span class="comment">// 保留debug信息</span></div><div class="line">            minifyEnabled <span class="keyword">true</span></div><div class="line">            shrinkResources <span class="keyword">true</span></div><div class="line">            signingConfig signingConfigs.preview</div><div class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="多工程全局配置"><a href="#多工程全局配置" class="headerlink" title="多工程全局配置"></a>多工程全局配置</h2><p>随着产品渠道的铺开，往往一套代码需要支持多个产品形态，这就需要抽象出主要代码到一个Library，然后基于Library扩展几个App Module。<br>相信每个module的build.gradle都会有这个代码：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">22</span></div><div class="line">    buildToolsVersion <span class="string">"23.0.1"</span></div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        minSdkVersion <span class="number">10</span></div><div class="line">        targetSdkVersion <span class="number">22</span></div><div class="line">        versionCode <span class="number">34</span></div><div class="line">        versionName <span class="string">"v2.6.1"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当升级sdk、build tool、target sdk等，几个module都要更改，非常的麻烦。最重要的是，很容易忘记，最终导致app module之间的差异不统一，也不可控。<br>强大的gradle插件在1.1.0支持全局变量设定，一举解决了这个问题。<br>先在project的根目录下的build.gradle定义ext全局变量:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">ext &#123;</div><div class="line">    compileSdkVersion = <span class="number">22</span></div><div class="line">    buildToolsVersion = <span class="string">"23.0.1"</span></div><div class="line">    minSdkVersion = <span class="number">10</span></div><div class="line">    targetSdkVersion = <span class="number">22</span></div><div class="line">    versionCode = <span class="number">34</span></div><div class="line">    versionName = <span class="string">"v2.6.1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后在各module的build.gradle中引用如下：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion rootProject.ext.compileSdkVersion</div><div class="line">    buildToolsVersion rootProject.ext.buildToolsVersion</div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId <span class="string">"com.xxx.xxx"</span></div><div class="line">        minSdkVersion rootProject.ext.minSdkVersion</div><div class="line">        targetSdkVersion rootProject.ext.targetSdkVersion</div><div class="line">        versionCode rootProject.ext.versionCode</div><div class="line">        versionName rootProject.ext.versionName</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后每次修改project级别的build.gradle即可实现全局统一配置。</p>
-<h2 id="自定义导出的APK名称"><a href="#自定义导出的APK名称" class="headerlink" title="自定义导出的APK名称"></a>自定义导出的APK名称</h2><p>默认android studio生成的apk名称为app-debug.apk或者app-release.apk，当有多个渠道的时候，需要同时编出50个渠道包的时候，就麻烦了，不知道谁是谁了。<br>这个时候，就需要自定义导出的APK名称了，不同的渠道编出的APK的文件名应该是不一样的。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ndroid &#123;</div><div class="line">    <span class="comment">// rename the apk with the version name</span></div><div class="line">    applicationVariants.all &#123; variant -&gt;</div><div class="line">        variant.outputs.<span class="keyword">each</span> &#123; output -&gt;</div><div class="line">            output.outputFile = <span class="keyword">new</span> <span class="keyword">File</span>(</div><div class="line">                    output.outputFile.parent,</div><div class="line">                    <span class="string">"ganchai-$&#123;variant.buildType.name&#125;-$&#123;variant.versionName&#125;-$&#123;variant.productFlavors[0].name&#125;.apk"</span>.toLowerCase())</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当apk太多时，如果能把apk按debug，release，preview分一下类就更好了（事实上，对于我这样经常发版的人，一编往往就要编四五十个版本的人，debug和release版本全混在一起没法看，必须分类），简单：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    <span class="comment">// rename the apk with the version name</span></div><div class="line">    <span class="comment">// add output file sub folder by build type</span></div><div class="line">    applicationVariants.all &#123; variant -&gt;</div><div class="line">        variant.outputs.<span class="keyword">each</span> &#123; output -&gt;</div><div class="line">            output.outputFile = <span class="keyword">new</span> <span class="keyword">File</span>(</div><div class="line">                    output.outputFile.parent + <span class="string">"/$&#123;variant.buildType.name&#125;"</span>,</div><div class="line">                    <span class="string">"ganchai-$&#123;variant.buildType.name&#125;-$&#123;variant.versionName&#125;-$&#123;variant.productFlavors[0].name&#125;.apk"</span>.toLowerCase())</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>现在生成了类似于ganchai-dev-preview-v2.4.0.0.apk这样格式的包了，preview的包自然就放在preview的文件夹下，清晰明了。</p>
-<h2 id="混淆技巧"><a href="#混淆技巧" class="headerlink" title="混淆技巧"></a>混淆技巧</h2><p>混淆能让反编译的代码可读性变的很差，而且还能显著的减少APK包的大小。</p>
-<h3 id="1-第一个技巧"><a href="#1-第一个技巧" class="headerlink" title="1). 第一个技巧"></a>1). 第一个技巧</h3><p>相信很多朋友对混淆都觉得麻烦，甚至说，非常乱。因为添加混淆规则需要查询官方说明文档，甚至有的官方文档还没说明。当你引用了太多库后，添加混淆规则将使一场噩梦。<br>这里介绍一个技巧，不用查官方文档，不用逐个库考虑添加规则。<br>首先，除了默认的混淆配置(android-sdk/tools/proguard/proguard-android.txt), 自己的代码肯定是要自己配置的：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">## 位于module下的proguard-rules.pro</div><div class="line">#####################################</div><div class="line">######### 主程序不能混淆的代码 #########</div><div class="line">#####################################</div><div class="line"></div><div class="line">-dontwarn xxx.model.**</div><div class="line">-keep <span class="keyword">class</span> xxx.model.** &#123; *; &#125;</div><div class="line"></div><div class="line">## 等等，自己的代码自己清楚</div><div class="line"></div><div class="line">#####################################</div><div class="line">########### 不优化泛型和反射 ##########</div><div class="line">#####################################</div><div class="line"></div><div class="line">-keepattributes Signature</div></pre></td></tr></table></figure>
-<p>接下来是麻烦的第三方库，一般来说，如果是极光推的话，它的包名是cn.jpush, 添加如下代码即可：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-dontwarn cn.jpush.**</div><div class="line">-keep <span class="keyword">class</span> cn.jpush.** &#123; *; &#125;</div></pre></td></tr></table></figure>
-<p>其他的第三库也是如此，一个一个添加，太累！其实可以用第三方反编译工具（比如<a href="https://github.com/skylot/jadx" target="_blank" rel="external">jadx</a>，打开apk后，一眼就能看到引用的所有第三方库的包名，把所有不想混淆或者不确定能不能混淆的，直接都添加又有何不可：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">#####################################</div><div class="line">######### 第三方库或者jar包 ###########</div><div class="line">#####################################</div><div class="line"></div><div class="line">-dontwarn cn.jpush.**</div><div class="line">-keep <span class="keyword">class</span> cn.jpush.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn com.squareup.**</div><div class="line">-keep <span class="keyword">class</span> com.squareup.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn com.octo.**</div><div class="line">-keep <span class="keyword">class</span> com.octo.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn de.**</div><div class="line">-keep <span class="keyword">class</span> de.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn javax.**</div><div class="line">-keep <span class="keyword">class</span> javax.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn org.**</div><div class="line">-keep <span class="keyword">class</span> org.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn u.aly.**</div><div class="line">-keep <span class="keyword">class</span> u.aly.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn uk.**</div><div class="line">-keep <span class="keyword">class</span> uk.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn com.baidu.**</div><div class="line">-keep <span class="keyword">class</span> com.baidu.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn com.facebook.**</div><div class="line">-keep <span class="keyword">class</span> com.facebook.** &#123; *; &#125;</div><div class="line"></div><div class="line">-dontwarn com.google.**</div><div class="line">-keep <span class="keyword">class</span> com.google.** &#123; *; &#125;</div><div class="line"></div><div class="line">## ... ...</div></pre></td></tr></table></figure>
-<h3 id="2-第二个技巧"><a href="#2-第二个技巧" class="headerlink" title="2). 第二个技巧"></a>2). 第二个技巧</h3><p>一般release版本混淆之后，像友盟这样的统计系统如果有崩溃异常，会记录如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java.lang.NullPointerException: java.lang.NullPointerException</div><div class="line">	at com.xxx.TabMessageFragment$<span class="number">7</span>.run(Unknown Source)</div></pre></td></tr></table></figure>
-<p>这个Unknown Source是很要命的，排除错误无法定位到具体行了，大大降低调试效率。<br>当然，友盟支持上传Mapping文件，可帮助定位，mapping文件的位置在：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">project</span> &gt; module</div><div class="line">        &gt; build &gt; outputs &gt; &#123;flavor name&#125; &gt; &#123;build type&#125; &gt; mapping.txt</div></pre></td></tr></table></figure>
-<p>如果版本一多，mapping.txt每次都要重新生成，还要上传，终归还是麻烦。<br>其实，在proguard-rules.pro中添加如下代码即可：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-keepattributes SourceFile,LineNumberTable</div></pre></td></tr></table></figure>
-<p>当然apk包会大那么一点点（我这里6M的包，大个200k吧），但是再也不用mapping.txt也能定位到行了，为了这种解脱，这个代价我个人觉得是值的，而且超值！</p>
-<h2 id="动态设置一些额外信息"><a href="#动态设置一些额外信息" class="headerlink" title="动态设置一些额外信息"></a>动态设置一些额外信息</h2><p>假如想把当前的编译时间、编译的机器、最新的commit版本添加到apk，而这些信息又不好写在代码里，强大的gradle给了我创造可能的自信：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    defaultConfig &#123;</div><div class="line">        resValue <span class="string">"string"</span>, <span class="string">"build_time"</span>, buildTime()</div><div class="line">        resValue <span class="string">"string"</span>, <span class="string">"build_host"</span>, hostName()</div><div class="line">        resValue <span class="string">"string"</span>, <span class="string">"build_revision"</span>, revision()</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">def</span> buildTime() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Date().format(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">def</span> hostName() &#123;</div><div class="line">    <span class="keyword">return</span> System.getProperty(<span class="string">"user.name"</span>) + <span class="string">"@"</span> + InetAddress.localHost.hostName</div><div class="line">&#125;</div><div class="line"><span class="keyword">def</span> revision() &#123;</div><div class="line">    <span class="keyword">def</span> code = <span class="keyword">new</span> ByteArrayOutputStream()</div><div class="line">    exec &#123;</div><div class="line">        commandLine <span class="string">'git'</span>, <span class="string">'rev-parse'</span>, <span class="string">'--short'</span>, <span class="string">'HEAD'</span></div><div class="line">        standardOutput = code</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> code.toString()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上述代码实现了动态的添加了3个字符串资源: build_time、build_host、build_revision, 然后在其他地方可像如引用字符串一样使用如下：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在Activity里调用</span></div><div class="line">getString(R.string.build_time)  <span class="comment">// 输出2015-11-07 17:01</span></div><div class="line">getString(R.string.build_host)  <span class="comment">// 输出jay@deepin，这是我的电脑的用户名和PC名</span></div><div class="line">getString(R.string.build_revision) <span class="comment">// 输出3dd5823, 这是最后一次commit的sha值</span></div></pre></td></tr></table></figure>
-<p>这个地方，如何从命令行读取返回结果，很有意思。<br>其实这段代码来自我学习VLC源码时偶然看到，深受启发，不敢独享，特摘抄在此。<br><a href="https://wiki.videolan.org/AndroidCompile" target="_blank" rel="external">vlc源码及编译地址</a>， 有兴趣可以过去一观。</p>
-<h2 id="给自己留个”后门”-点七下"><a href="#给自己留个”后门”-点七下" class="headerlink" title="给自己留个”后门”: 点七下"></a>给自己留个”后门”: 点七下</h2><p>了调试方便，我们往往会在debug版本留一个显示我们想看的界面（记得之前微博的一个iOS版本就泄露了一个调试界面），如何进入到一个界面，我们可以仿照android开发者选项的方式，点七下才显示，我们来实现一个：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> clickCount = <span class="number">0</span>;</div><div class="line"><span class="keyword">private</span> <span class="keyword">long</span> clickTime = <span class="number">0</span>;</div><div class="line"></div><div class="line">sevenClickView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">    @Override</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> onClick(View view) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (clickTime == <span class="number">0</span>) &#123;</div><div class="line">            clickTime = System.currentTimeMillis();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (System.currentTimeMillis() - clickTime &gt; <span class="number">500</span>) &#123;</div><div class="line">            clickCount = <span class="number">0</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            clickCount++;</div><div class="line">        &#125;</div><div class="line">        clickTime = System.currentTimeMillis();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (clickCount &gt; <span class="number">6</span>) &#123;</div><div class="line">            <span class="comment">// 点七下条件达到，跳到debug界面</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>release版本肯定是不能暴露这个界面的，也不能让人用am在命令行调起，如何防止呢，可以在release版本把这个debug界面的exported设为false。</p>
-<h2 id="自动化构建"><a href="#自动化构建" class="headerlink" title="自动化构建"></a>自动化构建</h2><p>如何使用jenkins打包android和ios，并上传到蒲公英平台，这个可以参考我的另外一篇文章专门介绍: <a href="http://www.jayfeng.com/2015/10/22/使用jenkins自动化构建android和ios应用/" target="_blank" rel="external">《使用jenkins自动化构建android和ios应用》</a>，不过，这篇文章还没写完，实际上在公司里已经一直在用了，哪天心情好了总会写完的，这里不再赘述。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>android打包因为groovy语言的强大，变的强大的同时必然也变的复杂，今天把我经历的这些门道拿出来说道一下，做一个小小的总结，后续有更新我还会添加。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;来自jayfeng的&lt;a href=&quot;http://www.jayfeng.com/2015/11/07/Android打包的那些事&quot;&gt;Android打包的那些事&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;使用gradle打包apk已经成为当前主流趋势，我也在这个过程中经历了各种需求，并不断结合gradle新的支持，一一改进。在此，把这些相关的东西记录，做一总结。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;替换AndroidManifest中的占位符&quot;&gt;&lt;a href=&quot;#替换AndroidManifest中的占位符&quot; class=&quot;headerlink&quot; title=&quot;替换AndroidManifest中的占位符&quot;&gt;&lt;/a&gt;替换AndroidManifest中的占位符&lt;/h2&gt;&lt;p&gt;我想把其中的${app_label}替换为@string/app_name&lt;/p&gt;
-&lt;figure class=&quot;highlight gradle&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;android&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			defaultConfig&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			manifestPlaceholders = [app_label:&lt;span class=&quot;string&quot;&gt;&quot;@string/app_name&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;			&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;｝&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;如果只想替换debug版本：&lt;/p&gt;
-&lt;figure class=&quot;highlight gradle&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;android&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;productFlavors &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 把dev产品型号的apk的AndroidManifest中的channel替换dev&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;string&quot;&gt;&quot;dev&quot;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;manifestPlaceholders = [channel:&lt;span class=&quot;string&quot;&gt;&quot;dev&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;更多的需求是替换渠道编号：&lt;/p&gt;
-&lt;figure class=&quot;highlight gradle&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;android&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; productFlavors &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 把dev产品型号的apk的AndroidManifest中的channel替换dev&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;		&lt;span class=&quot;string&quot;&gt;&quot;dev&quot;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;manifestPlaceholders = [channel:&lt;span class=&quot;string&quot;&gt;&quot;dev&quot;&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
