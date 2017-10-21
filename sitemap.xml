@@ -93,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2015/12/11/RailsNote/</loc>
+    <loc>http://gyzclw.github.io/2016/08/14/MVVM%E4%B9%8BDataBinding/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
@@ -128,14 +128,14 @@
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2015/12/14/Ruby%E5%85%83%E7%BC%96%E7%A8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</loc>
+    <loc>http://gyzclw.github.io/2015/12/09/Android-%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84problem/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2015/12/09/Android-%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84problem/</loc>
+    <loc>http://gyzclw.github.io/2015/12/09/android%E5%BC%80%E5%8F%91%E8%80%85%E5%93%81%E8%B4%A8/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
@@ -149,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2015/11/15/android%E6%BA%90%E7%A0%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://gyzclw.github.io/2017/02/19/chatnote/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
@@ -163,14 +163,21 @@
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2015/12/09/requirejs%20%E5%92%8C%20angularjs/</loc>
+    <loc>http://gyzclw.github.io/2015/11/15/android%E6%BA%90%E7%A0%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2017/02/19/chatnote/</loc>
+    <loc>http://gyzclw.github.io/tags/index.html</loc>
+    
+    <lastmod>2017-02-20T06:28:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gyzclw.github.io/2015/12/09/requirejs%20%E5%92%8C%20angularjs/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
@@ -191,20 +198,6 @@
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/2016/08/14/MVVM%E4%B9%8BDataBinding/</loc>
-    
-    <lastmod>2017-02-20T06:28:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gyzclw.github.io/categories/index.html</loc>
-    
-    <lastmod>2017-02-20T06:28:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://gyzclw.github.io/category/index.html</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
@@ -219,7 +212,21 @@
   </url>
   
   <url>
+    <loc>http://gyzclw.github.io/categories/index.html</loc>
+    
+    <lastmod>2017-02-20T06:28:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gyzclw.github.io/search/index.html</loc>
+    
+    <lastmod>2017-02-20T06:28:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gyzclw.github.io/2015/12/11/RailsNote/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
@@ -233,14 +240,7 @@
   </url>
   
   <url>
-    <loc>http://gyzclw.github.io/tags/index.html</loc>
-    
-    <lastmod>2017-02-20T06:28:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gyzclw.github.io/2015/12/09/android%E5%BC%80%E5%8F%91%E8%80%85%E5%93%81%E8%B4%A8/</loc>
+    <loc>http://gyzclw.github.io/2015/12/14/Ruby%E5%85%83%E7%BC%96%E7%A8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B01/</loc>
     
     <lastmod>2017-02-20T06:28:00.000Z</lastmod>
     
