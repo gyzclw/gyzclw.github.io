@@ -15,18 +15,18 @@
     <meta name="keywords" content="android," />
   
 
-  <meta name="description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand    onStopCommand  mContext.bindService  mContext.unbindService    onBind() onRebind()  and onUnbind()  当clients have connected Sevice, o">
+  <meta name="description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand  &amp;lt;&amp;#x2013;&amp;gt;  onStopCommand  mContext.bindService &amp;lt;&amp;#x2013;&amp;gt; mContext.unbindService    onBind() onRebind()  and onUnbind()  当">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android service">
 <meta property="og:url" content="http://gyzclw.github.io/2017/10/21/android service/index.html">
 <meta property="og:site_name" content="知识之野">
-<meta property="og:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand    onStopCommand  mContext.bindService  mContext.unbindService    onBind() onRebind()  and onUnbind()  当clients have connected Sevice, o">
+<meta property="og:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand  &amp;lt;&amp;#x2013;&amp;gt;  onStopCommand  mContext.bindService &amp;lt;&amp;#x2013;&amp;gt; mContext.unbindService    onBind() onRebind()  and onUnbind()  当">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-10-21T06:06:07.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android service">
-<meta name="twitter:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand    onStopCommand  mContext.bindService  mContext.unbindService    onBind() onRebind()  and onUnbind()  当clients have connected Sevice, o">
+<meta name="twitter:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand  &amp;lt;&amp;#x2013;&amp;gt;  onStopCommand  mContext.bindService &amp;lt;&amp;#x2013;&amp;gt; mContext.unbindService    onBind() onRebind()  and onUnbind()  当">
 
   
 
@@ -203,10 +203,10 @@
 <ol class="org-ol">
 <li>start方式:
 <ul class="org-ul">
-<li>onStartCommand  <&#x2013;>  onStopCommand
-</&#x2013;></li>
-<li>mContext.bindService <&#x2013;> mContext.unbindService
-</&#x2013;></li>
+<li>onStartCommand  &lt;&#x2013;&gt;  onStopCommand
+</li>
+<li>mContext.bindService &lt;&#x2013;&gt; mContext.unbindService
+</li>
 </ul>
 </li>
 <li>onBind() onRebind()  and onUnbind()
@@ -222,7 +222,7 @@
 <li>每个Servie都要在AndroidManifest.xml中声明。
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;service</span><br><span class="line">     android:name=<span class="string">".binder.BinderService"</span></span><br><span class="line">     android:enabled=<span class="string">"true"</span></span><br><span class="line">     android:exported=<span class="string">"true"</span>&gt;</span><br><span class="line"> &lt;/service&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&amp;lt;service</span><br><span class="line">     android:name=<span class="string">".binder.BinderService"</span></span><br><span class="line">     android:enabled=<span class="string">"true"</span></span><br><span class="line">     android:exported=<span class="string">"true"</span>&amp;gt;</span><br><span class="line"> &amp;lt;/service&amp;gt;</span><br></pre></td></tr></table></figure>
 </div>
 </li>
 </ol>
