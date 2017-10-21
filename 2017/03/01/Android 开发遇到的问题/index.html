@@ -15,18 +15,18 @@
     <meta name="keywords" content="android,problem," />
   
 
-  <meta name="description" content="1 Android 开发遇到的问题   1.1 Fresco 的使用   1.1.1 图片不显示   使用base64的uri 时,在api">
+  <meta name="description" content="1 Android 开发遇到的问题   1.1 Fresco 的使用   1.1.1 图片不显示   使用base64的uri 时,在api&amp;lt;19是无法显示图片。    String s = &quot;data:mime/type;base64,&quot;+code.getCheckCode();       DraweeController controller = Fresco.newDrawee">
 <meta name="keywords" content="android,problem">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 开发遇到的问题">
 <meta property="og:url" content="http://yoursite.com/2017/03/01/Android 开发遇到的问题/index.html">
 <meta property="og:site_name" content="知识之野">
-<meta property="og:description" content="1 Android 开发遇到的问题   1.1 Fresco 的使用   1.1.1 图片不显示   使用base64的uri 时,在api">
+<meta property="og:description" content="1 Android 开发遇到的问题   1.1 Fresco 的使用   1.1.1 图片不显示   使用base64的uri 时,在api&amp;lt;19是无法显示图片。    String s = &quot;data:mime/type;base64,&quot;+code.getCheckCode();       DraweeController controller = Fresco.newDrawee">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-03-01T06:42:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 开发遇到的问题">
-<meta name="twitter:description" content="1 Android 开发遇到的问题   1.1 Fresco 的使用   1.1.1 图片不显示   使用base64的uri 时,在api">
+<meta name="twitter:description" content="1 Android 开发遇到的问题   1.1 Fresco 的使用   1.1.1 图片不显示   使用base64的uri 时,在api&amp;lt;19是无法显示图片。    String s = &quot;data:mime/type;base64,&quot;+code.getCheckCode();       DraweeController controller = Fresco.newDrawee">
 
   
 
@@ -204,7 +204,8 @@
 <h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 图片不显示</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
-使用base64的uri 时,在api<19是无法显示图片。 <="" p="">
+使用base64的uri 时,在api&lt;19是无法显示图片。
+</p>
 <div class="org-src-container">
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">"data:mime/type;base64,"</span>+code.getCheckCode();</span><br><span class="line">       DraweeController controller = Fresco.newDraweeControllerBuilder()</span><br><span class="line">	   .setUri(s)</span><br><span class="line">	   .setTapToRetryEnabled(<span class="keyword">true</span>)</span><br><span class="line">	   .setOldController(mVerifiCationCode.getController())</span><br><span class="line">	   .build();</span><br><span class="line">	   mVerifiCationCode.setController(controller);</span><br></pre></td></tr></table></figure>
@@ -212,7 +213,7 @@
 <p>
 解决方法: 将服务器的图片格式改成png。
 </p>
-</19是无法显示图片。></p></div>
+</div>
 </div>
 </div>
 </div>

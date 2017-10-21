@@ -217,7 +217,7 @@
 <div class="outline-text-4" id="text-1-2-1">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MegaService</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="annotation">@GET</span>(<span class="string">"servlet"</span>) Call&lt;Code&gt; listCodeRepo(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MegaService</span> </span>{</span><br><span class="line"></span><br><span class="line">  <span class="annotation">@GET</span>(<span class="string">"servlet"</span>) Call&amp;lt;Code&amp;gt; listCodeRepo(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user);</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </div>
 <blockquote>
 <p>
@@ -265,7 +265,7 @@ response数据如下:
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder().baseUrl(apiUri)</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.build();</span><br><span class="line">MegaService service = retrofit.create(MegaService.class);</span><br><span class="line"></span><br><span class="line">Call&lt;Code&gt; call = service.listCodeRepo(<span class="string">"code"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder().baseUrl(apiUri)</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.build();</span><br><span class="line">MegaService service = retrofit.create(MegaService.class);</span><br><span class="line"></span><br><span class="line">Call&amp;lt;Code&amp;gt; call = service.listCodeRepo(<span class="string">"code"</span>);</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
@@ -279,7 +279,7 @@ response数据如下:
 <div class="outline-text-4" id="text-1-3-1">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@FormUrlEncoded</span> <span class="annotation">@POST</span>(<span class="string">"servlet"</span>) Call&lt;ProvidentFund&gt; postData(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"UserType"</span>) String type, <span class="annotation">@Field</span>(<span class="string">"UserId"</span>) String id, <span class="annotation">@Field</span>(<span class="string">"UserPwd"</span>) String psd,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"CheckCode"</span>) String code);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@FormUrlEncoded</span> <span class="annotation">@POST</span>(<span class="string">"servlet"</span>) Call&amp;lt;ProvidentFund&amp;gt; postData(<span class="annotation">@Query</span>(<span class="string">"parm"</span>) String user,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"UserType"</span>) String type, <span class="annotation">@Field</span>(<span class="string">"UserId"</span>) String id, <span class="annotation">@Field</span>(<span class="string">"UserPwd"</span>) String psd,</span><br><span class="line">      <span class="annotation">@Field</span>(<span class="string">"CheckCode"</span>) String code);</span><br></pre></td></tr></table></figure>
 </div>
 <ol class="org-ol">
 <li>Illegal Argument Exception - @Field parameters can only be used with form encoding
@@ -297,7 +297,7 @@ response数据如下:
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Call&lt;ProvidentFund&gt; call = service.postData(<span class="string">"login"</span>, <span class="string">"10"</span>, mUserName.getText().toString(),</span><br><span class="line">	mUserPsd.getText().toString(), mProvidentCode.getText().toString());</span><br><span class="line">call.execute()</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Call&amp;lt;ProvidentFund&amp;gt; call = service.postData(<span class="string">"login"</span>, <span class="string">"10"</span>, mUserName.getText().toString(),</span><br><span class="line">	mUserPsd.getText().toString(), mProvidentCode.getText().toString());</span><br><span class="line">call.execute()</span><br></pre></td></tr></table></figure>
 </div>
 </div>
 </div>
