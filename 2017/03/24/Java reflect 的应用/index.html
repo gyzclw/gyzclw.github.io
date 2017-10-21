@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java reflect的应用 | 知识之野</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="java,reflect," />
+  
+
+  <meta name="description" content="1 Java reflect 的应用   1.1 获取参数    Field[] fields = object.getClass().getDeclaredFields();//get private FieldsField[] fields = object.getClass().getFields();  //get Public Fields      1.2 获取方法    Met">
+<meta name="keywords" content="java,reflect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java reflect的应用">
+<meta property="og:url" content="http://yoursite.com/2017/03/24/Java reflect 的应用/index.html">
+<meta property="og:site_name" content="知识之野">
+<meta property="og:description" content="1 Java reflect 的应用   1.1 获取参数    Field[] fields = object.getClass().getDeclaredFields();//get private FieldsField[] fields = object.getClass().getFields();  //get Public Fields      1.2 获取方法    Met">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-03-24T02:23:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java reflect的应用">
+<meta name="twitter:description" content="1 Java reflect 的应用   1.1 获取参数    Field[] fields = object.getClass().getDeclaredFields();//get private FieldsField[] fields = object.getClass().getFields();  //get Public Fields      1.2 获取方法    Met">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 Java reflect 的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-text">1.1 获取参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-text">1.2 获取方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-3"><span class="toc-text">1.3 获取参数的getter值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-4"><span class="toc-text">1.4 应用例子</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Java reflect 的应用" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Java reflect的应用</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.03.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>huang jingui</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/java/">java</a>
+  </span>
+
+
+
+      
+
+      
+
+      
+        <i class="icon-comment"></i> 
+        <span class="ds-thread-count" data-thread-key="post-Java reflect 的应用"><i class="fa fa-spinner fa-spin"></i></span> 条评论
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Java reflect 的应用</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 获取参数</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Field[] fields = object.getClass().getDeclaredFields();<span class="comment">//get private Fields</span></span><br><span class="line">Field[] fields = object.getClass().getFields();  <span class="comment">//get Public Fields</span></span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 获取方法</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Method[] methods = object.getClass().getMethods();</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 获取参数的getter值</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">value=method.invoke(request);</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 应用例子</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+将class的的值格式为： “a=b&a=c”;
+</p>
+<div class="org-src-container">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>    String <span class="title">getSignature</span><span class="params">(Object request)</span></span>{</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Field[] fields=request.getClass().getDeclaredFields();</span><br><span class="line">  Method[] methods=request.getClass().getMethods();</span><br><span class="line">  TreeMap&lt;String,String&gt; requestMap = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line">  <span class="keyword">for</span> (Field f: fields) {</span><br><span class="line">    <span class="keyword">for</span> (Method method : methods) {</span><br><span class="line">      Object value;</span><br><span class="line">      <span class="keyword">if</span> (method.getName().contains(f.getName())&amp;&amp; !method.getName().contains(<span class="string">"set"</span>)){</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> {</span><br><span class="line"></span><br><span class="line">	  value=method.invoke(request);</span><br><span class="line">	  <span class="keyword">if</span> (value==<span class="keyword">null</span>) {</span><br><span class="line">	    value=<span class="string">""</span>;</span><br><span class="line">	    requestMap.put(f.getName(), (String) value);</span><br><span class="line">	  }<span class="keyword">else</span> {</span><br><span class="line">	    requestMap.put(f.getName(), (String) value);</span><br><span class="line">	  }</span><br><span class="line">	} <span class="keyword">catch</span> (IllegalAccessException e) {</span><br><span class="line">	  e.printStackTrace();</span><br><span class="line">	} <span class="keyword">catch</span> (InvocationTargetException e) {</span><br><span class="line">	  e.printStackTrace();</span><br><span class="line">	}</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line">    requestMap.remove(<span class="string">"Signature"</span>);</span><br><span class="line">    Set&lt;String&gt; keys=requestMap.keySet();</span><br><span class="line">    Iterator&lt;String&gt; iterable=keys.iterator();</span><br><span class="line">    String signature=<span class="string">""</span>;</span><br><span class="line">    <span class="keyword">while</span> (iterable.hasNext()){</span><br><span class="line">     String key= iterable.next();</span><br><span class="line">      String value= key+<span class="string">"="</span>+requestMap.get(key);</span><br><span class="line">      signature+=value+<span class="string">"&amp;"</span>;</span><br><span class="line">    }</span><br><span class="line">  <span class="keyword">return</span> signature.substring(<span class="number">0</span>,signature.length()-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</div>
+</div>
+</div>
+</div>
+
+Last Updated 2017-03-24 Fri 10:23.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+
+    
+  </div>
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2017/03/19/Head_First_HTML_CSS_XHTML 读书笔记/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2017/04/09/ItemAnimtor/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+
+    
+  <section class="duoshuo-comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Java reflect 的应用" 
+      data-title="Java reflect的应用" data-url="http://yoursite.com/2017/03/24/Java reflect 的应用/index.html"></div>
+    <!-- 多说评论框 end -->
+  </section>
+
+
+
+
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"platofield"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+
+
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
