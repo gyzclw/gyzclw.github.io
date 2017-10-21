@@ -15,18 +15,18 @@
     <meta name="keywords" content="android," />
   
 
-  <meta name="description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand  &amp;lt;&amp;#x2013;&amp;gt;  onStopCommand  mContext.bindService &amp;lt;&amp;#x2013;&amp;gt; mContext.unbindService    onBind() onRebind()  and onUnbind()  当">
+  <meta name="description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand    onStopCommand  mContext.bindService  mContext.unbindService    onBind() onRebind()  and onUnbind()  当clients have connected Sevice, o">
 <meta name="keywords" content="android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android service">
 <meta property="og:url" content="http://gyzclw.github.io/2017/10/21/android service/index.html">
 <meta property="og:site_name" content="知识之野">
-<meta property="og:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand  &amp;lt;&amp;#x2013;&amp;gt;  onStopCommand  mContext.bindService &amp;lt;&amp;#x2013;&amp;gt; mContext.unbindService    onBind() onRebind()  and onUnbind()  当">
+<meta property="og:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand    onStopCommand  mContext.bindService  mContext.unbindService    onBind() onRebind()  and onUnbind()  当clients have connected Sevice, o">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-21T06:06:07.908Z">
+<meta property="og:updated_time" content="2017-10-21T06:18:46.880Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android service">
-<meta name="twitter:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand  &amp;lt;&amp;#x2013;&amp;gt;  onStopCommand  mContext.bindService &amp;lt;&amp;#x2013;&amp;gt; mContext.unbindService    onBind() onRebind()  and onUnbind()  当">
+<meta name="twitter:description" content="1 android 四大组件中的Service   1.1 关键点   start方式:  onStartCommand    onStopCommand  mContext.bindService  mContext.unbindService    onBind() onRebind()  and onUnbind()  当clients have connected Sevice, o">
 
   
 
@@ -146,8 +146,8 @@
 
 
   <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 android 四大组件中的Service</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-text">1.1 关键点</span></a></li></ol></li></ol>
+    <strong class="toc-title">Posts List</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sec-1"><span class="toc-text">1 android 四大组件中的Service</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-1"><span class="toc-text">1.1 关键点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sec-1-2"><span class="toc-text">1.2 android IPC 机制</span></a></li></ol></li></ol>
   </div>
 
 
@@ -203,10 +203,10 @@
 <ol class="org-ol">
 <li>start方式:
 <ul class="org-ul">
-<li>onStartCommand  &lt;&#x2013;&gt;  onStopCommand
-</li>
-<li>mContext.bindService &lt;&#x2013;&gt; mContext.unbindService
-</li>
+<li>onStartCommand  <&#x2013;>  onStopCommand
+</&#x2013;></li>
+<li>mContext.bindService <&#x2013;> mContext.unbindService
+</&#x2013;></li>
 </ul>
 </li>
 <li>onBind() onRebind()  and onUnbind()
@@ -222,15 +222,18 @@
 <li>每个Servie都要在AndroidManifest.xml中声明。
 <div class="org-src-container">
 
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&amp;lt;service</span><br><span class="line">     android:name=<span class="string">".binder.BinderService"</span></span><br><span class="line">     android:enabled=<span class="string">"true"</span></span><br><span class="line">     android:exported=<span class="string">"true"</span>&amp;gt;</span><br><span class="line"> &amp;lt;/service&amp;gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;service</span><br><span class="line">     android:name=<span class="string">".binder.BinderService"</span></span><br><span class="line">     android:enabled=<span class="string">"true"</span></span><br><span class="line">     android:exported=<span class="string">"true"</span>&gt;</span><br><span class="line"> &lt;/service&gt;</span><br></pre></td></tr></table></figure>
 </div>
 </li>
 </ol>
 </div>
 </div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> android IPC 机制</h3>
+</div>
 </div>
 
-Last Updated 2017-10-21 Sat 14:06.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
+Last Updated 2017-10-21 Sat 14:18.<br>Render by <a href="https://github.com/CodeFalling/hexo-renderer-org" target="_blank" rel="external">hexo-renderer-org</a> with <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="external">Emacs</a> 25.1.1 (<a href="http://orgmode.org" target="_blank" rel="external">Org</a> mode 8.2.10)
 
     
   </div>
@@ -266,7 +269,7 @@ Last Updated 2017-10-21 Sat 14:06.<br>Render by <a href="https://github.com/Code
   <span id="cover" class="cover hide"></span>
   <div id="modal-dialog" class="modal-dialog hide-dialog">
     <div class="modal-header">
-      <span id="close" class="btn-close">关闭</span>
+      <span id="close" class="btn-close">Close</span>
     </div>
     <hr>
     <div class="modal-body">
